@@ -1,0 +1,49 @@
+# 重要说明：
+# 如果修改了 docker-compose.yml 中的 volumes 映射配置，
+# 请同时更新此文件中的相应排除规则，确保数据目录不被复制到容器内部
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# Git 相关
+.git
+.gitignore
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 虚拟环境
+venv/
+env/
+ENV/
+
+# IDE 文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 数据库文件
+*.db
+*.sqlite
+*.sqlite3
+instance/
+
+# 数据目录（通过 volumes 映射，不应复制到容器内部）
+uploads/ 

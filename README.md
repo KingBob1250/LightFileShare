@@ -187,6 +187,18 @@ docker compose logs -f
 docker compose down
 ```
 
+#### 重要说明：.dockerignore 文件
+
+项目包含 `.dockerignore` 文件，用于排除不需要复制到容器内部的文件和目录：
+
+- **环境变量文件**：`.env`、`.env.local` 等
+- **数据目录**：`uploads/`、`instance/`（通过 volumes 映射）
+- **开发文件**：`.git/`、`__pycache__/`、IDE 配置文件等
+
+**⚠️ 重要提醒**：如果您修改了 `docker-compose.yml` 中的 volumes 映射配置，请同时更新 `.dockerignore` 文件中的相应排除规则，确保数据目录不被复制到容器内部，避免数据冲突和镜像过大。
+
+例如，如果您将 volumes 映射从 `./uploads:/app/uploads` 改为 `./data:/app/uploads`，那么需要在 `.dockerignore` 中将 `uploads/` 改为 `data/`。
+
 ## 🛑 停止服务
 
 ```bash
