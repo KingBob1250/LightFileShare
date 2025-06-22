@@ -16,5 +16,5 @@ services:
       - ENABLE_FILE_TYPE_CHECK=${ENABLE_FILE_TYPE_CHECK:-false}
     volumes:
       - ./uploads:/app/uploads
-      - ./database.db:/app/database.db
+      - ./instance:/app/instance
     restart: unless-stopped
