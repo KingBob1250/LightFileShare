@@ -67,7 +67,11 @@ def dashboard():
     message = request.args.get('message')
     error = request.args.get('error')
     
-    return render_template('dashboard.html', files=files, message=message, error=error)
+    return render_template('dashboard.html', 
+                         files=files, 
+                         message=message, 
+                         error=error,
+                         share_host=app.config['SHARE_HOST'])
 
 @app.route('/upload', methods=['POST'])
 @login_required
@@ -150,6 +154,7 @@ def share_file():
             'success': True,
             'token': share_link.token,
             'share_url': f"{app.config['SHARE_HOST']}/download/{share_link.token}",
+            'filename': file_record.original_filename,
             'message': '分享链接创建成功'
         })
     except Exception as e:

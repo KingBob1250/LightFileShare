@@ -47,15 +47,20 @@ def main():
     # 启动uvicorn
     try:
         import uvicorn
+        from asgiref.wsgi import WsgiToAsgi
+        
+        # 将Flask应用转换为ASGI应用
+        asgi_app = WsgiToAsgi(app)
+        
         uvicorn.run(
-            app,
+            asgi_app,
             host=app.config['HOST'],
             port=app.config['PORT'],
             log_level="info"
         )
     except ImportError:
-        print("❌ 错误: 未安装uvicorn")
-        print("请运行: pip install uvicorn")
+        print("❌ 错误: 未安装uvicorn或asgiref")
+        print("请运行: pip install uvicorn asgiref")
         sys.exit(1)
     except KeyboardInterrupt:
         print("\n👋 服务已停止")

@@ -62,7 +62,10 @@
                     {% if file.shares %}
                         {% for share in file.shares %}
                             {% if not share.is_expired %}
-                                <span class="btn btn-success" style="font-size: 12px; padding: 4px 8px;">
+                                <span class="btn btn-success share-status" 
+                                      style="font-size: 12px; padding: 4px 8px; cursor: pointer;"
+                                      onclick="copyShareInfo('{{ file.original_filename }}', '{{ share_host }}/download/{{ share.token }}')"
+                                      title="点击复制分享信息">
                                     分享中 ({{ share.days_remaining }}天)
                                 </span>
                             {% endif %}
@@ -109,14 +112,18 @@
         </form>
         
         <div id="shareResult" style="display: none; margin-top: 20px;">
-            <h4>分享链接：</h4>
-            <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; word-break: break-all;">
-                <span id="shareLink"></span>
+            <h4>分享信息：</h4>
+            <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; margin-bottom: 10px;">
+                <strong>文件名：</strong><span id="shareFileNameResult"></span>
             </div>
-            <button class="btn" onclick="copyShareLink()" style="margin-top: 10px;">复制链接</button>
+            <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; word-break: break-all; margin-bottom: 10px;">
+                <strong>分享链接：</strong><span id="shareLink"></span>
+            </div>
+            <button class="btn" onclick="copyShareInfo()">复制分享链接</button>
         </div>
     </div>
 </div>
+
 {% endblock %}
 
 {% block scripts %}
@@ -241,6 +248,7 @@ document.getElementById('shareForm').addEventListener('submit', function(e) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            document.getElementById('shareFileNameResult').textContent = data.filename;
             document.getElementById('shareLink').textContent = data.share_url;
             document.getElementById('shareResult').style.display = 'block';
         } else {
@@ -253,9 +261,17 @@ document.getElementById('shareForm').addEventListener('submit', function(e) {
     });
 });
 
-function copyShareLink() {
-    const link = document.getElementById('shareLink').textContent;
-    copyToClipboard(link);
+function copyShareInfo(filename, shareUrl) {
+    // 如果传入了参数，使用传入的参数；否则从DOM获取
+    if (filename && shareUrl) {
+        const fullInfo = `${filename}: ${shareUrl}`;
+        copyToClipboard(fullInfo);
+    } else {
+        const filename = document.getElementById('shareFileNameResult').textContent;
+        const link = document.getElementById('shareLink').textContent;
+        const fullInfo = `${filename}: ${link}`;
+        copyToClipboard(fullInfo);
+    }
 }
 
 // 下载文件功能
