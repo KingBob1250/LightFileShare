@@ -20,16 +20,12 @@ COPY . .
 # 创建上传目录
 RUN mkdir -p uploads
 
-# 设置环境变量
-ENV FLASK_APP=app.py
-ENV FLASK_ENV=production
-
 # 暴露端口
 EXPOSE 5000
 
 # 健康检查
-HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --retries=3 \
     CMD curl -f http://localhost:5000/ || exit 1
 
-# 启动命令
-CMD ["python", "app.py"] 
+# 启动命令 - 使用start_uvicorn.py脚本
+CMD ["python", "start_uvicorn.py"] 

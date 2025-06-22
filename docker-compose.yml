@@ -11,6 +11,7 @@ services:
       - UPLOAD_FOLDER=/app/uploads
       - MAX_CONTENT_LENGTH=${MAX_CONTENT_LENGTH:-104857600}
       - DEFAULT_SHARE_DAYS=${DEFAULT_SHARE_DAYS:-7}
+      - SHARE_HOST=${SHARE_HOST:-http://localhost:5000}
       - SECRET_KEY=${SECRET_KEY:-your-secret-key-change-in-production}
     volumes:
       - ./uploads:/app/uploads
