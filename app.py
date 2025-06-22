@@ -84,7 +84,7 @@ def upload_file():
     if file.filename == '':
         return jsonify({'success': False, 'error': '没有选择文件'})
     
-    if file and allowed_file(file.filename):
+    if file and allowed_file(file.filename, enable_check=app.config['ENABLE_FILE_TYPE_CHECK']):
         # 生成安全的文件名
         original_filename = file.filename
         filename = safe_filename(file.filename)

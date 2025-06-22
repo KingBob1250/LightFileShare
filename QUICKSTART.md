@@ -59,6 +59,7 @@ cp env.example .env
 - `ADMIN_PASSWORD`: 管理员密码
 - `PORT`: 服务端口
 - `MAX_CONTENT_LENGTH`: 最大文件大小
+- `ENABLE_FILE_TYPE_CHECK`: 是否启用文件类型检测（默认false，允许所有文件类型）
 
 ## 🧪 测试功能
 

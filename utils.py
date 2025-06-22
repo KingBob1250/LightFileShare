@@ -6,12 +6,16 @@ import mimetypes
 import re
 from models import db
 
-def allowed_file(filename, allowed_extensions=None):
+def allowed_file(filename, allowed_extensions=None, enable_check=True):
     """检查文件类型是否允许"""
+    # 如果禁用文件类型检测，直接返回 True
+    if not enable_check:
+        return True
+        
     if allowed_extensions is None:
         allowed_extensions = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'doc', 'docx', 
                              'xls', 'xlsx', 'ppt', 'pptx', 'zip', 'rar', '7z', 'mp3', 
-                             'mp4', 'avi', 'mkv', 'mov', 'wmv', 'flv', 'webm', 'torrent'}
+                             'mp4', 'avi', 'mkv', 'mov', 'wmv', 'flv', 'webm', 'torrent', 'apk'}
     
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in allowed_extensions

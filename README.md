@@ -66,6 +66,19 @@ python app.py
 | `MAX_CONTENT_LENGTH` | 104857600 | 最大文件大小（字节） |
 | `DEFAULT_SHARE_DAYS` | 7 | 默认分享天数 |
 | `SECRET_KEY` | dev-secret-key | 会话密钥 |
+| `ENABLE_FILE_TYPE_CHECK` | false | 是否启用文件类型检测 |
+
+### 文件类型检测
+
+默认情况下，文件类型检测功能是**禁用**的（`ENABLE_FILE_TYPE_CHECK=false`），这意味着您可以上传任何类型的文件。
+
+如果您想启用文件类型限制，可以设置 `ENABLE_FILE_TYPE_CHECK=true`，系统将只允许上传以下类型的文件：
+
+- 文档：txt, pdf, doc, docx, xls, xlsx, ppt, pptx
+- 图片：png, jpg, jpeg, gif
+- 压缩包：zip, rar, 7z
+- 音视频：mp3, mp4, avi, mkv, mov, wmv, flv, webm
+- 其他：torrent, apk
 
 ### 支持的文件类型
 

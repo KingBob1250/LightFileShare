@@ -13,6 +13,7 @@ services:
       - DEFAULT_SHARE_DAYS=${DEFAULT_SHARE_DAYS:-7}
       - SHARE_HOST=${SHARE_HOST:-http://localhost:5000}
       - SECRET_KEY=${SECRET_KEY:-your-secret-key-change-in-production}
+      - ENABLE_FILE_TYPE_CHECK=${ENABLE_FILE_TYPE_CHECK:-false}
     volumes:
       - ./uploads:/app/uploads
       - ./database.db:/app/database.db

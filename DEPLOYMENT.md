@@ -51,6 +51,10 @@ export ADMIN_PASSWORD="your-password"
 export HOST="0.0.0.0"
 export PORT="5000"
 
+# 文件上传配置
+export MAX_CONTENT_LENGTH="104857600"
+export ENABLE_FILE_TYPE_CHECK="false"  # 设置为true启用文件类型限制
+
 # 分享链接配置
 export SHARE_HOST="https://your-domain.com"
 ```

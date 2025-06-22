@@ -13,6 +13,9 @@ class Config:
     UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER') or 'uploads'
     MAX_CONTENT_LENGTH = int(os.environ.get('MAX_CONTENT_LENGTH', 1024 * 1024 * 100))  # 100MB
     
+    # 文件类型检测配置
+    ENABLE_FILE_TYPE_CHECK = os.environ.get('ENABLE_FILE_TYPE_CHECK', 'false').lower() == 'true'
+    
     # 服务器配置
     HOST = os.environ.get('HOST', '0.0.0.0')
     PORT = int(os.environ.get('PORT', 5000))
