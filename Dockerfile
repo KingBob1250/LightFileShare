@@ -37,5 +37,5 @@ EXPOSE 5000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --retries=3 \
     CMD curl -f http://localhost:5000/ || exit 1
 
-# 启动命令 - 使用start_uvicorn.py脚本
-CMD ["python", "start_uvicorn.py"] 
+# 启动命令 - 使用start_server.py脚本
+CMD ["python", "start_server.py"] 
