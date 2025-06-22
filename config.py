@@ -5,12 +5,11 @@ class Config:
     # 基础配置
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-in-production'
     
-    # 数据库配置
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///database.db'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    # 数据库配置 - 固定路径
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db'
     
-    # 文件存储配置
-    UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER') or 'uploads'
+    # 文件存储配置 - 固定路径
+    UPLOAD_FOLDER = 'uploads'
     MAX_CONTENT_LENGTH = int(os.environ.get('MAX_CONTENT_LENGTH', 1024 * 1024 * 100))  # 100MB
     
     # 文件类型检测配置

@@ -11,16 +11,20 @@ from asgiref.wsgi import WsgiToAsgi
 
 def init_database():
     """初始化数据库"""
-    with app.app_context():
-        # 创建数据库表
-        db.create_all()
-        print("✅ 数据库初始化完成")
+    try:
+        with app.app_context():
+            # 创建数据库表
+            db.create_all()
+            print("✅ 数据库初始化完成")
+    except Exception as e:
+        print(f"❌ 数据库初始化失败: {e}")
+        sys.exit(1)
 
 def create_upload_dir():
     """创建上传目录"""
     upload_dir = app.config['UPLOAD_FOLDER']
     if not os.path.exists(upload_dir):
-        os.makedirs(upload_dir)
+        os.makedirs(upload_dir, exist_ok=True)
         print(f"✅ 创建上传目录: {upload_dir}")
     else:
         print(f"✅ 上传目录已存在: {upload_dir}")
@@ -38,7 +42,7 @@ def main():
     print(f"   - 端口: {app.config['PORT']}")
     print(f"   - 主机: {app.config['HOST']}")
     print(f"   - 上传目录: {app.config['UPLOAD_FOLDER']}")
-    print(f"   - 最大文件大小: {app.config['MAX_CONTENT_LENGTH']} 字节")
+    print(f"   - 最大文件大小: {app.config['MAX_CONTENT_LENGTH'] / (1024 * 1024):.2f} MB")
     print(f"   - 默认分享天数: {app.config['DEFAULT_SHARE_DAYS']} 天")
     print(f"   - 分享链接Host: {app.config['SHARE_HOST']}")
     
@@ -47,7 +51,6 @@ def main():
     print("\n按 Ctrl+C 停止服务")
     
     # 启动uvicorn
-
     # 将Flask应用转换为ASGI应用
     asgi_app = WsgiToAsgi(app)
     uvicorn.run(

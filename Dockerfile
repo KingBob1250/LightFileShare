@@ -27,8 +27,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 复制应用代码
 COPY . .
 
-# 创建上传目录
-RUN mkdir -p uploads
+# 创建目录
+RUN mkdir -p uploads instance
 
 # 暴露端口
 EXPOSE 5000

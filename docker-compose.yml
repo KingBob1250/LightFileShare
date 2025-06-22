@@ -3,21 +3,15 @@ services:
     build: .
     container_name: file-server
     ports:
-      - "${PORT:-5000}:${PORT:-5000}"
+      - "${HOST:-0.0.0.0}:${PORT:-5000}:5000"
     environment:
-      - HOST=${HOST:-0.0.0.0}
-      - PORT=${PORT:-5000}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123}
-      - DATABASE_URL=${DATABASE_URL:-sqlite:///db/database.db}
-      - DATABASE_DIR=${DATABASE_DIR:-/app/db}
-      - DATABASE_PATH=${DATABASE_DIR:-/app/db}/database.db
-      - UPLOAD_FOLDER=${UPLOAD_FOLDER:-/app/uploads}
       - MAX_CONTENT_LENGTH=${MAX_CONTENT_LENGTH:-104857600}
       - DEFAULT_SHARE_DAYS=${DEFAULT_SHARE_DAYS:-7}
       - SHARE_HOST=${SHARE_HOST:-http://localhost:5000}
       - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
       - ENABLE_FILE_TYPE_CHECK=${ENABLE_FILE_TYPE_CHECK:-false}
     volumes:
-      - ./uploads:${UPLOAD_FOLDER:-/app/uploads}
-      - ./db:${DATABASE_DIR:-/app/db}
+      - ./uploads:/app/uploads
+      - ./instance:/app/instance
     restart: unless-stopped
