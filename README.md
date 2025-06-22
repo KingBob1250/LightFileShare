@@ -102,13 +102,33 @@ python start_server.py
 | `PORT` | 5000 | 服务端口 |
 | `HOST` | 0.0.0.0 | 监听地址 |
 | `ADMIN_PASSWORD` | admin123 | 管理员密码 |
-| `DATABASE_URL` | sqlite:///database.db | 数据库连接字符串 |
-| `DATABASE_PATH` | /app/database.db | 容器内数据库文件路径 |
+| `DATABASE_URL` | sqlite:///db/database.db | 数据库连接字符串 |
+| `DATABASE_DIR` | /app/db | 容器内数据库目录路径 |
+| `DATABASE_PATH` | 自动生成 | 容器内数据库文件路径（自动基于DATABASE_DIR生成） |
 | `UPLOAD_FOLDER` | uploads | 文件存储目录 |
 | `MAX_CONTENT_LENGTH` | 104857600 | 最大文件大小（字节） |
 | `DEFAULT_SHARE_DAYS` | 7 | 默认分享天数 |
 | `SECRET_KEY` | dev-secret-key | 会话密钥 |
 | `ENABLE_FILE_TYPE_CHECK` | false | 是否启用文件类型检测 |
+
+### 目录结构
+
+```
+file_server/
+├── app.py              # 主应用文件
+├── config.py           # 配置文件
+├── models.py           # 数据模型
+├── utils.py            # 工具函数
+├── start_server.py     # 启动脚本
+├── requirements.txt    # Python依赖
+├── docker-compose.yml  # Docker配置
+├── Dockerfile          # Docker镜像配置
+├── .env                # 环境变量（需要创建）
+├── uploads/            # 文件上传目录
+├── db/                 # 数据库目录
+│   └── database.db     # SQLite数据库文件
+└── templates/          # HTML模板
+```
 
 ### 路径配置说明
 
@@ -116,13 +136,18 @@ python start_server.py
 - **本地开发**：使用相对路径 `uploads`（相对于项目根目录）
 - **Docker 环境**：Docker Compose 会自动将 `uploads` 映射为 `/app/uploads`
 
-**DATABASE_PATH 配置**：
-- **本地开发**：不需要设置（使用 DATABASE_URL 中的相对路径）
-- **Docker 环境**：使用绝对路径 `/app/database.db`（容器内路径）
+**数据库配置**：
+- **本地开发**：数据库文件存储在 `./db/database.db`
+- **Docker 环境**：数据库文件存储在容器内的 `/app/db/database.db`
 
-Docker Compose 会自动处理路径映射，无需手动配置：
-- 本地的 `./uploads` 目录 → 容器内的 `${UPLOAD_FOLDER:-/app/uploads}`
-- 本地的 `./database.db` 文件 → 容器内的 `${DATABASE_PATH:-/app/database.db}`
+**自动化路径生成**：
+- 只需要配置 `DATABASE_DIR`（如：`/app/db`）
+- `DATABASE_PATH` 会自动生成为 `${DATABASE_DIR}/database.db`
+- 确保路径一致性，无需手动维护两个变量
+
+Docker Compose 会自动处理路径映射：
+- 本地的 `./uploads` 目录 → 容器内的 `/app/uploads`
+- 本地的 `./db` 目录 → 容器内的 `/app/db`
 
 ### 文件类型检测
 
@@ -205,40 +230,3 @@ docker compose down
 - `GET /download/<token>` - 下载分享的文件
 - `GET /download_file/<int:file_id>` - 管理员下载文件
 - `GET /api/batch_download` - 批量下载文件
-
-## 项目结构
-
-```
-file_server/
-├── app.py                 # 主应用文件
-├── config.py              # 配置管理
-├── models.py              # 数据模型
-├── utils.py               # 工具函数
-├── requirements.txt       # Python依赖
-├── Dockerfile            # Docker镜像配置
-├── docker-compose.yml    # Docker Compose配置
-├── env.example           # 环境变量示例
-├── templates/            # HTML模板
-│   ├── base.html
-│   ├── login.html
-│   └── dashboard.html
-├── uploads/              # 文件存储目录
-├── database.db           # SQLite数据库文件
-└── README.md
-```
-
-## 技术栈
-
-- **后端**：Flask + SQLAlchemy
-- **数据库**：SQLite
-- **前端**：原生HTML + CSS + JavaScript
-- **部署**：Docker + Docker Compose
-- **服务器**：Uvicorn (ASGI)
-
-## 许可证
-
-MIT License
-
-## 贡献
-
-欢迎提交Issue和Pull Request！
