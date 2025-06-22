@@ -18,6 +18,9 @@ RUN apt-get update && apt-get install -y \
 # 复制依赖文件
 COPY requirements.txt .
 
+# 配置pip使用清华大学镜像源
+RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
 # 安装Python依赖
 RUN pip install --no-cache-dir -r requirements.txt
 
