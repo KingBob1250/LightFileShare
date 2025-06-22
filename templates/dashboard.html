@@ -264,12 +264,12 @@ document.getElementById('shareForm').addEventListener('submit', function(e) {
 function copyShareInfo(filename, shareUrl) {
     // 如果传入了参数，使用传入的参数；否则从DOM获取
     if (filename && shareUrl) {
-        const fullInfo = `${filename}: ${shareUrl}`;
+        const fullInfo = `文件名：${filename}\n下载链接：${shareUrl}`;
         copyToClipboard(fullInfo);
     } else {
         const filename = document.getElementById('shareFileNameResult').textContent;
         const link = document.getElementById('shareLink').textContent;
-        const fullInfo = `${filename}: ${link}`;
+        const fullInfo = `文件名：${filename}\n下载链接：${link}`;
         copyToClipboard(fullInfo);
     }
 }
