@@ -1,7 +1,7 @@
 import os
 import hashlib
 from werkzeug.utils import secure_filename
-from flask import request, send_file, Response
+from flask import request, send_file
 import mimetypes
 import re
 from models import db

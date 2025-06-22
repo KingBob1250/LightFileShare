@@ -1,11 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify, send_file
-from flask_sqlalchemy import SQLAlchemy
-from werkzeug.utils import secure_filename
-from werkzeug.security import check_password_hash, generate_password_hash
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_file
 import os
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime
 from functools import wraps
+import json
+import mimetypes
+from dotenv import load_dotenv
+
+# 加载 .env 文件中的环境变量
+load_dotenv()
 
 from config import Config
 from models import db, File, ShareLink
@@ -61,14 +64,22 @@ def dashboard():
     # 清理过期的分享链接
     cleanup_expired_shares()
     
-    # 获取所有文件
-    files = File.query.order_by(File.upload_time.desc()).all()
+    # 获取分页参数
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 20, type=int)  # 每页显示20个文件
+    
+    # 获取所有文件（分页）
+    pagination = File.query.order_by(File.upload_time.desc()).paginate(
+        page=page, per_page=per_page, error_out=False
+    )
+    files = pagination.items
     
     message = request.args.get('message')
     error = request.args.get('error')
     
     return render_template('dashboard.html', 
                          files=files, 
+                         pagination=pagination,
                          message=message, 
                          error=error,
                          share_host=app.config['SHARE_HOST'])
@@ -181,7 +192,7 @@ def download_file(token):
     if not file_record or not os.path.exists(file_record.file_path):
         return "文件不存在", 404
     
-    # 增加下载次数
+    # 增加下载次数（在发送文件前）
     share_link.download_count += 1
     db.session.commit()
     
@@ -242,6 +253,255 @@ def download_file_admin(file_id):
     
     # 返回文件（支持断点续传）
     return send_file_with_range(file_record.file_path, file_record.original_filename)
+
+@app.route('/api/search_files')
+@login_required
+def search_files():
+    """API: 搜索文件（支持分页和排序）"""
+    # 获取搜索参数
+    query = request.args.get('q', '').strip()
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', 20, type=int)
+    sort_by = request.args.get('sort_by', 'upload_time')
+    sort_order = request.args.get('sort_order', 'desc')
+
+    # 基础查询
+    files_query = File.query
+
+    # 应用搜索过滤器
+    if query:
+        search_filter = File.original_filename.ilike(f'%{query}%')
+        files_query = files_query.filter(search_filter)
+    
+    # 应用排序
+    if sort_by == 'share_status':
+        # 按分享状态排序：计算每个文件有效的分享链接数
+        active_shares_subquery = db.session.query(
+            ShareLink.file_id,
+            db.func.count(ShareLink.id).label('active_shares_count')
+        ).filter(ShareLink.expire_time > datetime.utcnow()).group_by(ShareLink.file_id).subquery()
+
+        files_query = files_query.outerjoin(
+            active_shares_subquery, File.id == active_shares_subquery.c.file_id
+        )
+        order_expression = db.func.coalesce(active_shares_subquery.c.active_shares_count, 0)
+        
+        if sort_order == 'desc':
+            files_query = files_query.order_by(order_expression.desc())
+        else:
+            files_query = files_query.order_by(order_expression.asc())
+            
+    elif sort_by in ['original_filename', 'file_size', 'upload_time']:
+        sort_column = getattr(File, sort_by)
+        if sort_order == 'desc':
+            files_query = files_query.order_by(sort_column.desc())
+        else:
+            files_query = files_query.order_by(sort_column.asc())
+    
+    # 添加第二排序，确保顺序稳定
+    if sort_by != 'upload_time':
+        files_query = files_query.order_by(File.upload_time.desc())
+    else: # 如果按上传时间排序，则按ID进行第二排序
+        files_query = files_query.order_by(File.id.desc())
+
+    # 分页
+    pagination = files_query.paginate(page=page, per_page=per_page, error_out=False)
+    
+    # 构建响应数据
+    files_data = []
+    for file in pagination.items:
+        file_data = {
+            'id': file.id,
+            'filename': file.original_filename,
+            'size': file.file_size,
+            'size_human': file.file_size_human,
+            'upload_time': file.upload_time.strftime('%Y-%m-%d %H:%M:%S'),
+            'shares': []
+        }
+        
+        # 添加有效的分享链接
+        for share in file.shares:
+            if not share.is_expired:
+                file_data['shares'].append({
+                    'token': share.token,
+                    'expire_time': share.expire_time.strftime('%Y-%m-%d %H:%M:%S'),
+                    'is_expired': share.is_expired,
+                    'days_remaining': share.days_remaining
+                })
+        
+        files_data.append(file_data)
+    
+    return jsonify({
+        'files': files_data,
+        'pagination': {
+            'page': pagination.page,
+            'pages': pagination.pages,
+            'per_page': pagination.per_page,
+            'total': pagination.total,
+            'has_prev': pagination.has_prev,
+            'has_next': pagination.has_next,
+            'prev_num': pagination.prev_num,
+            'next_num': pagination.next_num
+        }
+    })
+
+@app.route('/api/batch_delete', methods=['POST'])
+@login_required
+def batch_delete():
+    """API: 批量删除文件"""
+    data = request.get_json()
+    file_ids = data.get('file_ids', [])
+    
+    if not file_ids:
+        return jsonify({'success': False, 'error': '请选择要删除的文件'})
+    
+    deleted_count = 0
+    failed_files = []
+    
+    for file_id in file_ids:
+        try:
+            file_record = File.query.get(file_id)
+            if file_record:
+                # 删除物理文件
+                if os.path.exists(file_record.file_path):
+                    os.remove(file_record.file_path)
+                
+                # 删除数据库记录
+                db.session.delete(file_record)
+                deleted_count += 1
+            else:
+                failed_files.append(f"文件ID {file_id} 不存在")
+        except Exception as e:
+            failed_files.append(f"文件ID {file_id}: {str(e)}")
+    
+    try:
+        db.session.commit()
+        return jsonify({
+            'success': True,
+            'deleted_count': deleted_count,
+            'failed_files': failed_files,
+            'message': f'成功删除 {deleted_count} 个文件'
+        })
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'error': f'批量删除失败: {str(e)}'})
+
+@app.route('/api/batch_share', methods=['POST'])
+@login_required
+def batch_share():
+    """API: 批量分享文件"""
+    data = request.get_json()
+    file_ids = data.get('file_ids', [])
+    days = data.get('days', 7)
+    
+    if not file_ids:
+        return jsonify({'success': False, 'error': '请选择要分享的文件'})
+    
+    shared_count = 0
+    failed_files = []
+    share_links = []
+    
+    for file_id in file_ids:
+        try:
+            file_record = File.query.get(file_id)
+            if file_record:
+                # 创建分享链接
+                share_link = ShareLink.create_share_link(file_id, days)
+                shared_count += 1
+                
+                share_links.append({
+                    'file_id': file_id,
+                    'filename': file_record.original_filename,
+                    'share_url': f"{app.config['SHARE_HOST']}/download/{share_link.token}",
+                    'token': share_link.token
+                })
+            else:
+                failed_files.append(f"文件ID {file_id} 不存在")
+        except Exception as e:
+            failed_files.append(f"文件ID {file_id}: {str(e)}")
+    
+    return jsonify({
+        'success': True,
+        'shared_count': shared_count,
+        'failed_files': failed_files,
+        'share_links': share_links,
+        'message': f'成功分享 {shared_count} 个文件'
+    })
+
+@app.route('/api/batch_download')
+@login_required
+def batch_download():
+    """API: 批量下载文件（创建ZIP包）"""
+    file_ids_str = request.args.get('file_ids', '')
+    
+    if not file_ids_str:
+        return jsonify({'success': False, 'error': '请选择要下载的文件'})
+    
+    try:
+        file_ids = json.loads(file_ids_str)
+    except:
+        return jsonify({'success': False, 'error': '文件ID格式错误'})
+    
+    if not file_ids:
+        return jsonify({'success': False, 'error': '请选择要下载的文件'})
+    
+    import zipfile
+    from io import BytesIO
+    
+    # 创建临时ZIP文件
+    zip_buffer = BytesIO()
+    with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+        added_count = 0
+        for file_id in file_ids:
+            try:
+                file_record = File.query.get(file_id)
+                if file_record and os.path.exists(file_record.file_path):
+                    # 添加到ZIP文件
+                    zip_file.write(file_record.file_path, file_record.original_filename)
+                    added_count += 1
+            except Exception as e:
+                continue
+        
+        if added_count == 0:
+            return jsonify({'success': False, 'error': '没有找到可下载的文件'})
+    
+    zip_buffer.seek(0)
+    
+    # 生成ZIP文件名
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    zip_filename = f'files_{timestamp}.zip'
+    
+    return send_file(
+        zip_buffer,
+        mimetype='application/zip',
+        as_attachment=True,
+        download_name=zip_filename
+    )
+
+@app.route('/preview/<int:file_id>')
+@login_required
+def preview_file(file_id):
+    """文件预览"""
+    file_record = File.query.get_or_404(file_id)
+
+    if not os.path.exists(file_record.file_path):
+        return "文件不存在", 404
+
+    ext = file_record.original_filename.rsplit('.', 1)[-1].lower()
+    
+    # 文本类型预览
+    if ext in app.config['PREVIEWABLE_EXTENSIONS']['text']:
+        try:
+            with open(file_record.file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            return render_template('preview_text.html', content=content, lang=ext)
+        except Exception as e:
+            return f"无法预览文件: {e}", 500
+    
+    # 其他类型直接发送文件
+    mimetype = mimetypes.guess_type(file_record.original_filename)[0] or 'application/octet-stream'
+    
+    return send_file(file_record.file_path, mimetype=mimetype)
 
 @app.errorhandler(404)
 def not_found(error):

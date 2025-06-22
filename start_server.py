@@ -5,7 +5,9 @@
 
 import os
 import sys
+import uvicorn
 from app import app, db
+from asgiref.wsgi import WsgiToAsgi
 
 def init_database():
     """初始化数据库"""
@@ -45,25 +47,16 @@ def main():
     print("\n按 Ctrl+C 停止服务")
     
     # 启动uvicorn
-    try:
-        import uvicorn
-        from asgiref.wsgi import WsgiToAsgi
-        
-        # 将Flask应用转换为ASGI应用
-        asgi_app = WsgiToAsgi(app)
-        
-        uvicorn.run(
-            asgi_app,
-            host=app.config['HOST'],
-            port=app.config['PORT'],
-            log_level="info"
-        )
-    except ImportError:
-        print("❌ 错误: 未安装uvicorn或asgiref")
-        print("请运行: pip install uvicorn asgiref")
-        sys.exit(1)
-    except KeyboardInterrupt:
-        print("\n👋 服务已停止")
+
+    # 将Flask应用转换为ASGI应用
+    asgi_app = WsgiToAsgi(app)
+    uvicorn.run(
+        asgi_app,
+        host=app.config['HOST'],
+        port=app.config['PORT'],
+        log_level="info",
+        lifespan="off"  # 禁用lifespan协议以避免警告
+    )
 
 if __name__ == '__main__':
     main() 

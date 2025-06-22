@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% set previewable_extensions = config.PREVIEWABLE_EXTENSIONS.values() | sum(start=[]) %}
+
 {% block title %}管理面板 - 文件服务器{% endblock %}
 
 {% block content %}
@@ -36,57 +38,155 @@
         <p id="progressText">上传中...</p>
     </div>
     
-    <!-- 文件列表 -->
-    <h2>文件列表</h2>
-    <div class="form-group">
-        <input type="text" id="searchInput" placeholder="搜索文件..." onkeyup="filterFiles()">
+    <!-- 导航标签页 -->
+    <div class="nav-tabs">
+        <button class="nav-tab active" onclick="switchTab('fileManagement')">文件管理</button>
+        <button class="nav-tab" onclick="switchTab('shareManagement')">分享管理</button>
     </div>
     
-    <table class="table" id="fileTable">
-        <thead>
-            <tr>
-                <th>文件名</th>
-                <th>大小</th>
-                <th>上传时间</th>
-                <th>分享状态</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for file in files %}
-            <tr data-filename="{{ file.original_filename.lower() }}">
-                <td>{{ file.original_filename }}</td>
-                <td>{{ file.file_size_human }}</td>
-                <td>{{ file.upload_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-                <td>
-                    {% if file.shares %}
-                        {% for share in file.shares %}
-                            {% if not share.is_expired %}
-                                <span class="btn btn-success share-status" 
-                                      style="font-size: 12px; padding: 4px 8px; cursor: pointer;"
-                                      onclick="copyShareInfo('{{ file.original_filename }}', '{{ share_host }}/download/{{ share.token }}')"
-                                      title="点击复制分享信息">
-                                    分享中 ({{ share.days_remaining }}天)
-                                </span>
+    <!-- 文件列表 -->
+    <div id="fileManagementContent">
+        <h2>文件列表</h2>
+        <div class="form-group">
+            <input type="text" id="searchInput" placeholder="搜索文件..." onkeyup="debounceSearch()">
+            <div id="searchStatus" style="margin-top: 5px; font-size: 12px; color: #666;"></div>
+        </div>
+        
+        <!-- 批量操作控件 -->
+        <div class="batch-controls" id="batchControls" style="display: none;">
+            <div class="batch-info">
+                <span id="selectedCount">已选择 0 个文件</span>
+            </div>
+            <div class="batch-actions">
+                <button class="btn btn-success" onclick="batchShare()">批量分享</button>
+                <button class="btn btn-primary" onclick="batchDownload()">批量下载</button>
+                <button class="btn btn-danger" onclick="batchDelete()">批量删除</button>
+                <button class="btn" onclick="clearSelection()">取消选择</button>
+            </div>
+        </div>
+        
+        <div id="fileListContainer">
+            <table class="table" id="fileTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" id="selectAll" onchange="toggleSelectAll()">
+                            <label for="selectAll">全选</label>
+                        </th>
+                        <th class="sortable" onclick="sortBy('original_filename')" data-sort="original_filename">
+                            文件名 <span class="sort-icon"></span>
+                        </th>
+                        <th class="sortable" onclick="sortBy('file_size')" data-sort="file_size">
+                            大小 <span class="sort-icon"></span>
+                        </th>
+                        <th class="sortable" onclick="sortBy('upload_time')" data-sort="upload_time">
+                            上传时间 <span class="sort-icon"></span>
+                        </th>
+                        <th class="sortable" onclick="sortBy('share_status')" data-sort="share_status">
+                            分享状态 <span class="sort-icon"></span>
+                        </th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="fileTableBody">
+                    {% for file in files %}
+                    <tr data-filename="{{ file.original_filename.lower() }}" data-file-id="{{ file.id }}">
+                        <td>
+                            <input type="checkbox" class="file-checkbox" value="{{ file.id }}" onchange="updateSelection()">
+                        </td>
+                        <td>{{ file.original_filename }}</td>
+                        <td>{{ file.file_size_human }}</td>
+                        <td>{{ file.upload_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        <td>
+                            {% if file.shares %}
+                                {% for share in file.shares %}
+                                    {% if not share.is_expired %}
+                                        <span class="btn btn-success share-status" 
+                                              style="font-size: 12px; padding: 4px 8px; cursor: pointer;"
+                                              onclick="copyShareInfo('{{ file.original_filename }}', '{{ share_host }}/download/{{ share.token }}')"
+                                              title="点击复制分享信息">
+                                            分享中 ({{ share.days_remaining }}天)
+                                        </span>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <span style="color: #999;">未分享</span>
                             {% endif %}
-                        {% endfor %}
-                    {% else %}
-                        <span style="color: #999;">未分享</span>
-                    {% endif %}
-                </td>
-                <td>
-                    <button class="btn btn-primary" onclick="downloadFile({{ file.id }})">下载</button>
-                    <button class="btn" onclick="showShareModal({{ file.id }}, '{{ file.original_filename }}')">分享</button>
-                    <button class="btn btn-danger" onclick="confirmDelete({{ file.id }}, '{{ file.original_filename }}')">删除</button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                        </td>
+                        <td>
+                            <div class="actions-container">
+                                {% if file.original_filename.rsplit('.', 1)[-1].lower() in previewable_extensions %}
+                                <button class="btn btn-info" onclick="showPreviewModal({{ file.id }}, '{{ file.original_filename }}')">预览</button>
+                                {% endif %}
+                                <button class="btn btn-primary" onclick="downloadFile({{ file.id }})">下载</button>
+                                <button class="btn" onclick="showShareModal({{ file.id }}, '{{ file.original_filename }}')">分享</button>
+                                <button class="btn btn-danger" onclick="confirmDelete({{ file.id }}, '{{ file.original_filename }}')">删除</button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            {% if not files %}
+            <p style="text-align: center; color: #999; margin-top: 20px;">暂无文件</p>
+            {% endif %}
+            
+            <!-- 分页控件 -->
+            {% if pagination and pagination.pages > 1 %}
+            <div class="pagination">
+                {% if pagination.has_prev %}
+                    <a href="{{ url_for('dashboard', page=pagination.prev_num) }}" class="btn">&laquo; 上一页</a>
+                {% endif %}
+                
+                <span class="pagination-info">
+                    第 {{ pagination.page }} 页，共 {{ pagination.pages }} 页
+                    (总计 {{ pagination.total }} 个文件)
+                </span>
+                
+                {% if pagination.has_next %}
+                    <a href="{{ url_for('dashboard', page=pagination.next_num) }}" class="btn">下一页 &raquo;</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- 分享管理界面 -->
+<div class="content" id="shareManagementContent" style="display: none;">
+    <h2>分享管理</h2>
+    <div class="share-controls">
+        <button class="btn" onclick="refreshShares()">刷新</button>
+        <button class="btn btn-danger" onclick="stopAllShares()">停止所有分享</button>
+    </div>
     
-    {% if not files %}
-    <p style="text-align: center; color: #999; margin-top: 20px;">暂无文件</p>
-    {% endif %}
+    <div id="shareListContainer">
+        <table class="table" id="shareTable">
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" id="selectAllShares" onchange="toggleSelectAllShares()">
+                        <label for="selectAllShares">全选</label>
+                    </th>
+                    <th>文件名</th>
+                    <th>链接</th>
+                    <th>创建时间</th>
+                    <th>过期时间</th>
+                    <th>剩余天数</th>
+                    <th>访问次数</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="shareTableBody">
+                <!-- 分享链接列表将在这里动态生成 -->
+            </tbody>
+        </table>
+        
+        <div id="noSharesMessage" style="text-align: center; color: #999; margin-top: 20px; display: none;">
+            暂无分享链接
+        </div>
+    </div>
 </div>
 
 <!-- 分享模态框 -->
@@ -124,17 +224,74 @@
     </div>
 </div>
 
+<!-- 批量分享模态框 -->
+<div id="batchShareModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="hideModal('batchShareModal')">&times;</span>
+        <h3>批量分享文件</h3>
+        <p id="batchShareCount"></p>
+        
+        <form id="batchShareForm">
+            <div class="form-group">
+                <label for="batchShareDays">分享天数：</label>
+                <select id="batchShareDays" name="days">
+                    <option value="1">1天</option>
+                    <option value="3">3天</option>
+                    <option value="7" selected>7天</option>
+                    <option value="15">15天</option>
+                    <option value="30">30天</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-success">生成批量分享链接</button>
+        </form>
+        
+        <div id="batchShareResult" style="display: none; margin-top: 20px;">
+            <h4>批量分享结果：</h4>
+            <div id="batchShareLinks" style="max-height: 300px; overflow-y: auto;">
+                <!-- 分享链接列表将在这里动态生成 -->
+            </div>
+            <button class="btn" onclick="copyAllShareLinks()">复制所有分享链接</button>
+        </div>
+    </div>
+</div>
+
+<!-- 预览模态框 -->
+<div id="previewModal" class="modal">
+    <div class="modal-content preview-modal-content">
+        <div class="preview-header">
+            <h3 id="previewTitle"></h3>
+            <span class="close" onclick="hidePreviewModal()">&times;</span>
+        </div>
+        <div id="previewContent" class="preview-content">
+            <!-- 预览内容将在这里动态生成 -->
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block scripts %}
 <script>
 let currentFileId = null;
 let currentFileName = '';
+let searchTimeout = null;
+let currentPage = 1;
+let selectedFiles = new Set(); // 存储选中的文件ID
+let batchShareResults = []; // 存储批量分享结果
+let currentSortBy = 'upload_time';
+let currentSortOrder = 'desc';
 
 // 文件上传功能
 document.getElementById('fileInput').addEventListener('change', handleFileSelect);
 document.getElementById('uploadArea').addEventListener('dragover', handleDragOver);
 document.getElementById('uploadArea').addEventListener('drop', handleDrop);
+
+// 批量分享表单事件
+document.getElementById('batchShareForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    performBatchShare();
+});
 
 function handleFileSelect(event) {
     const files = event.target.files;
@@ -176,18 +333,36 @@ function uploadFiles(files) {
         
         xhr.addEventListener('load', function() {
             if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                if (response.success) {
-                    progressText.textContent = `${file.name} 上传完成！`;
-                    setTimeout(() => {
-                        location.reload();
-                    }, 1000);
-                } else {
-                    progressText.textContent = `${file.name} 上传失败：${response.error}`;
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        progressText.textContent = `${file.name} 上传完成！`;
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1000);
+                    } else {
+                        progressText.textContent = `${file.name} 上传失败：${response.error || '未知错误'}`;
+                        progressText.style.color = 'red';
+                    }
+                } catch (e) {
+                    progressText.textContent = `${file.name} 上传失败：无法解析服务器响应`;
                     progressText.style.color = 'red';
                 }
+            } else if (xhr.status === 413) {
+                const max_size_mb = {{ (config.MAX_CONTENT_LENGTH / (1024*1024)) | round | int }};
+                progressText.textContent = `${file.name} 上传失败：文件大小超过服务器限制 (${max_size_mb} MB)`;
+                progressText.style.color = 'red';
             } else {
-                progressText.textContent = `${file.name} 上传失败！`;
+                let errorMessage = `服务器错误 (HTTP ${xhr.status})`;
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response && response.error) {
+                        errorMessage = response.error;
+                    }
+                } catch (e) {
+                    // 响应不是JSON格式，使用默认错误信息
+                }
+                progressText.textContent = `${file.name} 上传失败：${errorMessage}`;
                 progressText.style.color = 'red';
             }
         });
@@ -202,23 +377,234 @@ function uploadFiles(files) {
     }
 }
 
-// 文件搜索功能
-function filterFiles() {
-    const input = document.getElementById('searchInput');
-    const filter = input.value.toLowerCase();
-    const table = document.getElementById('fileTable');
-    const rows = table.getElementsByTagName('tr');
+// 防抖搜索功能
+function debounceSearch() {
+    const searchStatus = document.getElementById('searchStatus');
+    searchStatus.textContent = '搜索中...';
     
-    for (let i = 1; i < rows.length; i++) {
-        const row = rows[i];
-        const filename = row.getAttribute('data-filename');
-        
-        if (filename.includes(filter)) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
+    // 清除之前的定时器
+    if (searchTimeout) {
+        clearTimeout(searchTimeout);
     }
+    
+    // 设置新的定时器（300ms防抖）
+    searchTimeout = setTimeout(() => {
+        performSearch(1); // 搜索时重置到第一页
+    }, 300);
+}
+
+// 执行搜索、分页和排序
+function performSearch(page = 1) {
+    const input = document.getElementById('searchInput');
+    const query = input.value.trim();
+    const searchStatus = document.getElementById('searchStatus');
+    currentPage = page;
+    
+    // 构建API URL
+    let url = `/api/search_files?page=${currentPage}&per_page=20`;
+    if (query) {
+        url += `&q=${encodeURIComponent(query)}`;
+    }
+    url += `&sort_by=${currentSortBy}&sort_order=${currentSortOrder}`;
+    
+    // 显示加载状态
+    searchStatus.textContent = '加载中...';
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            updateFileTable(data.files, data.pagination);
+            
+            // 更新搜索状态
+            const total = data.pagination.total;
+            if (query) {
+                searchStatus.textContent = `找到 ${total} 个文件`;
+            } else {
+                searchStatus.textContent = `共 ${total} 个文件`;
+            }
+            updateSortIcons();
+        })
+        .catch(error => {
+            console.error('加载失败:', error);
+            searchStatus.textContent = '加载失败，请重试';
+        });
+}
+
+// 更新排序图标
+function updateSortIcons() {
+    document.querySelectorAll('.sortable').forEach(th => {
+        th.classList.remove('asc', 'desc');
+    });
+    
+    const activeHeader = document.querySelector(`.sortable[data-sort="${currentSortBy}"]`);
+    if (activeHeader) {
+        activeHeader.classList.add(currentSortOrder);
+    }
+}
+
+// 按列排序
+function sortBy(column) {
+    if (currentSortBy === column) {
+        currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+        currentSortBy = column;
+        currentSortOrder = 'desc'; // 默认降序
+    }
+    performSearch(1); // 排序时重置到第一页
+}
+
+// 更新文件表格
+function updateFileTable(files, pagination) {
+    const tbody = document.getElementById('fileTableBody');
+    const container = document.getElementById('fileListContainer');
+    
+    // 清空表格内容
+    tbody.innerHTML = '';
+    
+    if (files.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #999;">暂无文件</td></tr>';
+    } else {
+        // 添加文件行
+        files.forEach(file => {
+            const row = document.createElement('tr');
+            row.setAttribute('data-filename', file.filename.toLowerCase());
+            row.setAttribute('data-file-id', file.id);
+            
+            // 构建分享状态HTML
+            let sharesHtml = '<span style="color: #999;">未分享</span>';
+            if (file.shares && file.shares.length > 0) {
+                sharesHtml = file.shares.map(share => 
+                    `<span class="btn btn-success share-status" 
+                          style="font-size: 12px; padding: 4px 8px; cursor: pointer;"
+                          onclick="copyShareInfo('${file.filename}', '${window.location.origin}/download/${share.token}')"
+                          title="点击复制分享信息">
+                        分享中 (${share.days_remaining}天)
+                    </span>`
+                ).join('');
+            }
+            
+            let previewButton = '';
+            const ext = file.filename.split('.').pop().toLowerCase();
+            const previewable_extensions_flat = {{ previewable_extensions | tojson }};
+            if (previewable_extensions_flat.includes(ext)) {
+                previewButton = `<button class="btn btn-info" onclick="showPreviewModal(${file.id}, '${file.filename}')">预览</button>`;
+            }
+            
+            row.innerHTML = `
+                <td>
+                    <input type="checkbox" class="file-checkbox" value="${file.id}" onchange="updateSelection()">
+                </td>
+                <td>${file.filename}</td>
+                <td>${file.size_human}</td>
+                <td>${file.upload_time}</td>
+                <td>${sharesHtml}</td>
+                <td>
+                    <div class="actions-container">
+                        ${previewButton}
+                        <button class="btn btn-primary" onclick="downloadFile(${file.id})">下载</button>
+                        <button class="btn" onclick="showShareModal(${file.id}, '${file.filename}')">分享</button>
+                        <button class="btn btn-danger" onclick="confirmDelete(${file.id}, '${file.filename}')">删除</button>
+                    </div>
+                </td>
+            `;
+            
+            tbody.appendChild(row);
+        });
+    }
+    
+    // 更新分页控件
+    updatePagination(pagination);
+    
+    // 重置选择状态
+    clearSelection();
+}
+
+// 更新分页控件
+function updatePagination(pagination) {
+    const container = document.getElementById('fileListContainer');
+    
+    // 查找现有的分页控件
+    let existingPagination = container.querySelector('.pagination');
+    if (existingPagination) {
+        existingPagination.remove();
+    }
+    
+    // 如果有多页，创建新的分页控件
+    if (pagination.pages > 1) {
+        const paginationDiv = document.createElement('div');
+        paginationDiv.className = 'pagination';
+        
+        let paginationHtml = '';
+        
+        if (pagination.has_prev) {
+            paginationHtml += `<a href="#" onclick="changePage(${pagination.prev_num})" class="btn">&laquo; 上一页</a>`;
+        }
+        
+        paginationHtml += `<span class="pagination-info">
+            第 ${pagination.page} 页，共 ${pagination.pages} 页
+            (总计 ${pagination.total} 个文件)
+        </span>`;
+        
+        if (pagination.has_next) {
+            paginationHtml += `<a href="#" onclick="changePage(${pagination.next_num})" class="btn">下一页 &raquo;</a>`;
+        }
+        
+        paginationDiv.innerHTML = paginationHtml;
+        container.appendChild(paginationDiv);
+    }
+}
+
+// 切换页面
+function changePage(page) {
+    performSearch(page);
+}
+
+function showPreviewModal(fileId, filename) {
+    const previewModal = document.getElementById('previewModal');
+    const previewTitle = document.getElementById('previewTitle');
+    const previewContent = document.getElementById('previewContent');
+    
+    previewTitle.textContent = `预览: ${filename}`;
+    previewContent.innerHTML = '<p style="text-align: center;">加载中...</p>';
+    previewModal.style.display = 'flex';
+
+    const ext = filename.split('.').pop().toLowerCase();
+    const previewUrl = `/preview/${fileId}`;
+
+    const previewable_config = {{ config.PREVIEWABLE_EXTENSIONS | tojson }};
+
+    let element;
+
+    if (previewable_config.image.includes(ext)) {
+        element = document.createElement('img');
+        element.src = previewUrl;
+        element.style.maxWidth = '100%';
+        element.style.maxHeight = '100%';
+        element.style.display = 'block';
+        element.style.margin = 'auto';
+    } else if (previewable_config.video.includes(ext)) {
+        element = document.createElement('video');
+        element.src = previewUrl;
+        element.controls = true;
+        element.autoplay = true;
+        element.style.maxWidth = '100%';
+        element.style.maxHeight = '100%';
+    } else if (previewable_config.audio.includes(ext)) {
+        element = document.createElement('audio');
+        element.src = previewUrl;
+        element.controls = true;
+        element.autoplay = true;
+        element.style.width = '100%';
+    } else { // pdf, text, etc.
+        element = document.createElement('iframe');
+        element.src = previewUrl;
+        element.style.width = '100%';
+        element.style.height = '100%';
+        element.style.border = 'none';
+    }
+
+    previewContent.innerHTML = '';
+    previewContent.appendChild(element);
 }
 
 // 分享功能
@@ -294,11 +680,30 @@ function confirmDelete(fileId, filename) {
 
 // 模态框功能
 function showModal(modalId) {
-    document.getElementById(modalId).style.display = 'block';
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'flex';
+    }
 }
 
 function hideModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function hidePreviewModal() {
+    const modal = document.getElementById('previewModal');
+    modal.style.display = 'none';
+    // 停止视频或音频的播放
+    const content = document.getElementById('previewContent');
+    const mediaElement = content.querySelector('video, audio');
+    if (mediaElement) {
+        mediaElement.pause();
+        mediaElement.src = '';
+    }
+    content.innerHTML = '';
 }
 
 // 复制到剪贴板功能
@@ -315,6 +720,364 @@ function copyToClipboard(text) {
         document.execCommand('copy');
         document.body.removeChild(textArea);
         alert('链接已复制到剪贴板！');
+    });
+}
+
+// 批量操作相关函数
+function toggleSelectAll() {
+    const selectAll = document.getElementById('selectAll');
+    const checkboxes = document.querySelectorAll('.file-checkbox');
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = selectAll.checked;
+        if (selectAll.checked) {
+            selectedFiles.add(parseInt(checkbox.value));
+        } else {
+            selectedFiles.delete(parseInt(checkbox.value));
+        }
+    });
+    
+    updateSelection();
+}
+
+function updateSelection() {
+    const checkboxes = document.querySelectorAll('.file-checkbox');
+    const selectAll = document.getElementById('selectAll');
+    const batchControls = document.getElementById('batchControls');
+    const selectedCount = document.getElementById('selectedCount');
+    
+    // 清空选择集合
+    selectedFiles.clear();
+    
+    // 重新计算选中的文件
+    let checkedCount = 0;
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            selectedFiles.add(parseInt(checkbox.value));
+            checkedCount++;
+        }
+    });
+    
+    // 更新全选状态
+    selectAll.checked = checkedCount === checkboxes.length && checkboxes.length > 0;
+    selectAll.indeterminate = checkedCount > 0 && checkedCount < checkboxes.length;
+    
+    // 更新批量操作控件显示
+    if (selectedFiles.size > 0) {
+        batchControls.style.display = 'block';
+        selectedCount.textContent = `已选择 ${selectedFiles.size} 个文件`;
+    } else {
+        batchControls.style.display = 'none';
+    }
+}
+
+function clearSelection() {
+    const checkboxes = document.querySelectorAll('.file-checkbox');
+    const selectAll = document.getElementById('selectAll');
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    
+    selectAll.checked = false;
+    selectAll.indeterminate = false;
+    selectedFiles.clear();
+    updateSelection();
+}
+
+function batchDelete() {
+    if (selectedFiles.size === 0) {
+        alert('请选择要删除的文件');
+        return;
+    }
+    
+    if (!confirm(`确定要删除选中的 ${selectedFiles.size} 个文件吗？此操作不可恢复！`)) {
+        return;
+    }
+    
+    fetch('/api/batch_delete', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            file_ids: Array.from(selectedFiles)
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert(data.message);
+            clearSelection();
+            // 刷新文件列表
+            performSearch();
+        } else {
+            alert('批量删除失败：' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('批量删除失败');
+    });
+}
+
+function batchShare() {
+    if (selectedFiles.size === 0) {
+        alert('请选择要分享的文件');
+        return;
+    }
+    
+    document.getElementById('batchShareCount').textContent = `将分享 ${selectedFiles.size} 个文件`;
+    document.getElementById('batchShareResult').style.display = 'none';
+    showModal('batchShareModal');
+}
+
+function performBatchShare() {
+    const days = document.getElementById('batchShareDays').value;
+    
+    fetch('/api/batch_share', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            file_ids: Array.from(selectedFiles),
+            days: parseInt(days)
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            batchShareResults = data.share_links;
+            displayBatchShareResults(data);
+        } else {
+            alert('批量分享失败：' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('批量分享失败');
+    });
+}
+
+function displayBatchShareResults(data) {
+    const resultDiv = document.getElementById('batchShareResult');
+    const linksDiv = document.getElementById('batchShareLinks');
+    
+    let html = `<p><strong>成功分享 ${data.shared_count} 个文件</strong></p>`;
+    
+    if (data.share_links.length > 0) {
+        html += '<div style="background: #f5f5f5; padding: 10px; border-radius: 4px; margin-bottom: 10px;">';
+        data.share_links.forEach(link => {
+            html += `
+                <div style="margin-bottom: 8px; padding: 8px; background: white; border-radius: 4px;">
+                    <strong>${link.filename}</strong><br>
+                    <small style="color: #666;">${link.share_url}</small>
+                </div>
+            `;
+        });
+        html += '</div>';
+    }
+    
+    if (data.failed_files.length > 0) {
+        html += '<p style="color: red;"><strong>失败的文件：</strong></p>';
+        html += '<ul style="color: red;">';
+        data.failed_files.forEach(fail => {
+            html += `<li>${fail}</li>`;
+        });
+        html += '</ul>';
+    }
+    
+    linksDiv.innerHTML = html;
+    resultDiv.style.display = 'block';
+}
+
+function copyAllShareLinks() {
+    if (batchShareResults.length === 0) {
+        alert('没有可复制的分享链接');
+        return;
+    }
+    
+    let text = '批量分享链接：\n\n';
+    batchShareResults.forEach(link => {
+        text += `文件名：${link.filename}\n下载链接：${link.share_url}\n\n`;
+    });
+    
+    copyToClipboard(text);
+}
+
+function batchDownload() {
+    if (selectedFiles.size === 0) {
+        alert('请选择要下载的文件');
+        return;
+    }
+    
+    // 创建下载链接
+    const fileIds = JSON.stringify(Array.from(selectedFiles));
+    const downloadUrl = `/api/batch_download?file_ids=${encodeURIComponent(fileIds)}`;
+    
+    // 创建一个隐藏的链接来触发下载
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateSortIcons();
+    // 初始化时加载分享列表
+    loadShares();
+});
+
+// 标签页切换功能
+function switchTab(tabName) {
+    // 更新标签页状态
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    // 切换内容显示
+    if (tabName === 'fileManagement') {
+        document.getElementById('fileManagementContent').style.display = 'block';
+        document.getElementById('shareManagementContent').style.display = 'none';
+    } else if (tabName === 'shareManagement') {
+        document.getElementById('fileManagementContent').style.display = 'none';
+        document.getElementById('shareManagementContent').style.display = 'block';
+        loadShares(); // 切换到分享管理时加载分享列表
+    }
+}
+
+// 分享管理功能
+function loadShares() {
+    fetch('/api/shares')
+        .then(response => response.json())
+        .then(shares => {
+            displayShares(shares);
+        })
+        .catch(error => {
+            console.error('加载分享列表失败:', error);
+        });
+}
+
+function displayShares(shares) {
+    const tbody = document.getElementById('shareTableBody');
+    const noSharesMessage = document.getElementById('noSharesMessage');
+    
+    if (shares.length === 0) {
+        tbody.innerHTML = '';
+        noSharesMessage.style.display = 'block';
+        return;
+    }
+    
+    noSharesMessage.style.display = 'none';
+    
+    let html = '';
+    shares.forEach(share => {
+        const shareUrl = `${window.location.origin}/download/${share.token}`;
+        const createdTime = new Date(share.created_time).toLocaleString();
+        const expireTime = new Date(share.expire_time).toLocaleString();
+        
+        html += `
+            <tr>
+                <td>
+                    <input type="checkbox" class="share-checkbox" value="${share.id}">
+                </td>
+                <td>${share.filename}</td>
+                <td>
+                    <div class="actions-container">
+                        <button class="btn" onclick="copyToClipboard('${shareUrl}')">复制</button>
+                    </div>
+                </td>
+                <td>${createdTime}</td>
+                <td>${expireTime}</td>
+                <td>${share.days_remaining}天</td>
+                <td>${share.download_count}</td>
+                <td>
+                    <div class="actions-container">
+                        <button class="btn btn-danger" onclick="stopShare(${share.id})">停止分享</button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    });
+    
+    tbody.innerHTML = html;
+}
+
+function refreshShares() {
+    loadShares();
+}
+
+function stopShare(shareId) {
+    if (!confirm('确定要停止这个分享链接吗？')) {
+        return;
+    }
+    
+    fetch(`/api/delete_share/${shareId}`, {
+        method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('分享链接已停止');
+            loadShares(); // 重新加载分享列表
+        } else {
+            alert('停止分享失败');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('停止分享失败');
+    });
+}
+
+function toggleSelectAllShares() {
+    const selectAll = document.getElementById('selectAllShares');
+    const checkboxes = document.querySelectorAll('.share-checkbox');
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = selectAll.checked;
+    });
+}
+
+function stopAllShares() {
+    const checkboxes = document.querySelectorAll('.share-checkbox:checked');
+    const selectedShares = Array.from(checkboxes).map(cb => parseInt(cb.value));
+    
+    if (selectedShares.length === 0) {
+        alert('请选择要停止的分享链接');
+        return;
+    }
+    
+    if (!confirm(`确定要停止选中的 ${selectedShares.length} 个分享链接吗？`)) {
+        return;
+    }
+    
+    // 逐个停止分享链接
+    let stoppedCount = 0;
+    let failedCount = 0;
+    
+    const stopPromises = selectedShares.map(shareId => 
+        fetch(`/api/delete_share/${shareId}`, { method: 'DELETE' })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    stoppedCount++;
+                } else {
+                    failedCount++;
+                }
+            })
+            .catch(() => {
+                failedCount++;
+            })
+    );
+    
+    Promise.all(stopPromises).then(() => {
+        alert(`成功停止 ${stoppedCount} 个分享链接${failedCount > 0 ? `，失败 ${failedCount} 个` : ''}`);
+        loadShares(); // 重新加载分享列表
     });
 }
 </script>

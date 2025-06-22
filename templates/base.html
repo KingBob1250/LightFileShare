@@ -150,11 +150,13 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
         }
         
         .modal-content {
             background-color: white;
-            margin: 15% auto;
+            margin: 0;
             padding: 20px;
             border-radius: 8px;
             width: 80%;
@@ -169,8 +171,11 @@
             cursor: pointer;
         }
         
-        .close:hover {
+        .close:hover,
+        .close:focus {
             color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
         
         .upload-area {
@@ -199,8 +204,212 @@
         .progress-bar {
             height: 100%;
             background-color: #3498db;
-            width: 0%;
             transition: width 0.3s ease;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .nav-tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tab:hover {
+            color: #3498db;
+        }
+        
+        .nav-tab.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+            font-weight: bold;
+        }
+        
+        .share-controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* 分页样式 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .pagination .btn {
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            background: white;
+        }
+        
+        .pagination .btn:hover {
+            background: #007bff;
+            color: white;
+        }
+        
+        .pagination-info {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* 搜索状态样式 */
+        #searchStatus {
+            font-style: italic;
+        }
+        
+        /* 批量操作控件样式 */
+        .batch-controls {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .batch-info {
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .batch-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .batch-actions .btn {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        
+        /* 复选框样式 */
+        .file-checkbox {
+            margin: 0;
+        }
+        
+        /* 表格复选框列样式 */
+        .table th:first-child,
+        .table td:first-child {
+            width: 40px;
+            text-align: center;
+        }
+        
+        /* 表格列宽调整 */
+        .table th:nth-child(2), /* 文件名列 */
+        .table td:nth-child(2) {
+            max-width: 450px;
+            word-break: break-all;
+        }
+
+        .table th:nth-child(3), /* 大小 */
+        .table td:nth-child(3) {
+            width: 90px;
+        }
+        
+        .table th:nth-child(4), /* 上传时间 */
+        .table td:nth-child(4) {
+            width: 150px;
+        }
+
+        .table th:nth-child(5), /* 分享状态 */
+        .table td:nth-child(5) {
+            width: 120px;
+            text-align: center;
+        }
+        
+        .table th:last-child, /* 操作 */
+        .table td:last-child {
+            width: 220px;
+        }
+
+        .actions-container {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+        
+        .actions-container .btn {
+            padding: 5px 10px;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        /* 排序样式 */
+        .sortable {
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+        }
+        
+        .sortable:hover {
+            background-color: #e9ecef;
+        }
+        
+        .sort-icon {
+            display: inline-block;
+            width: 1em;
+            text-align: center;
+            color: #6c757d;
+        }
+        
+        .sortable.asc .sort-icon::after {
+            content: "▲";
+            font-size: 0.8em;
+        }
+        
+        .sortable.desc .sort-icon::after {
+            content: "▼";
+            font-size: 0.8em;
+        }
+
+        /* 预览模态框样式 */
+        .preview-modal-content {
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+
+        .preview-header {
+            padding: 10px 20px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preview-header h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .preview-content {
+            flex-grow: 1;
+            overflow: auto;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>

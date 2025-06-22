@@ -7,53 +7,93 @@
 - 🔐 **密码保护**：管理员密码登录
 - 📁 **文件管理**：上传、删除、查看文件列表
 - 🔗 **文件分享**：生成临时下载链接，支持设置有效期
+- 🛑 **停止分享**：单个或批量停止分享链接
 - ⬇️ **断点续传**：支持大文件断点续传下载
+- 📊 **访问统计**：统计分享链接的访问次数
 - 🐳 **Docker部署**：一键部署，配置灵活
 - 📱 **响应式界面**：支持移动端访问
+- 🔍 **文件搜索**：支持文件名搜索
+- 📊 **批量操作**：支持批量删除、分享、下载
 
-## 快速开始
+## 🚀 快速开始
 
-### 使用Docker部署（推荐）
+### 方法一：使用Docker（推荐）
 
-1. **克隆项目**
 ```bash
+# 1. 克隆项目
 git clone <repository-url>
 cd file_server
-```
 
-2. **配置环境变量**
-```bash
+# 2. 配置环境变量
 cp env.example .env
 # 编辑 .env 文件，修改管理员密码等配置
+
+# 3. 启动服务（会自动构建镜像）
+docker compose up -d
+
+# 4. 访问管理界面
+# 打开浏览器访问: http://localhost:5000
+# 默认密码: admin123
 ```
 
-3. **启动服务**
+**注意**：`docker compose up -d` 会自动构建镜像（如果不存在）。如果需要重新构建镜像，可以使用：
 ```bash
-docker-compose up -d
+docker compose up -d --build
 ```
 
-4. **访问管理界面**
-打开浏览器访问 `http://localhost:5000`，使用配置的密码登录。
+### 方法二：本地运行
 
-### 本地开发
-
-1. **安装依赖**
 ```bash
+# 1. 安装依赖
 pip install -r requirements.txt
+
+# 2. 配置环境变量
+cp env.example .env
+# 编辑 .env 文件修改配置
+
+# 3. 启动服务
+python start_server.py
+
+# 4. 访问管理界面
+# 打开浏览器访问: http://localhost:5000
+# 默认密码: admin123
 ```
 
-2. **配置环境变量**
-```bash
-export ADMIN_PASSWORD=your_password
-export PORT=5000
-```
+## 📝 基本使用
 
-3. **启动服务**
-```bash
-python app.py
-```
+1. **登录管理界面**
+   - 访问 `http://localhost:5000`
+   - 输入密码：`admin123`
 
-## 配置说明
+2. **上传文件**
+   - 拖拽文件到上传区域
+   - 或点击"选择文件"按钮
+   - 支持多文件同时上传
+
+3. **管理文件**
+   - 查看文件列表（文件名、大小、上传时间）
+   - 搜索文件
+   - 删除文件（需二次确认）
+   - 批量操作（删除、分享、下载）
+
+4. **分享文件**
+   - 点击文件列表中的"分享"按钮
+   - 选择分享天数（1-30天）
+   - 生成临时下载链接
+   - 复制链接分享给他人
+
+5. **管理分享**
+   - 点击"分享管理"标签页查看所有分享链接
+   - 查看分享状态、剩余时间、访问次数
+   - 单个停止分享或批量停止分享
+   - 复制分享链接
+
+6. **下载文件**
+   - 直接访问分享链接即可下载
+   - 支持断点续传
+   - 无需登录即可下载
+
+## ⚙️ 配置说明
 
 ### 环境变量
 
@@ -62,11 +102,27 @@ python app.py
 | `PORT` | 5000 | 服务端口 |
 | `HOST` | 0.0.0.0 | 监听地址 |
 | `ADMIN_PASSWORD` | admin123 | 管理员密码 |
+| `DATABASE_URL` | sqlite:///database.db | 数据库连接字符串 |
+| `DATABASE_PATH` | /app/database.db | 容器内数据库文件路径 |
 | `UPLOAD_FOLDER` | uploads | 文件存储目录 |
 | `MAX_CONTENT_LENGTH` | 104857600 | 最大文件大小（字节） |
 | `DEFAULT_SHARE_DAYS` | 7 | 默认分享天数 |
 | `SECRET_KEY` | dev-secret-key | 会话密钥 |
 | `ENABLE_FILE_TYPE_CHECK` | false | 是否启用文件类型检测 |
+
+### 路径配置说明
+
+**UPLOAD_FOLDER 配置**：
+- **本地开发**：使用相对路径 `uploads`（相对于项目根目录）
+- **Docker 环境**：Docker Compose 会自动将 `uploads` 映射为 `/app/uploads`
+
+**DATABASE_PATH 配置**：
+- **本地开发**：不需要设置（使用 DATABASE_URL 中的相对路径）
+- **Docker 环境**：使用绝对路径 `/app/database.db`（容器内路径）
+
+Docker Compose 会自动处理路径映射，无需手动配置：
+- 本地的 `./uploads` 目录 → 容器内的 `${UPLOAD_FOLDER:-/app/uploads}`
+- 本地的 `./database.db` 文件 → 容器内的 `${DATABASE_PATH:-/app/database.db}`
 
 ### 文件类型检测
 
@@ -88,35 +144,44 @@ python app.py
 - 视频：mp4, avi, mkv, mov, wmv, flv, webm
 - 音频：mp3
 
-## 使用说明
+## 🚀 部署指南
 
-### 管理员功能
+### 启动方式对比
 
-1. **登录管理界面**
-   - 访问 `http://localhost:5000`
-   - 输入管理员密码登录
+| 启动方式 | 并发能力 | 性能 | 生产适用性 | 命令 |
+|---------|---------|------|-----------|------|
+| Flask开发服务器 | 单线程 | 低 | ❌ | `python app.py` |
+| Uvicorn (脚本) | 异步 | 高 | ✅ | `python start_server.py` |
+| Uvicorn (终端) | 异步 | 高 | ✅ | `uvicorn app:app --host 0.0.0.0 --port 5000` |
 
-2. **上传文件**
-   - 拖拽文件到上传区域或点击选择文件
-   - 支持多文件同时上传
-   - 显示上传进度
+### Docker部署
 
-3. **管理文件**
-   - 查看文件列表（文件名、大小、上传时间）
-   - 搜索文件
-   - 删除文件（需二次确认）
+#### 使用 Docker Compose（推荐）
 
-4. **分享文件**
-   - 点击文件列表中的"分享"按钮
-   - 选择分享天数（1-30天）
-   - 生成临时下载链接
-   - 复制链接分享给他人
+```bash
+# 1. 配置环境变量
+cp env.example .env
+# 编辑 .env 文件
 
-### 下载功能
+# 2. 启动服务（自动构建镜像）
+docker compose up -d
 
-- 访问分享链接直接下载文件
-- 支持断点续传
-- 无需登录即可下载
+# 3. 查看日志
+docker compose logs -f
+
+# 4. 停止服务
+docker compose down
+```
+
+## 🛑 停止服务
+
+```bash
+# Docker方式
+docker compose down
+
+# 本地运行
+# 按 Ctrl+C 停止
+```
 
 ## API接口
 
@@ -125,41 +190,21 @@ python app.py
 - `GET /api/files` - 获取文件列表
 - `POST /upload` - 上传文件
 - `DELETE /delete/<file_id>` - 删除文件
+- `POST /api/batch_delete` - 批量删除文件
+- `GET /api/search_files` - 搜索文件
 
 ### 分享管理API
 
 - `POST /share` - 创建分享链接
 - `GET /api/shares` - 获取分享链接列表
 - `DELETE /api/delete_share/<share_id>` - 删除分享链接
+- `POST /api/batch_share` - 批量分享文件
 
 ### 下载API
 
 - `GET /download/<token>` - 下载分享的文件
-
-## 部署说明
-
-### Docker部署
-
-```bash
-# 构建镜像
-docker build -t file-server .
-
-# 运行容器
-docker run -d \
-  --name file-server \
-  -p 5000:5000 \
-  -v $(pwd)/uploads:/app/uploads \
-  -v $(pwd)/database.db:/app/database.db \
-  -e ADMIN_PASSWORD=your_password \
-  file-server
-```
-
-### 生产环境建议
-
-1. **修改默认密码**：设置强密码
-2. **配置HTTPS**：使用反向代理（如Nginx）
-3. **数据备份**：定期备份数据库和文件
-4. **监控日志**：配置日志收集和监控
+- `GET /download_file/<int:file_id>` - 管理员下载文件
+- `GET /api/batch_download` - 批量下载文件
 
 ## 项目结构
 
@@ -178,6 +223,7 @@ file_server/
 │   ├── login.html
 │   └── dashboard.html
 ├── uploads/              # 文件存储目录
+├── database.db           # SQLite数据库文件
 └── README.md
 ```
 
@@ -187,6 +233,7 @@ file_server/
 - **数据库**：SQLite
 - **前端**：原生HTML + CSS + JavaScript
 - **部署**：Docker + Docker Compose
+- **服务器**：Uvicorn (ASGI)
 
 ## 许可证
 

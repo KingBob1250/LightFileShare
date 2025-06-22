@@ -28,4 +28,13 @@ class Config:
     ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD') or 'admin123'
     
     # 会话配置
-    PERMANENT_SESSION_LIFETIME = timedelta(hours=24) 
+    PERMANENT_SESSION_LIFETIME = timedelta(hours=24)
+
+    # 可预览文件类型
+    PREVIEWABLE_EXTENSIONS = {
+        'image': ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'],
+        'text': ['txt', 'md', 'py', 'js', 'css', 'html', 'json', 'xml', 'sh', 'ini'],
+        'pdf': ['pdf'],
+        'video': ['mp4', 'webm', 'mov'],
+        'audio': ['mp3', 'ogg', 'wav'],
+    } 
