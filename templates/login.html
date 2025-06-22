@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}登录 - 文件服务器{% endblock %}
+
+{% block content %}
+<div class="header">
+    <h1>文件服务器管理</h1>
+    <p>请输入管理员密码进行登录</p>
+</div>
+
+<div class="content">
+    {% if error %}
+    <div class="alert alert-error">
+        {{ error }}
+    </div>
+    {% endif %}
+    
+    <form method="POST" action="{{ url_for('login') }}">
+        <div class="form-group">
+            <label for="password">管理员密码：</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        
+        <button type="submit" class="btn btn-success">登录</button>
+    </form>
+</div>
+{% endblock %} 

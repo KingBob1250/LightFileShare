@@ -1,0 +1,305 @@
+{% extends "base.html" %}
+
+{% block title %}管理面板 - 文件服务器{% endblock %}
+
+{% block content %}
+<div class="header">
+    <h1>文件服务器管理面板</h1>
+    <p>欢迎回来！<a href="{{ url_for('logout') }}" class="btn btn-danger">退出登录</a></p>
+</div>
+
+<div class="content">
+    {% if message %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endif %}
+    
+    {% if error %}
+    <div class="alert alert-error">
+        {{ error }}
+    </div>
+    {% endif %}
+    
+    <!-- 文件上传区域 -->
+    <h2>上传文件</h2>
+    <div class="upload-area" id="uploadArea">
+        <p>拖拽文件到此处或点击选择文件</p>
+        <input type="file" id="fileInput" multiple style="display: none;">
+        <button class="btn" onclick="document.getElementById('fileInput').click()">选择文件</button>
+    </div>
+    
+    <div id="uploadProgress" style="display: none;">
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <p id="progressText">上传中...</p>
+    </div>
+    
+    <!-- 文件列表 -->
+    <h2>文件列表</h2>
+    <div class="form-group">
+        <input type="text" id="searchInput" placeholder="搜索文件..." onkeyup="filterFiles()">
+    </div>
+    
+    <table class="table" id="fileTable">
+        <thead>
+            <tr>
+                <th>文件名</th>
+                <th>大小</th>
+                <th>上传时间</th>
+                <th>分享状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in files %}
+            <tr data-filename="{{ file.original_filename.lower() }}">
+                <td>{{ file.original_filename }}</td>
+                <td>{{ file.file_size_human }}</td>
+                <td>{{ file.upload_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>
+                    {% if file.shares %}
+                        {% for share in file.shares %}
+                            {% if not share.is_expired %}
+                                <span class="btn btn-success" style="font-size: 12px; padding: 4px 8px;">
+                                    分享中 ({{ share.days_remaining }}天)
+                                </span>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <span style="color: #999;">未分享</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <button class="btn btn-primary" onclick="downloadFile({{ file.id }})">下载</button>
+                    <button class="btn" onclick="showShareModal({{ file.id }}, '{{ file.original_filename }}')">分享</button>
+                    <button class="btn btn-danger" onclick="confirmDelete({{ file.id }}, '{{ file.original_filename }}')">删除</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% if not files %}
+    <p style="text-align: center; color: #999; margin-top: 20px;">暂无文件</p>
+    {% endif %}
+</div>
+
+<!-- 分享模态框 -->
+<div id="shareModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="hideModal('shareModal')">&times;</span>
+        <h3>分享文件</h3>
+        <p id="shareFileName"></p>
+        
+        <form id="shareForm">
+            <div class="form-group">
+                <label for="shareDays">分享天数：</label>
+                <select id="shareDays" name="days">
+                    <option value="1">1天</option>
+                    <option value="3">3天</option>
+                    <option value="7" selected>7天</option>
+                    <option value="15">15天</option>
+                    <option value="30">30天</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-success">生成分享链接</button>
+        </form>
+        
+        <div id="shareResult" style="display: none; margin-top: 20px;">
+            <h4>分享链接：</h4>
+            <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; word-break: break-all;">
+                <span id="shareLink"></span>
+            </div>
+            <button class="btn" onclick="copyShareLink()" style="margin-top: 10px;">复制链接</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let currentFileId = null;
+let currentFileName = '';
+
+// 文件上传功能
+document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+document.getElementById('uploadArea').addEventListener('dragover', handleDragOver);
+document.getElementById('uploadArea').addEventListener('drop', handleDrop);
+
+function handleFileSelect(event) {
+    const files = event.target.files;
+    uploadFiles(files);
+}
+
+function handleDragOver(event) {
+    event.preventDefault();
+    event.currentTarget.classList.add('dragover');
+}
+
+function handleDrop(event) {
+    event.preventDefault();
+    event.currentTarget.classList.remove('dragover');
+    const files = event.dataTransfer.files;
+    uploadFiles(files);
+}
+
+function uploadFiles(files) {
+    const progressDiv = document.getElementById('uploadProgress');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    
+    progressDiv.style.display = 'block';
+    
+    for (let file of files) {
+        const formData = new FormData();
+        formData.append('file', file);
+        
+        const xhr = new XMLHttpRequest();
+        
+        xhr.upload.addEventListener('progress', function(e) {
+            if (e.lengthComputable) {
+                const percentComplete = (e.loaded / e.total) * 100;
+                progressBar.style.width = percentComplete + '%';
+                progressText.textContent = `上传 ${file.name}: ${percentComplete.toFixed(1)}%`;
+            }
+        });
+        
+        xhr.addEventListener('load', function() {
+            if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    progressText.textContent = `${file.name} 上传完成！`;
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    progressText.textContent = `${file.name} 上传失败：${response.error}`;
+                    progressText.style.color = 'red';
+                }
+            } else {
+                progressText.textContent = `${file.name} 上传失败！`;
+                progressText.style.color = 'red';
+            }
+        });
+        
+        xhr.addEventListener('error', function() {
+            progressText.textContent = `${file.name} 上传失败：网络错误`;
+            progressText.style.color = 'red';
+        });
+        
+        xhr.open('POST', '/upload');
+        xhr.send(formData);
+    }
+}
+
+// 文件搜索功能
+function filterFiles() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const table = document.getElementById('fileTable');
+    const rows = table.getElementsByTagName('tr');
+    
+    for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        const filename = row.getAttribute('data-filename');
+        
+        if (filename.includes(filter)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    }
+}
+
+// 分享功能
+function showShareModal(fileId, filename) {
+    currentFileId = fileId;
+    currentFileName = filename;
+    document.getElementById('shareFileName').textContent = filename;
+    document.getElementById('shareResult').style.display = 'none';
+    showModal('shareModal');
+}
+
+document.getElementById('shareForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const days = document.getElementById('shareDays').value;
+    
+    fetch('/share', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            file_id: currentFileId,
+            days: parseInt(days)
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('shareLink').textContent = data.share_url;
+            document.getElementById('shareResult').style.display = 'block';
+        } else {
+            alert('创建分享链接失败：' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('创建分享链接失败');
+    });
+});
+
+function copyShareLink() {
+    const link = document.getElementById('shareLink').textContent;
+    copyToClipboard(link);
+}
+
+// 下载文件功能
+function downloadFile(fileId) {
+    // 创建一个隐藏的链接来触发下载
+    const link = document.createElement('a');
+    link.href = `/download_file/${fileId}`;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// 删除确认功能
+function confirmDelete(fileId, filename) {
+    if (confirm(`确定要删除文件 "${filename}" 吗？`)) {
+        window.location.href = `/delete/${fileId}`;
+    }
+}
+
+// 模态框功能
+function showModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+}
+
+function hideModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+// 复制到剪贴板功能
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+        alert('链接已复制到剪贴板！');
+    }, function(err) {
+        console.error('复制失败:', err);
+        // 备用方案
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('链接已复制到剪贴板！');
+    });
+}
+</script>
+{% endblock %} 
