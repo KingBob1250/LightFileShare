@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+LightFileShare - 轻量化文件分享平台
 使用uvicorn启动文件服务器
 """
 
@@ -31,7 +32,7 @@ def create_upload_dir():
 
 def main():
     """主函数"""
-    print("🚀 使用uvicorn启动文件服务器...")
+    print("🚀 LightFileShare - 轻量化文件分享平台启动中...")
     
     # 初始化
     init_database()

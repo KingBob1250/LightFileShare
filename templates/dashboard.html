@@ -2,11 +2,11 @@
 
 {% set previewable_extensions = config.PREVIEWABLE_EXTENSIONS.values() | sum(start=[]) %}
 
-{% block title %}{{ _('Dashboard') }} - {{ _('File Server') }}{% endblock %}
+{% block title %}{{ _('Dashboard') }} - LightFileShare{% endblock %}
 
 {% block content %}
 <div class="header">
-    <h1>{{ _('File Server Dashboard') }}</h1>
+    <h1>LightFileShare - {{ _('Dashboard') }}</h1>
     <p>{{ _('Welcome back!') }}<a href="{{ url_for('logout') }}" class="btn btn-danger">{{ _('Logout') }}</a></p>
     <p id="timezoneInfo" style="font-size: 12px; color: #666; margin-top: 5px;" 
        data-current-timezone="{{ _('Current timezone') }}" 

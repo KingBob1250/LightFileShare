@@ -1,10 +1,12 @@
 [English README](README.md)
 
-# 文件服务器
+# 🪶 LightFileShare
+
+> **轻量化文件分享平台** | **Lightweight File Sharing Platform**
 
 一个轻量级的Python文件服务器，支持文件上传、分享和下载功能。
 
-## 功能特性
+## ✨ 功能特性
 
 - 🔐 **密码保护**：管理员密码登录
 - 📁 **文件管理**：上传、删除、查看文件列表
@@ -26,7 +28,7 @@
 ```bash
 # 1. 克隆项目
 git clone <repository-url>
-cd file_server
+cd LightFileShare
 
 # 2. 配置环境变量
 cp env.example .env
@@ -142,7 +144,7 @@ python start_server.py
 ### 目录结构
 
 ```
-file_server/
+LightFileShare/
 ├── app.py              # 主应用文件
 ├── config.py           # 配置文件
 ├── models.py           # 数据模型
@@ -312,22 +314,6 @@ docker compose down
 - `GET /download/<token>` - 下载分享的文件
 - `GET /download_file/<int:file_id>` - 管理员下载文件
 - `GET /api/batch_download` - 批量下载文件
-
-## �� 开发
-
-### 添加新语言
-
-1. 创建翻译目录：`mkdir -p translations/[语言代码]/LC_MESSAGES`
-2. 创建翻译文件：`translations/[语言代码]/LC_MESSAGES/messages.po`
-3. 在文件中添加翻译
-4. 编译翻译：`pybabel compile -d translations`
-
-### 更新翻译
-
-1. 提取消息：`pybabel extract -F babel.cfg -k _l -o messages.pot .`
-2. 更新翻译文件：`pybabel update -i messages.pot -d translations`
-3. 编辑翻译文件
-4. 编译翻译：`pybabel compile -d translations`
 
 ## 📄 许可证
 

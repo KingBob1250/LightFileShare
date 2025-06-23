@@ -1,3 +1,8 @@
+"""
+LightFileShare - 轻量化文件分享平台
+数据模型定义
+"""
+
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta, timezone
 import uuid

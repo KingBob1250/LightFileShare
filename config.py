@@ -1,3 +1,8 @@
+"""
+LightFileShare - 轻量化文件分享平台
+配置文件
+"""
+
 import os
 from datetime import timedelta
 

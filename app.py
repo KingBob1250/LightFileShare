@@ -1,3 +1,8 @@
+"""
+LightFileShare - 轻量化文件分享平台
+A lightweight Python file server with file upload, sharing, and download capabilities.
+"""
+
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_file
 from flask_babel import Babel, gettext as _, ngettext, get_locale
 import os

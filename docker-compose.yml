@@ -1,7 +1,7 @@
 services:
-  file-server:
+  lightfileshare:
     build: .
-    container_name: file-server
+    container_name: lightfileshare
     ports:
       - "${HOST:-0.0.0.0}:${PORT:-5000}:5000"
     environment:

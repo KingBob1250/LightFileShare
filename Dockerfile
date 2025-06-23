@@ -1,5 +1,6 @@
 FROM python:3.11-slim
 
+# LightFileShare - 轻量化文件分享平台
 # 设置工作目录
 WORKDIR /app
 

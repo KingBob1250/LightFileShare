@@ -1,3 +1,8 @@
+"""
+LightFileShare - 轻量化文件分享平台
+工具函数模块
+"""
+
 import os
 import hashlib
 from werkzeug.utils import secure_filename

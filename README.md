@@ -1,10 +1,12 @@
 [中文版 README](README_zh.md) 
 
-# File Server
+# 🪶 LightFileShare
+
+> **轻量化文件分享平台** | **Lightweight File Sharing Platform**
 
 A lightweight Python file server with file upload, sharing, and download capabilities.
 
-## Features
+## ✨ Features
 
 - 🔐 **Password Protection**: Administrator password login
 - 📁 **File Management**: Upload, delete, view file list
@@ -26,7 +28,7 @@ A lightweight Python file server with file upload, sharing, and download capabil
 ```bash
 # 1. Clone the project
 git clone <repository-url>
-cd file_server
+cd LightFileShare
 
 # 2. Configure environment variables
 cp env.example .env
@@ -142,7 +144,7 @@ The system supports multi-timezone display, ensuring users from different timezo
 ### Directory Structure
 
 ```
-file_server/
+LightFileShare/
 ├── app.py              # Main application file
 ├── config.py           # Configuration file
 ├── models.py           # Data models
@@ -312,22 +314,6 @@ docker compose down
 - `GET /download/<token>` - Download shared file
 - `GET /download_file/<int:file_id>` - Admin download file
 - `GET /api/batch_download` - Batch download files
-
-## 🔧 Development
-
-### Adding New Languages
-
-1. Create translation directory: `mkdir -p translations/[language_code]/LC_MESSAGES`
-2. Create translation file: `translations/[language_code]/LC_MESSAGES/messages.po`
-3. Add translations to the file
-4. Compile translations: `pybabel compile -d translations`
-
-### Updating Translations
-
-1. Extract messages: `pybabel extract -F babel.cfg -k _l -o messages.pot .`
-2. Update translation files: `pybabel update -i messages.pot -d translations`
-3. Edit translation files
-4. Compile translations: `pybabel compile -d translations`
 
 ## 📄 License
 
