@@ -8,6 +8,8 @@ import json
 import mimetypes
 from dotenv import load_dotenv
 import pytz
+import subprocess
+from pathlib import Path
 
 # 加载 .env 文件中的环境变量
 load_dotenv()
@@ -16,8 +18,43 @@ from config import Config
 from models import db, File, ShareLink
 from utils import allowed_file, safe_filename, send_file_with_range, cleanup_expired_shares
 
+def compile_translations_if_needed():
+    """如果需要，编译翻译文件"""
+    translations_dir = Path("translations")
+    
+    if not translations_dir.exists():
+        return
+    
+    # 检查是否需要编译
+    po_files = list(translations_dir.rglob("*.po"))
+    mo_files = list(translations_dir.rglob("*.mo"))
+    
+    # 如果没有 .mo 文件，或者 .po 文件比 .mo 文件新，则需要编译
+    if not mo_files or any(
+        po_file.stat().st_mtime > mo_file.stat().st_mtime 
+        for po_file in po_files 
+        for mo_file in mo_files
+    ):
+        print("检测到翻译文件需要编译...")
+        try:
+            # 编译所有语言
+            for po_file in po_files:
+                lang = po_file.parent.parent.name
+                subprocess.run([
+                    "pybabel", "compile", 
+                    "-d", "translations", 
+                    "-l", lang
+                ], check=True, capture_output=True)
+            print("翻译文件编译完成")
+        except (subprocess.CalledProcessError, FileNotFoundError) as e:
+            print(f"翻译文件编译失败: {e}")
+            # 编译失败不影响应用启动
+
 app = Flask(__name__)
 app.config.from_object(Config)
+
+# 在应用启动时编译翻译文件
+compile_translations_if_needed()
 
 # 初始化Babel
 babel = Babel(app)
