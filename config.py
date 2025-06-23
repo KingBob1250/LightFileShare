@@ -5,6 +5,9 @@ class Config:
     # 基础配置
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-in-production'
     
+    # 时区配置
+    TIMEZONE = os.environ.get('TIMEZONE', 'Asia/Shanghai')  # 默认使用中国时区
+    
     # 数据库配置 - 固定路径
     SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db'
     

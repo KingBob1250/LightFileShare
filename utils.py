@@ -78,9 +78,9 @@ def send_file_with_range(file_path, filename):
 def cleanup_expired_shares():
     """清理过期的分享链接"""
     from models import ShareLink
-    from datetime import datetime
+    from datetime import datetime, timezone
     
-    expired_shares = ShareLink.query.filter(ShareLink.expire_time < datetime.utcnow()).all()
+    expired_shares = ShareLink.query.filter(ShareLink.expire_time < datetime.now(timezone.utc)).all()
     for share in expired_shares:
         db.session.delete(share)
     db.session.commit()

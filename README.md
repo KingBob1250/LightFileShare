@@ -118,6 +118,23 @@ python start_server.py
 | `DEFAULT_SHARE_DAYS` | 7 | 默认分享天数 |
 | `SECRET_KEY` | dev-secret-key | 会话密钥 |
 | `ENABLE_FILE_TYPE_CHECK` | false | 是否启用文件类型检测 |
+| `TIMEZONE` | Asia/Shanghai | 时区设置，支持标准时区名称 |
+
+### 时区配置
+
+系统支持多时区显示，确保不同时区的用户都能看到符合当地时区的时间。
+
+#### 配置说明
+
+**服务器端时区配置**（用于默认显示）：
+- 在 `.env` 文件中设置 `TIMEZONE=Asia/Shanghai`
+- 仅影响服务器端模板渲染的时间显示
+- 不影响API接口返回的时间格式
+
+**用户端时区检测**：
+- 自动检测，无需配置
+- 如果检测失败，使用服务器配置的默认时区
+- 在页面顶部显示当前使用的时区信息
 
 ### 目录结构
 

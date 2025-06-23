@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import uuid
+import pytz
 
 db = SQLAlchemy()
 
@@ -11,7 +12,7 @@ class File(db.Model):
     original_filename = db.Column(db.String(255), nullable=False)
     file_path = db.Column(db.String(500), nullable=False)
     file_size = db.Column(db.BigInteger, nullable=False)
-    upload_time = db.Column(db.DateTime, default=datetime.now)
+    upload_time = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     
     # 关联的分享链接
     shares = db.relationship('ShareLink', backref='file', lazy=True, cascade='all, delete-orphan')
@@ -27,13 +28,22 @@ class File(db.Model):
                 return f"{self.file_size:.1f} {unit}"
             self.file_size /= 1024.0
         return f"{self.file_size:.1f} TB"
+    
+    def get_local_time(self, timezone_str='Asia/Shanghai'):
+        """返回指定时区的本地时间"""
+        try:
+            tz = pytz.timezone(timezone_str)
+            utc_time = pytz.utc.localize(self.upload_time) if self.upload_time.tzinfo is None else self.upload_time
+            return utc_time.astimezone(tz)
+        except:
+            return self.upload_time
 
 class ShareLink(db.Model):
     """分享链接表"""
     id = db.Column(db.Integer, primary_key=True)
     token = db.Column(db.String(64), unique=True, nullable=False)
     file_id = db.Column(db.Integer, db.ForeignKey('file.id'), nullable=False)
-    created_time = db.Column(db.DateTime, default=datetime.now)
+    created_time = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     expire_time = db.Column(db.DateTime, nullable=False)
     download_count = db.Column(db.Integer, default=0)
     
@@ -43,33 +53,51 @@ class ShareLink(db.Model):
     @property
     def is_expired(self):
         """检查链接是否过期"""
-        return datetime.utcnow() > self.expire_time
+        return datetime.now(timezone.utc) > self.expire_time
     
     @property
     def days_remaining(self):
         """返回剩余天数"""
         if self.is_expired:
             return 0
-        delta = self.expire_time - datetime.utcnow()
+        delta = self.expire_time - datetime.now(timezone.utc)
         return delta.days
+    
+    def get_local_created_time(self, timezone_str='Asia/Shanghai'):
+        """返回指定时区的本地创建时间"""
+        try:
+            tz = pytz.timezone(timezone_str)
+            utc_time = pytz.utc.localize(self.created_time) if self.created_time.tzinfo is None else self.created_time
+            return utc_time.astimezone(tz)
+        except:
+            return self.created_time
+    
+    def get_local_expire_time(self, timezone_str='Asia/Shanghai'):
+        """返回指定时区的本地过期时间"""
+        try:
+            tz = pytz.timezone(timezone_str)
+            utc_time = pytz.utc.localize(self.expire_time) if self.expire_time.tzinfo is None else self.expire_time
+            return utc_time.astimezone(tz)
+        except:
+            return self.expire_time
     
     @classmethod
     def create_share_link(cls, file_id, days):
         """创建新的分享链接，如果已有有效分享则更新有效期"""
         # 检查是否已有有效的分享链接
         existing_share = cls.query.filter_by(file_id=file_id).filter(
-            cls.expire_time > datetime.now()
+            cls.expire_time > datetime.now(timezone.utc)
         ).first()
         
         if existing_share:
             # 如果已有有效分享，更新有效期
-            existing_share.expire_time = datetime.now() + timedelta(days=days)
+            existing_share.expire_time = datetime.now(timezone.utc) + timedelta(days=days)
             db.session.commit()
             return existing_share
         else:
             # 创建新的分享链接
             token = str(uuid.uuid4()).replace('-', '')
-            expire_time = datetime.now() + timedelta(days=days)
+            expire_time = datetime.now(timezone.utc) + timedelta(days=days)
             
             share_link = cls(
                 token=token,

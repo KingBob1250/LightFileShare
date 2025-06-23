@@ -8,6 +8,7 @@
 <div class="header">
     <h1>文件服务器管理面板</h1>
     <p>欢迎回来！<a href="{{ url_for('logout') }}" class="btn btn-danger">退出登录</a></p>
+    <p id="timezoneInfo" style="font-size: 12px; color: #666; margin-top: 5px;">检测时区中...</p>
 </div>
 
 <div class="content">
@@ -96,7 +97,7 @@
                         </td>
                         <td>{{ file.original_filename }}</td>
                         <td>{{ file.file_size_human }}</td>
-                        <td>{{ file.upload_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        <td>{{ file.get_local_time(timezone).strftime('%Y-%m-%d %H:%M:%S') }}</td>
                         <td>
                             {% if file.shares %}
                                 {% for share in file.shares %}
@@ -281,6 +282,62 @@ let selectedFiles = new Set(); // 存储选中的文件ID
 let batchShareResults = []; // 存储批量分享结果
 let currentSortBy = 'upload_time';
 let currentSortOrder = 'desc';
+let userTimezone = null; // 用户时区
+
+// 检测用户时区
+function detectUserTimezone() {
+    try {
+        userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        console.log('检测到用户时区:', userTimezone);
+        
+        // 更新页面上的时区显示
+        const timezoneInfo = document.getElementById('timezoneInfo');
+        if (timezoneInfo) {
+            timezoneInfo.textContent = `当前时区: ${userTimezone}`;
+        }
+    } catch (e) {
+        userTimezone = 'Asia/Shanghai'; // 默认时区
+        console.log('时区检测失败，使用默认时区:', userTimezone);
+        
+        // 更新页面上的时区显示
+        const timezoneInfo = document.getElementById('timezoneInfo');
+        if (timezoneInfo) {
+            timezoneInfo.textContent = `当前时区: ${userTimezone} (默认)`;
+        }
+    }
+}
+
+// 转换UTC时间为本地时间
+function convertUTCToLocal(utcString) {
+    if (!utcString) return '';
+    
+    try {
+        const utcDate = new Date(utcString);
+        if (isNaN(utcDate.getTime())) {
+            return utcString; // 如果解析失败，返回原字符串
+        }
+        
+        return utcDate.toLocaleString('zh-CN', {
+            timeZone: userTimezone,
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+    } catch (e) {
+        console.error('时间转换失败:', e);
+        return utcString;
+    }
+}
+
+// 格式化时间显示
+function formatTimeDisplay(utcString) {
+    const localTime = convertUTCToLocal(utcString);
+    return localTime;
+}
 
 // 文件上传功能
 document.getElementById('fileInput').addEventListener('change', handleFileSelect);
@@ -496,7 +553,7 @@ function updateFileTable(files, pagination) {
                 </td>
                 <td>${file.filename}</td>
                 <td>${file.size_human}</td>
-                <td>${file.upload_time}</td>
+                <td>${formatTimeDisplay(file.upload_time_utc)}</td>
                 <td>${sharesHtml}</td>
                 <td>
                     <div class="actions-container">
@@ -925,7 +982,8 @@ function batchDownload() {
     document.body.removeChild(link);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
+    detectUserTimezone();
     updateSortIcons();
     // 初始化时加载分享列表
     loadShares();
@@ -977,8 +1035,8 @@ function displayShares(shares) {
     let html = '';
     shares.forEach(share => {
         const shareUrl = `${window.location.origin}/download/${share.token}`;
-        const createdTime = new Date(share.created_time).toLocaleString();
-        const expireTime = new Date(share.expire_time).toLocaleString();
+        const createdTime = formatTimeDisplay(share.created_time_utc);
+        const expireTime = formatTimeDisplay(share.expire_time_utc);
         
         html += `
             <tr>

@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_file
 import os
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from functools import wraps
 import json
 import mimetypes
 from dotenv import load_dotenv
+import pytz
 
 # 加载 .env 文件中的环境变量
 load_dotenv()
@@ -22,6 +23,31 @@ db.init_app(app)
 
 # 确保上传目录存在
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
+def get_local_timezone():
+    """获取本地时区"""
+    return app.config.get('TIMEZONE', 'Asia/Shanghai')
+
+def convert_to_local_time(utc_time, timezone_str=None):
+    """将UTC时间转换为本地时间"""
+    if not utc_time:
+        return utc_time
+    
+    if timezone_str is None:
+        timezone_str = get_local_timezone()
+    
+    try:
+        tz = pytz.timezone(timezone_str)
+        if utc_time.tzinfo is None:
+            utc_time = pytz.utc.localize(utc_time)
+        return utc_time.astimezone(tz)
+    except:
+        return utc_time
+
+def format_local_time(utc_time, timezone_str=None, format_str='%Y-%m-%d %H:%M:%S'):
+    """格式化本地时间显示"""
+    local_time = convert_to_local_time(utc_time, timezone_str)
+    return local_time.strftime(format_str)
 
 def login_required(f):
     """登录验证装饰器"""
@@ -82,7 +108,8 @@ def dashboard():
                          pagination=pagination,
                          message=message, 
                          error=error,
-                         share_host=app.config['SHARE_HOST'])
+                         share_host=app.config['SHARE_HOST'],
+                         timezone=get_local_timezone())
 
 @app.route('/upload', methods=['POST'])
 @login_required
@@ -209,10 +236,10 @@ def api_files():
         'filename': f.original_filename,
         'size': f.file_size,
         'size_human': f.file_size_human,
-        'upload_time': f.upload_time.isoformat(),
+        'upload_time_utc': f.upload_time.isoformat() + 'Z',  # UTC时间戳
         'shares': [{
             'token': s.token,
-            'expire_time': s.expire_time.isoformat(),
+            'expire_time_utc': s.expire_time.isoformat() + 'Z',  # UTC时间戳
             'is_expired': s.is_expired,
             'days_remaining': s.days_remaining
         } for s in f.shares if not s.is_expired]
@@ -222,13 +249,13 @@ def api_files():
 @login_required
 def api_shares():
     """API: 获取分享链接列表"""
-    shares = ShareLink.query.filter(ShareLink.expire_time > datetime.utcnow()).all()
+    shares = ShareLink.query.filter(ShareLink.expire_time > datetime.now(timezone.utc)).all()
     return jsonify([{
         'id': s.id,
         'token': s.token,
         'filename': s.file.original_filename,
-        'created_time': s.created_time.isoformat(),
-        'expire_time': s.expire_time.isoformat(),
+        'created_time_utc': s.created_time.isoformat() + 'Z',  # UTC时间戳
+        'expire_time_utc': s.expire_time.isoformat() + 'Z',  # UTC时间戳
         'days_remaining': s.days_remaining,
         'download_count': s.download_count
     } for s in shares])
@@ -279,7 +306,7 @@ def search_files():
         active_shares_subquery = db.session.query(
             ShareLink.file_id,
             db.func.count(ShareLink.id).label('active_shares_count')
-        ).filter(ShareLink.expire_time > datetime.utcnow()).group_by(ShareLink.file_id).subquery()
+        ).filter(ShareLink.expire_time > datetime.now(timezone.utc)).group_by(ShareLink.file_id).subquery()
 
         files_query = files_query.outerjoin(
             active_shares_subquery, File.id == active_shares_subquery.c.file_id
@@ -315,7 +342,7 @@ def search_files():
             'filename': file.original_filename,
             'size': file.file_size,
             'size_human': file.file_size_human,
-            'upload_time': file.upload_time.strftime('%Y-%m-%d %H:%M:%S'),
+            'upload_time_utc': file.upload_time.isoformat() + 'Z',  # UTC时间戳
             'shares': []
         }
         
@@ -324,7 +351,7 @@ def search_files():
             if not share.is_expired:
                 file_data['shares'].append({
                     'token': share.token,
-                    'expire_time': share.expire_time.strftime('%Y-%m-%d %H:%M:%S'),
+                    'expire_time_utc': share.expire_time.isoformat() + 'Z',  # UTC时间戳
                     'is_expired': share.is_expired,
                     'days_remaining': share.days_remaining
                 })
