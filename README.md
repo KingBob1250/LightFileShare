@@ -1,287 +1,345 @@
-# 文件服务器
+[中文版 README](README_zh.md) 
 
-一个轻量级的Python文件服务器，支持文件上传、分享和下载功能。
+# File Server
 
-## 功能特性
+A lightweight Python file server with file upload, sharing, and download capabilities.
 
-- 🔐 **密码保护**：管理员密码登录
-- 📁 **文件管理**：上传、删除、查看文件列表
-- 🔗 **文件分享**：生成临时下载链接，支持设置有效期
-- 🛑 **停止分享**：单个或批量停止分享链接
-- ⬇️ **断点续传**：支持大文件断点续传下载
-- 📊 **访问统计**：统计分享链接的访问次数
-- 👁️ **文件预览**：支持多种文件类型的在线预览
-- 🐳 **Docker部署**：一键部署，配置灵活
-- 📱 **响应式界面**：支持移动端访问
-- 🔍 **文件搜索**：支持文件名搜索
-- 📊 **批量操作**：支持批量删除、分享、下载
+## Features
 
-## 🚀 快速开始
+- 🔐 **Password Protection**: Administrator password login
+- 📁 **File Management**: Upload, delete, view file list
+- 🔗 **File Sharing**: Generate temporary download links with customizable expiration
+- 🛑 **Stop Sharing**: Stop individual or batch share links
+- ⬇️ **Resume Download**: Support for large file resume download
+- 📊 **Access Statistics**: Track share link access counts
+- 👁️ **File Preview**: Online preview for multiple file types
+- 🐳 **Docker Deployment**: One-click deployment with flexible configuration
+- 📱 **Responsive Interface**: Mobile-friendly access
+- 🔍 **File Search**: File name search functionality
+- 📊 **Batch Operations**: Support for batch delete, share, download
+- 🌍 **Multi-language Support**: Support for 21 languages
 
-### 方法一：使用Docker（推荐）
+## 🚀 Quick Start
+
+### Method 1: Using Docker (Recommended)
 
 ```bash
-# 1. 克隆项目
+# 1. Clone the project
 git clone <repository-url>
 cd file_server
 
-# 2. 配置环境变量
+# 2. Configure environment variables
 cp env.example .env
-# 编辑 .env 文件，修改管理员密码等配置
+# Edit .env file to modify administrator password and other configurations
 
-# 3. 启动服务（会自动构建镜像）
+# 3. Start the service (will automatically build the image)
 docker compose up -d
 
-# 4. 访问管理界面
-# 打开浏览器访问: http://localhost:5000
-# 默认密码: admin123
+# 4. Access the management interface
+# Open browser and visit: http://localhost:5000
+# Default password: admin123
 ```
 
-**注意**：`docker compose up -d` 会自动构建镜像（如果不存在）。如果需要重新构建镜像，可以使用：
+**Note**: `docker compose up -d` will automatically build the image (if it doesn't exist). If you need to rebuild the image, use:
 ```bash
 docker compose up -d --build
 ```
 
-### 方法二：本地运行
+### Method 2: Local Run
 
 ```bash
-# 1. 安装依赖
+# 1. Install dependencies
 pip install -r requirements.txt
 
-# 2. 配置环境变量
+# 2. Configure environment variables
 cp env.example .env
-# 编辑 .env 文件修改配置
+# Edit .env file to modify configurations
 
-# 3. 启动服务
+# 3. Start the service
 python start_server.py
 
-# 4. 访问管理界面
-# 打开浏览器访问: http://localhost:5000
-# 默认密码: admin123
+# 4. Access the management interface
+# Open browser and visit: http://localhost:5000
+# Default password: admin123
 ```
 
-## 📝 基本使用
+## 📝 Basic Usage
 
-1. **登录管理界面**
-   - 访问 `http://localhost:5000`
-   - 输入密码：`admin123`
+1. **Login to Management Interface**
+   - Visit `http://localhost:5000`
+   - Enter password: `admin123`
 
-2. **上传文件**
-   - 拖拽文件到上传区域
-   - 或点击"选择文件"按钮
-   - 支持多文件同时上传
+2. **Upload Files**
+   - Drag files to the upload area
+   - Or click "Select Files" button
+   - Support multiple file uploads
 
-3. **管理文件**
-   - 查看文件列表（文件名、大小、上传时间）
-   - 搜索文件
-   - 删除文件（需二次确认）
-   - 批量操作（删除、分享、下载）
+3. **Manage Files**
+   - View file list (filename, size, upload time)
+   - Search files
+   - Delete files (requires confirmation)
+   - Batch operations (delete, share, download)
 
-4. **预览文件**
-   - 点击文件列表中的"预览"按钮
-   - 支持多种文件类型预览：
-     - **图片**：png, jpg, jpeg, gif, webp, svg
-     - **文本**：txt, md, py, js, css, html, json, xml, sh, ini
-     - **PDF**：pdf文件
-     - **视频**：mp4, webm, mov
-     - **音频**：mp3, ogg, wav
-   - 文本文件支持语法高亮显示
-   - 图片、视频、音频支持在线播放
+4. **Preview Files**
+   - Click "Preview" button in file list
+   - Supports multiple file type previews:
+     - **Images**: png, jpg, jpeg, gif, webp, svg
+     - **Text**: txt, md, py, js, css, html, json, xml, sh, ini
+     - **PDF**: pdf files
+     - **Video**: mp4, webm, mov
+     - **Audio**: mp3, ogg, wav
+   - Text files support syntax highlighting
+   - Images, videos, audio support online playback
 
-5. **分享文件**
-   - 点击文件列表中的"分享"按钮
-   - 选择分享天数（1-30天）
-   - 生成临时下载链接
-   - 复制链接分享给他人
+5. **Share Files**
+   - Click "Share" button in file list
+   - Select share duration (1-30 days)
+   - Generate temporary download links
+   - Copy links to share with others
 
-6. **管理分享**
-   - 点击"分享管理"标签页查看所有分享链接
-   - 查看分享状态、剩余时间、访问次数
-   - 单个停止分享或批量停止分享
-   - 复制分享链接
+6. **Manage Shares**
+   - Click "Share Management" tab to view all share links
+   - View share status, remaining time, access count
+   - Stop individual shares or batch stop shares
+   - Copy share links
 
-7. **下载文件**
-   - 直接访问分享链接即可下载
-   - 支持断点续传
-   - 无需登录即可下载
+7. **Download Files**
+   - Directly visit share links to download
+   - Support resume download
+   - No login required for downloads
 
-## ⚙️ 配置说明
+## ⚙️ Configuration
 
-### 环境变量
+### Environment Variables
 
-| 变量名 | 默认值 | 说明 |
-|--------|--------|------|
-| `PORT` | 5000 | 服务端口 |
-| `HOST` | 0.0.0.0 | 监听地址 |
-| `ADMIN_PASSWORD` | admin123 | 管理员密码 |
-| `MAX_CONTENT_LENGTH` | 104857600 | 最大文件大小（字节） |
-| `DEFAULT_SHARE_DAYS` | 7 | 默认分享天数 |
-| `SECRET_KEY` | dev-secret-key | 会话密钥 |
-| `ENABLE_FILE_TYPE_CHECK` | false | 是否启用文件类型检测 |
-| `TIMEZONE` | Asia/Shanghai | 时区设置，支持标准时区名称 |
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `PORT` | 5000 | Service port |
+| `HOST` | 0.0.0.0 | Listen address |
+| `ADMIN_PASSWORD` | admin123 | Administrator password |
+| `MAX_CONTENT_LENGTH` | 104857600 | Maximum file size (bytes) |
+| `DEFAULT_SHARE_DAYS` | 7 | Default share days |
+| `SECRET_KEY` | dev-secret-key | Session key |
+| `ENABLE_FILE_TYPE_CHECK` | false | Enable file type detection |
+| `TIMEZONE` | Asia/Shanghai | Timezone setting, supports standard timezone names |
 
-### 时区配置
+### Timezone Configuration
 
-系统支持多时区显示，确保不同时区的用户都能看到符合当地时区的时间。
+The system supports multi-timezone display, ensuring users from different timezones can see times that match their local timezone.
 
-#### 配置说明
+#### Configuration Details
 
-**服务器端时区配置**（用于默认显示）：
-- 在 `.env` 文件中设置 `TIMEZONE=Asia/Shanghai`
-- 仅影响服务器端模板渲染的时间显示
-- 不影响API接口返回的时间格式
+**Server-side Timezone Configuration** (for default display):
+- Set `TIMEZONE=Asia/Shanghai` in `.env` file
+- Only affects server-side template rendering time display
+- Does not affect API interface returned time format
 
-**用户端时区检测**：
-- 自动检测，无需配置
-- 如果检测失败，使用服务器配置的默认时区
-- 在页面顶部显示当前使用的时区信息
+**Client-side Timezone Detection**:
+- Automatic detection, no configuration needed
+- If detection fails, uses server-configured default timezone
+- Displays current timezone information at the top of the page
 
-### 目录结构
+### Directory Structure
 
 ```
 file_server/
-├── app.py              # 主应用文件
-├── config.py           # 配置文件
-├── models.py           # 数据模型
-├── utils.py            # 工具函数
-├── start_server.py     # 启动脚本
-├── requirements.txt    # Python依赖
-├── docker-compose.yml  # Docker配置
-├── Dockerfile          # Docker镜像配置
-├── .env                # 环境变量（需要创建）
-├── uploads/            # 文件上传目录（固定路径）
-├── instance/           # 数据库目录（固定路径）
-│   └── database.db     # SQLite数据库文件
-└── templates/          # HTML模板
+├── app.py              # Main application file
+├── config.py           # Configuration file
+├── models.py           # Data models
+├── utils.py            # Utility functions
+├── start_server.py     # Startup script
+├── requirements.txt    # Python dependencies
+├── docker-compose.yml  # Docker configuration
+├── Dockerfile          # Docker image configuration
+├── .env                # Environment variables (needs to be created)
+├── uploads/            # File upload directory (fixed path)
+├── instance/           # Database directory (fixed path)
+│   └── database.db     # SQLite database file
+├── translations/       # Internationalization files
+│   ├── en/            # English translations
+│   └── zh/            # Chinese translations
+└── templates/          # HTML templates
 ```
 
-### 路径配置说明
+### Path Configuration
 
-**固定路径配置**：
-- **数据库路径**：`./instance/database.db`（本地开发）或 `/app/instance/database.db`（Docker环境）
-- **上传文件夹**：`./uploads`（本地开发）或 `/app/uploads`（Docker环境）
+**Fixed Path Configuration**:
+- **Database Path**: `./instance/database.db` (local development) or `/app/instance/database.db` (Docker environment)
+- **Upload Folder**: `./uploads` (local development) or `/app/uploads` (Docker environment)
 
-**Docker 路径映射**：
-- 本地的 `./uploads` 目录 → 容器内的 `/app/uploads`
-- 本地的 `./instance` 目录 → 容器内的 `/app/instance`
+**Docker Path Mapping**:
+- Local `./uploads` directory → Container `/app/uploads`
+- Local `./instance` directory → Container `/app/instance`
 
-这些路径是固定的，无需通过环境变量配置。
+These paths are fixed and do not need to be configured through environment variables.
 
-### 文件类型检测
+### File Type Detection
 
-默认情况下，文件类型检测功能是**禁用**的（`ENABLE_FILE_TYPE_CHECK=false`），这意味着您可以上传任何类型的文件。
+By default, file type detection is **disabled** (`ENABLE_FILE_TYPE_CHECK=false`), meaning you can upload any type of file.
 
-如果您想启用文件类型限制，可以设置 `ENABLE_FILE_TYPE_CHECK=true`，系统将只允许上传以下类型的文件：
+If you want to enable file type restrictions, set `ENABLE_FILE_TYPE_CHECK=true`, and the system will only allow uploading the following file types:
 
-- 文档：txt, pdf, doc, docx, xls, xlsx, ppt, pptx
-- 图片：png, jpg, jpeg, gif
-- 压缩包：zip, rar, 7z
-- 音视频：mp3, mp4, avi, mkv, mov, wmv, flv, webm
-- 其他：torrent, apk
+- Documents: txt, pdf, doc, docx, xls, xlsx, ppt, pptx
+- Images: png, jpg, jpeg, gif
+- Archives: zip, rar, 7z
+- Audio/Video: mp3, mp4, avi, mkv, mov, wmv, flv, webm
+- Others: torrent, apk
 
-### 文件预览功能
+### File Preview Feature
 
-系统支持多种文件类型的在线预览功能，无需下载即可查看文件内容：
+The system supports online preview for multiple file types without downloading:
 
-#### 支持预览的文件类型
+#### Supported Preview File Types
 
-- **图片文件**：png, jpg, jpeg, gif, webp, svg
-- **文本文件**：txt, md, py, js, css, html, json, xml, sh, ini
-- **PDF文件**：pdf
-- **视频文件**：mp4, webm, mov
-- **音频文件**：mp3, ogg, wav
+- **Image Files**: png, jpg, jpeg, gif, webp, svg
+- **Text Files**: txt, md, py, js, css, html, json, xml, sh, ini
+- **PDF Files**: pdf
+- **Video Files**: mp4, webm, mov
+- **Audio Files**: mp3, ogg, wav
 
-#### 预览功能特点
+#### Preview Features
 
-- **文本文件**：支持语法高亮显示，使用Prism.js提供代码着色
-- **图片文件**：支持缩放和自适应显示
-- **视频/音频**：支持在线播放，带播放控制
-- **PDF文件**：使用浏览器内置PDF查看器
-- **模态框预览**：所有预览都在模态框中显示，不影响主界面
+- **Text Files**: Support syntax highlighting using Prism.js for code coloring
+- **Image Files**: Support zoom and adaptive display
+- **Video/Audio**: Support online playback with playback controls
+- **PDF Files**: Use browser built-in PDF viewer
+- **Modal Preview**: All previews displayed in modal boxes without affecting main interface
 
-#### 预览配置
+## 🌍 Multi-language Support
 
-预览功能无需额外配置，系统会根据文件扩展名自动判断是否显示预览按钮。如需修改支持的文件类型，可以编辑 `config.py` 中的 `PREVIEWABLE_EXTENSIONS` 配置。
+The system supports 21 languages:
 
-### 支持的文件类型
+- English (en)
+- Simplified Chinese (zh)
+- Traditional Chinese (zh_TW)
+- Spanish (es)
+- Arabic (ar)
+- French (fr)
+- Portuguese (pt)
+- Russian (ru)
+- Hindi (hi)
+- Japanese (ja)
+- Korean (ko)
+- German (de)
+- Turkish (tr)
+- Vietnamese (vi)
+- Thai (th)
+- Ukrainian (uk)
+- Indonesian (id)
+- Polish (pl)
+- Italian (it)
+- Persian (fa)
+- Malay (ms)
 
-- 文档：txt, pdf, doc, docx, xls, xlsx, ppt, pptx
-- 图片：png, jpg, jpeg, gif
-- 压缩包：zip, rar, 7z
-- 视频：mp4, avi, mkv, mov, wmv, flv, webm
-- 音频：mp3
+### Language Switching
 
-## 🚀 部署指南
+- The system automatically detects browser language settings
+- Users can manually switch languages using the language selector in the top-right corner
+- Language preferences are saved in session
+- If the browser language is not supported, English is used as default
 
-### 启动方式对比
+## 🚀 Deployment Guide
 
-| 启动方式 | 并发能力 | 性能 | 生产适用性 | 命令 |
-|---------|---------|------|-----------|------|
-| Flask开发服务器 | 单线程 | 低 | ❌ | `python app.py` |
-| Uvicorn (脚本) | 异步 | 高 | ✅ | `python start_server.py` |
-| Uvicorn (终端) | 异步 | 高 | ✅ | `uvicorn app:app --host 0.0.0.0 --port 5000` |
+### Startup Method Comparison
 
-### Docker部署
+| Startup Method | Concurrency | Performance | Production Ready | Command |
+|---------------|-------------|-------------|------------------|---------|
+| Flask Dev Server | Single-threaded | Low | ❌ | `python app.py` |
+| Uvicorn (Script) | Async | High | ✅ | `python start_server.py` |
+| Uvicorn (Terminal) | Async | High | ✅ | `uvicorn app:app --host 0.0.0.0 --port 5000` |
 
-#### 使用 Docker Compose（推荐）
+### Docker Deployment
+
+#### Using Docker Compose (Recommended)
 
 ```bash
-# 1. 配置环境变量
+# 1. Configure environment variables
 cp env.example .env
-# 编辑 .env 文件
+# Edit .env file
 
-# 2. 启动服务（自动构建镜像）
+# 2. Start service (auto-build image)
 docker compose up -d
 
-# 3. 查看日志
+# 3. View logs
 docker compose logs -f
 
-# 4. 停止服务
+# 4. Stop service
 docker compose down
 ```
 
-#### 重要说明：.dockerignore 文件
+#### Important Note: .dockerignore File
 
-项目包含 `.dockerignore` 文件，用于排除不需要复制到容器内部的文件和目录：
+The project includes a `.dockerignore` file to exclude unnecessary files and directories from being copied into the container:
 
-- **环境变量文件**：`.env`、`.env.local` 等
-- **数据目录**：`uploads/`、`instance/`（通过 volumes 映射）
-- **开发文件**：`.git/`、`__pycache__/`、IDE 配置文件等
+- **Environment files**: `.env`, `.env.local`, etc.
+- **Data directories**: `uploads/`, `instance/` (mapped via volumes)
+- **Development files**: `.git/`, `__pycache__/`, IDE config files, etc.
 
-**⚠️ 重要提醒**：如果您修改了 `docker-compose.yml` 中的 volumes 映射配置，请同时更新 `.dockerignore` 文件中的相应排除规则，确保数据目录不被复制到容器内部，避免数据冲突和镜像过大。
+**⚠️ Important Reminder**: If you modify the volumes mapping configuration in `docker-compose.yml`, please also update the corresponding exclusion rules in the `.dockerignore` file to ensure data directories are not copied into the container, avoiding data conflicts and large image sizes.
 
-例如，如果您将 volumes 映射从 `./uploads:/app/uploads` 改为 `./data:/app/uploads`，那么需要在 `.dockerignore` 中将 `uploads/` 改为 `data/`。
+For example, if you change the volumes mapping from `./uploads:/app/uploads` to `./data:/app/uploads`, you need to change `uploads/` to `data/` in `.dockerignore`.
 
-## 🛑 停止服务
+## 🛑 Stop Service
 
 ```bash
-# Docker方式
+# Docker method
 docker compose down
 
-# 本地运行
-# 按 Ctrl+C 停止
+# Local run
+# Press Ctrl+C to stop
 ```
 
-## API接口
+## API Interfaces
 
-### 文件管理API
+### File Management APIs
 
-- `GET /api/files` - 获取文件列表
-- `POST /upload` - 上传文件
-- `DELETE /delete/<file_id>` - 删除文件
-- `POST /api/batch_delete` - 批量删除文件
-- `GET /api/search_files` - 搜索文件
-- `GET /preview/<file_id>` - 预览文件
+- `GET /api/files` - Get file list
+- `POST /upload` - Upload file
+- `DELETE /delete/<file_id>` - Delete file
+- `POST /api/batch_delete` - Batch delete files
+- `GET /api/search_files` - Search files
+- `GET /preview/<file_id>` - Preview file
 
-### 分享管理API
+### Share Management APIs
 
-- `POST /share` - 创建分享链接
-- `GET /api/shares` - 获取分享链接列表
-- `DELETE /api/delete_share/<share_id>` - 删除分享链接
-- `POST /api/batch_share` - 批量分享文件
+- `POST /share` - Create share link
+- `GET /api/shares` - Get share link list
+- `DELETE /api/delete_share/<share_id>` - Delete share link
+- `POST /api/batch_share` - Batch share files
 
-### 下载API
+### Download APIs
 
-- `GET /download/<token>` - 下载分享的文件
-- `GET /download_file/<int:file_id>` - 管理员下载文件
-- `GET /api/batch_download` - 批量下载文件
+- `GET /download/<token>` - Download shared file
+- `GET /download_file/<int:file_id>` - Admin download file
+- `GET /api/batch_download` - Batch download files
+
+## 🔧 Development
+
+### Adding New Languages
+
+1. Create translation directory: `mkdir -p translations/[language_code]/LC_MESSAGES`
+2. Create translation file: `translations/[language_code]/LC_MESSAGES/messages.po`
+3. Add translations to the file
+4. Compile translations: `pybabel compile -d translations`
+
+### Updating Translations
+
+1. Extract messages: `pybabel extract -F babel.cfg -k _l -o messages.pot .`
+2. Update translation files: `pybabel update -i messages.pot -d translations`
+3. Edit translation files
+4. Compile translations: `pybabel compile -d translations`
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📞 Support
+
+If you encounter any issues or have questions, please open an issue on GitHub.
+
+---
+

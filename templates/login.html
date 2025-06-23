@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}登录 - 文件服务器{% endblock %}
+{% block title %}{{ _('Login') }} - {{ _('File Server') }}{% endblock %}
 
 {% block content %}
 <div class="header">
-    <h1>文件服务器管理</h1>
-    <p>请输入管理员密码进行登录</p>
+    <h1>{{ _('File Server Management') }}</h1>
+    <p>{{ _('Please enter the administrator password to login') }}</p>
 </div>
 
 <div class="content">
@@ -17,11 +17,11 @@
     
     <form method="POST" action="{{ url_for('login') }}">
         <div class="form-group">
-            <label for="password">管理员密码：</label>
+            <label for="password">{{ _('Administrator Password') }}：</label>
             <input type="password" id="password" name="password" required>
         </div>
         
-        <button type="submit" class="btn btn-success">登录</button>
+        <button type="submit" class="btn btn-success">{{ _('Login') }}</button>
     </form>
 </div>
 {% endblock %} 

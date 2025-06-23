@@ -1,0 +1,458 @@
+# 한국어 translations for file_server.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the file_server
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: file_server 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-23 12:15+0800\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: app.py:128
+msgid "Wrong password"
+msgstr "잘못된 비밀번호"
+
+#: templates/base.html:6 templates/base.html:442 templates/dashboard.html:5
+#: templates/login.html:3
+msgid "File Server"
+msgstr "파일 서버"
+
+#: templates/base.html:467
+msgid "Are you sure you want to delete the file"
+msgstr "파일을 삭제하시겠습니까"
+
+#: templates/base.html:467
+msgid "?"
+msgstr "?"
+
+#: templates/base.html:474 templates/dashboard.html:286
+msgid "Link copied to clipboard!"
+msgstr "링크가 클립보드에 복사되었습니다!"
+
+#: templates/base.html:476 templates/dashboard.html:287
+msgid "Copy failed"
+msgstr "복사 실패"
+
+#: templates/dashboard.html:5
+msgid "Dashboard"
+msgstr "대시보드"
+
+#: templates/dashboard.html:9
+msgid "File Server Dashboard"
+msgstr "파일 서버 대시보드"
+
+#: templates/dashboard.html:10
+msgid "Welcome back!"
+msgstr "다시 오신 것을 환영합니다!"
+
+#: templates/dashboard.html:10
+msgid "Logout"
+msgstr "로그아웃"
+
+#: templates/dashboard.html:12 templates/dashboard.html:281
+msgid "Current timezone"
+msgstr "현재 시간대"
+
+#: templates/dashboard.html:13 templates/dashboard.html:282
+msgid "default"
+msgstr "기본값"
+
+#: templates/dashboard.html:13
+msgid "Detecting timezone..."
+msgstr "시간대 감지 중..."
+
+#: templates/dashboard.html:30
+msgid "Upload Files"
+msgstr "파일 업로드"
+
+#: templates/dashboard.html:32
+msgid "Drag files here or click to select files"
+msgstr "파일을 여기로 끌어다 놓거나 클릭하여 파일을 선택하세요"
+
+#: templates/dashboard.html:34
+msgid "Select Files"
+msgstr "파일 선택"
+
+#: templates/dashboard.html:41
+msgid "Uploading..."
+msgstr "업로드 중..."
+
+#: templates/dashboard.html:46
+msgid "File Management"
+msgstr "파일 관리"
+
+#: templates/dashboard.html:47 templates/dashboard.html:161
+msgid "Share Management"
+msgstr "공유 관리"
+
+#: templates/dashboard.html:52
+msgid "File List"
+msgstr "파일 목록"
+
+#: templates/dashboard.html:54
+msgid "Search files..."
+msgstr "파일 검색..."
+
+#: templates/dashboard.html:61
+msgid "Selected 0 files"
+msgstr "0개 파일 선택됨"
+
+#: templates/dashboard.html:64
+msgid "Batch Share"
+msgstr "일괄 공유"
+
+#: templates/dashboard.html:65
+msgid "Batch Download"
+msgstr "일괄 다운로드"
+
+#: templates/dashboard.html:66
+msgid "Batch Delete"
+msgstr "일괄 삭제"
+
+#: templates/dashboard.html:67
+msgid "Clear Selection"
+msgstr "선택 해제"
+
+#: templates/dashboard.html:77 templates/dashboard.html:173
+msgid "Select All"
+msgstr "모두 선택"
+
+#: templates/dashboard.html:80 templates/dashboard.html:175
+#: templates/dashboard.html:220 templates/dashboard.html:284
+msgid "Filename"
+msgstr "파일명"
+
+#: templates/dashboard.html:83
+msgid "Size"
+msgstr "크기"
+
+#: templates/dashboard.html:86
+msgid "Upload Time"
+msgstr "업로드 시간"
+
+#: templates/dashboard.html:89
+msgid "Share Status"
+msgstr "공유 상태"
+
+#: templates/dashboard.html:91 templates/dashboard.html:181
+msgid "Actions"
+msgstr "작업"
+
+#: templates/dashboard.html:110 templates/dashboard.html:578
+msgid "Click to copy share information"
+msgstr "공유 정보를 복사하려면 클릭하세요"
+
+#: templates/dashboard.html:111 templates/dashboard.html:315
+msgid "Sharing"
+msgstr "공유 중"
+
+#: templates/dashboard.html:111 templates/dashboard.html:314
+msgid "days"
+msgstr "일"
+
+#: templates/dashboard.html:116
+msgid "Not shared"
+msgstr "공유되지 않음"
+
+#: templates/dashboard.html:122 templates/dashboard.html:291
+#: templates/dashboard.html:588
+msgid "Preview"
+msgstr "미리보기"
+
+#: templates/dashboard.html:124 templates/dashboard.html:602
+msgid "Download"
+msgstr "다운로드"
+
+#: templates/dashboard.html:125 templates/dashboard.html:603
+msgid "Share"
+msgstr "공유"
+
+#: templates/dashboard.html:126 templates/dashboard.html:604
+msgid "Delete"
+msgstr "삭제"
+
+#: templates/dashboard.html:135
+msgid "No files found"
+msgstr "파일을 찾을 수 없습니다"
+
+#: templates/dashboard.html:142 templates/dashboard.html:638
+msgid "Previous Page"
+msgstr "이전 페이지"
+
+#: templates/dashboard.html:146
+msgid "Page"
+msgstr "페이지"
+
+#: templates/dashboard.html:146
+msgid "of"
+msgstr "/"
+
+#: templates/dashboard.html:147 templates/dashboard.html:295
+msgid "Total"
+msgstr "총"
+
+#: templates/dashboard.html:147 templates/dashboard.html:296
+msgid "files"
+msgstr "개 파일"
+
+#: templates/dashboard.html:151 templates/dashboard.html:647
+msgid "Next Page"
+msgstr "다음 페이지"
+
+#: templates/dashboard.html:163
+msgid "Refresh"
+msgstr "새로 고침"
+
+#: templates/dashboard.html:164
+msgid "Stop All Shares"
+msgstr "모든 공유 중지"
+
+#: templates/dashboard.html:176
+msgid "Link"
+msgstr "링크"
+
+#: templates/dashboard.html:177
+msgid "Created Time"
+msgstr "생성 시간"
+
+#: templates/dashboard.html:178
+msgid "Expire Time"
+msgstr "만료 시간"
+
+#: templates/dashboard.html:179
+msgid "Remaining Days"
+msgstr "남은 일수"
+
+#: templates/dashboard.html:180
+msgid "Access Count"
+msgstr "접근 횟수"
+
+#: templates/dashboard.html:190
+msgid "No share links found"
+msgstr "공유 링크를 찾을 수 없습니다"
+
+#: templates/dashboard.html:199
+msgid "Share File"
+msgstr "파일 공유"
+
+#: templates/dashboard.html:204 templates/dashboard.html:239
+msgid "Share Days"
+msgstr "공유 일수"
+
+#: templates/dashboard.html:206 templates/dashboard.html:241
+msgid "1 day"
+msgstr "1일"
+
+#: templates/dashboard.html:207 templates/dashboard.html:242
+msgid "3 days"
+msgstr "3일"
+
+#: templates/dashboard.html:208 templates/dashboard.html:243
+msgid "7 days"
+msgstr "7일"
+
+#: templates/dashboard.html:209 templates/dashboard.html:244
+msgid "15 days"
+msgstr "15일"
+
+#: templates/dashboard.html:210 templates/dashboard.html:245
+msgid "30 days"
+msgstr "30일"
+
+#: templates/dashboard.html:214
+msgid "Generate Share Link"
+msgstr "공유 링크 생성"
+
+#: templates/dashboard.html:218
+msgid "Share Information"
+msgstr "공유 정보"
+
+#: templates/dashboard.html:223
+msgid "Share Link"
+msgstr "공유 링크"
+
+#: templates/dashboard.html:225
+msgid "Copy Share Link"
+msgstr "공유 링크 복사"
+
+#: templates/dashboard.html:234
+msgid "Batch Share Files"
+msgstr "파일 일괄 공유"
+
+#: templates/dashboard.html:249
+msgid "Generate Batch Share Links"
+msgstr "일괄 공유 링크 생성"
+
+#: templates/dashboard.html:253
+msgid "Batch Share Results"
+msgstr "일괄 공유 결과"
+
+#: templates/dashboard.html:257
+msgid "Copy All Share Links"
+msgstr "모든 공유 링크 복사"
+
+#: templates/dashboard.html:283
+msgid "Upload completed!"
+msgstr "업로드 완료!"
+
+#: templates/dashboard.html:285
+#, fuzzy
+msgid "Download link"
+msgstr "다운로드"
+
+#: templates/dashboard.html:288
+#, fuzzy
+msgid "Are you sure you want to stop this share link?"
+msgstr "파일을 삭제하시겠습니까"
+
+#: templates/dashboard.html:289
+#, fuzzy
+msgid "Share link stopped"
+msgstr "공유 링크를 찾을 수 없습니다"
+
+#: templates/dashboard.html:290
+#, fuzzy
+msgid "Stop share failed"
+msgstr "복사 실패"
+
+#: templates/dashboard.html:292
+#, fuzzy
+msgid "Searching..."
+msgstr "파일 검색..."
+
+#: templates/dashboard.html:293 templates/dashboard.html:666
+#, fuzzy
+msgid "Loading..."
+msgstr "업로드 중..."
+
+#: templates/dashboard.html:294
+msgid "Found"
+msgstr "찾음"
+
+#: templates/dashboard.html:297
+#, fuzzy
+msgid "Upload failed"
+msgstr "파일 업로드"
+
+#: templates/dashboard.html:298
+msgid "Upload failed: Unable to parse server response"
+msgstr "업로드 실패: 서버 응답을 파싱할 수 없습니다"
+
+#: templates/dashboard.html:299
+msgid "Upload failed: File size exceeds server limit"
+msgstr "업로드 실패: 파일 크기가 서버 제한을 초과합니다"
+
+#: templates/dashboard.html:300
+msgid "Upload failed: Network error"
+msgstr "업로드 실패: 네트워크 오류"
+
+#: templates/dashboard.html:301 templates/dashboard.html:302
+#, fuzzy
+msgid "Uploading"
+msgstr "업로드 중..."
+
+#: templates/dashboard.html:303
+msgid "Copy"
+msgstr "복사"
+
+#: templates/dashboard.html:304
+#, fuzzy
+msgid "Stop Share"
+msgstr "모든 공유 중지"
+
+#: templates/dashboard.html:305
+#, fuzzy
+msgid "No share links to copy"
+msgstr "공유 링크를 찾을 수 없습니다"
+
+#: templates/dashboard.html:306
+#, fuzzy
+msgid "Batch share links"
+msgstr "파일 일괄 공유"
+
+#: templates/dashboard.html:307
+msgid "Please select files to download"
+msgstr "다운로드할 파일을 선택하세요"
+
+#: templates/dashboard.html:308
+msgid "Please select shares to stop"
+msgstr "중지할 공유를 선택하세요"
+
+#: templates/dashboard.html:309
+#, fuzzy
+msgid "Are you sure you want to stop selected"
+msgstr "파일을 삭제하시겠습니까"
+
+#: templates/dashboard.html:310
+#, fuzzy
+msgid "share links"
+msgstr "공유 링크"
+
+#: templates/dashboard.html:311
+msgid "Successfully stopped"
+msgstr "성공적으로 중지됨"
+
+#: templates/dashboard.html:312
+#, fuzzy
+msgid "failed"
+msgstr "개 파일"
+
+#: templates/dashboard.html:313
+#, fuzzy
+msgid "times"
+msgstr "개 파일"
+
+#: templates/login.html:3 templates/login.html:24
+msgid "Login"
+msgstr "로그인"
+
+#: templates/login.html:7
+msgid "File Server Management"
+msgstr "파일 서버 관리"
+
+#: templates/login.html:8
+msgid "Please enter the administrator password to login"
+msgstr "로그인하려면 관리자 비밀번호를 입력하세요"
+
+#: templates/login.html:20
+msgid "Administrator Password"
+msgstr "관리자 비밀번호"
+
+#~ msgid "Click to copy share info"
+#~ msgstr ""
+
+#~ msgid "Not Shared"
+#~ msgstr ""
+
+#~ msgid "No files"
+#~ msgstr ""
+
+#~ msgid "Previous"
+#~ msgstr ""
+
+#~ msgid "pages"
+#~ msgstr ""
+
+#~ msgid "Next"
+#~ msgstr ""
+
+#~ msgid "Expiry Time"
+#~ msgstr ""
+
+#~ msgid "Days Remaining"
+#~ msgstr ""
+
+#~ msgid "No share links"
+#~ msgstr ""
+

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_file
+from flask_babel import Babel, gettext as _, ngettext, get_locale
 import os
 import uuid
 from datetime import datetime, timezone
@@ -18,11 +19,62 @@ from utils import allowed_file, safe_filename, send_file_with_range, cleanup_exp
 app = Flask(__name__)
 app.config.from_object(Config)
 
+# 初始化Babel
+babel = Babel(app)
+
 # 初始化数据库
 db.init_app(app)
 
 # 确保上传目录存在
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
+# 支持的语言列表
+SUPPORTED_LANGUAGES = {
+    'en': 'English',
+    'zh': '简体中文',
+    'zh_TW': '繁體中文',
+    'es': 'Español',
+    'fr': 'Français',
+    'de': 'Deutsch',
+    'it': 'Italiano',
+    'pt': 'Português',
+    'ru': 'Русский',
+    'ja': '日本語',
+    'ko': '한국어',
+    'ar': 'العربية',
+    'hi': 'हिन्दी',
+    'th': 'ไทย',
+    'vi': 'Tiếng Việt',
+    'tr': 'Türkçe',
+    'uk': 'Українська',
+    'id': 'Bahasa Indonesia',
+    'ms': 'Bahasa Melayu',
+    'fa': 'فارسی',
+    'pl': 'Polski'
+}
+
+def get_locale():
+    """获取用户语言设置"""
+    # 首先检查session中的语言设置
+    if 'language' in session:
+        lang = session['language']
+        if lang in SUPPORTED_LANGUAGES:
+            return lang
+    
+    # 然后检查请求参数中的语言设置
+    lang = request.args.get('lang')
+    if lang and lang in SUPPORTED_LANGUAGES:
+        session['language'] = lang
+        return lang
+    
+    # 最后使用浏览器语言设置，如果都不支持则使用英文
+    browser_lang = request.accept_languages.best_match(SUPPORTED_LANGUAGES.keys(), default='en')
+    # 将检测到的语言保存到session中
+    session['language'] = browser_lang
+    return browser_lang
+
+# 设置 Babel 的语言选择器
+babel.init_app(app, locale_selector=get_locale)
 
 def get_local_timezone():
     """获取本地时区"""
@@ -73,15 +125,22 @@ def login():
             session.permanent = True
             return redirect(url_for('dashboard'))
         else:
-            return render_template('login.html', error='密码错误')
+            return render_template('login.html', error=_('Wrong password'), supported_languages=SUPPORTED_LANGUAGES)
     
-    return render_template('login.html')
+    return render_template('login.html', supported_languages=SUPPORTED_LANGUAGES)
 
 @app.route('/logout')
 def logout():
     """退出登录"""
     session.clear()
     return redirect(url_for('login'))
+
+@app.route('/set_language/<language>')
+def set_language(language):
+    """设置语言"""
+    if language in SUPPORTED_LANGUAGES:
+        session['language'] = language
+    return redirect(request.referrer or url_for('login'))
 
 @app.route('/dashboard')
 @login_required
@@ -109,7 +168,8 @@ def dashboard():
                          message=message, 
                          error=error,
                          share_host=app.config['SHARE_HOST'],
-                         timezone=get_local_timezone())
+                         timezone=get_local_timezone(),
+                         supported_languages=SUPPORTED_LANGUAGES)
 
 @app.route('/upload', methods=['POST'])
 @login_required

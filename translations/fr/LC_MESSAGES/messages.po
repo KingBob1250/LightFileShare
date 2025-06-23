@@ -1,0 +1,457 @@
+# Français translations for file_server.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the file_server
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: file_server 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-23 12:15+0800\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: app.py:128
+msgid "Wrong password"
+msgstr "Mauvais mot de passe"
+
+#: templates/base.html:6 templates/base.html:442 templates/dashboard.html:5
+#: templates/login.html:3
+msgid "File Server"
+msgstr "Serveur de fichiers"
+
+#: templates/base.html:467
+msgid "Are you sure you want to delete the file"
+msgstr "Êtes-vous sûr de vouloir supprimer le fichier"
+
+#: templates/base.html:467
+msgid "?"
+msgstr "?"
+
+#: templates/base.html:474 templates/dashboard.html:286
+msgid "Link copied to clipboard!"
+msgstr "Lien copié au presse-papiers!"
+
+#: templates/base.html:476 templates/dashboard.html:287
+msgid "Copy failed"
+msgstr "Échec de la copie"
+
+#: templates/dashboard.html:5
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: templates/dashboard.html:9
+msgid "File Server Dashboard"
+msgstr "Tableau de bord du serveur de fichiers"
+
+#: templates/dashboard.html:10
+msgid "Welcome back!"
+msgstr "Content de te revoir!"
+
+#: templates/dashboard.html:10
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: templates/dashboard.html:12 templates/dashboard.html:281
+msgid "Current timezone"
+msgstr "Fuseau horaire actuel"
+
+#: templates/dashboard.html:13 templates/dashboard.html:282
+msgid "default"
+msgstr "par défaut"
+
+#: templates/dashboard.html:13
+msgid "Detecting timezone..."
+msgstr "Détection du fuseau horaire ..."
+
+#: templates/dashboard.html:30
+msgid "Upload Files"
+msgstr "Télécharger des fichiers"
+
+#: templates/dashboard.html:32
+msgid "Drag files here or click to select files"
+msgstr "Faites glisser les fichiers ici ou cliquez pour sélectionner des fichiers"
+
+#: templates/dashboard.html:34
+msgid "Select Files"
+msgstr "Sélectionner des fichiers"
+
+#: templates/dashboard.html:41
+msgid "Uploading..."
+msgstr "Téléchargement ..."
+
+#: templates/dashboard.html:46
+msgid "File Management"
+msgstr "Gestion des fichiers"
+
+#: templates/dashboard.html:47 templates/dashboard.html:161
+msgid "Share Management"
+msgstr "Gestion des actions"
+
+#: templates/dashboard.html:52
+msgid "File List"
+msgstr "Liste de fichiers"
+
+#: templates/dashboard.html:54
+msgid "Search files..."
+msgstr "Rechercher des fichiers ..."
+
+#: templates/dashboard.html:61
+msgid "Selected 0 files"
+msgstr "Sélectionnés 0 fichiers"
+
+#: templates/dashboard.html:64
+msgid "Batch Share"
+msgstr "Partage de lots"
+
+#: templates/dashboard.html:65
+msgid "Batch Download"
+msgstr "Téléchargement par lots"
+
+#: templates/dashboard.html:66
+msgid "Batch Delete"
+msgstr "Suppression par lots"
+
+#: templates/dashboard.html:67
+msgid "Clear Selection"
+msgstr "Sélection claire"
+
+#: templates/dashboard.html:77 templates/dashboard.html:173
+msgid "Select All"
+msgstr "Sélectionnez tout"
+
+#: templates/dashboard.html:80 templates/dashboard.html:175
+#: templates/dashboard.html:220 templates/dashboard.html:284
+msgid "Filename"
+msgstr "Nom de fichier"
+
+#: templates/dashboard.html:83
+msgid "Size"
+msgstr "Taille"
+
+#: templates/dashboard.html:86
+msgid "Upload Time"
+msgstr "Téléchargement"
+
+#: templates/dashboard.html:89
+msgid "Share Status"
+msgstr "Statut de partage"
+
+#: templates/dashboard.html:91 templates/dashboard.html:181
+msgid "Actions"
+msgstr "Actes"
+
+#: templates/dashboard.html:110 templates/dashboard.html:578
+msgid "Click to copy share information"
+msgstr "Cliquez pour copier les informations de partage"
+
+#: templates/dashboard.html:111 templates/dashboard.html:315
+msgid "Sharing"
+msgstr "Partage"
+
+#: templates/dashboard.html:111 templates/dashboard.html:314
+msgid "days"
+msgstr "jours"
+
+#: templates/dashboard.html:116
+msgid "Not shared"
+msgstr "Pas partagé"
+
+#: templates/dashboard.html:122 templates/dashboard.html:291
+#: templates/dashboard.html:588
+msgid "Preview"
+msgstr "Prévisualisation"
+
+#: templates/dashboard.html:124 templates/dashboard.html:602
+msgid "Download"
+msgstr "Télécharger"
+
+#: templates/dashboard.html:125 templates/dashboard.html:603
+msgid "Share"
+msgstr "Partager"
+
+#: templates/dashboard.html:126 templates/dashboard.html:604
+msgid "Delete"
+msgstr "Supprimer"
+
+#: templates/dashboard.html:135
+msgid "No files found"
+msgstr "Aucun fichier trouvé"
+
+#: templates/dashboard.html:142 templates/dashboard.html:638
+msgid "Previous Page"
+msgstr "Page précédente"
+
+#: templates/dashboard.html:146
+msgid "Page"
+msgstr "Page"
+
+#: templates/dashboard.html:146
+msgid "of"
+msgstr "de"
+
+#: templates/dashboard.html:147 templates/dashboard.html:295
+msgid "Total"
+msgstr "Total"
+
+#: templates/dashboard.html:147 templates/dashboard.html:296
+msgid "files"
+msgstr "fichiers"
+
+#: templates/dashboard.html:151 templates/dashboard.html:647
+msgid "Next Page"
+msgstr "Page suivante"
+
+#: templates/dashboard.html:163
+msgid "Refresh"
+msgstr "Rafraîchir"
+
+#: templates/dashboard.html:164
+msgid "Stop All Shares"
+msgstr "Arrêter toutes les parts"
+
+#: templates/dashboard.html:176
+msgid "Link"
+msgstr "Lien"
+
+#: templates/dashboard.html:177
+msgid "Created Time"
+msgstr "Temps créé"
+
+#: templates/dashboard.html:178
+msgid "Expire Time"
+msgstr "Expirer l'heure"
+
+#: templates/dashboard.html:179
+msgid "Remaining Days"
+msgstr "Jours restants"
+
+#: templates/dashboard.html:180
+msgid "Access Count"
+msgstr "Compte d'accès"
+
+#: templates/dashboard.html:190
+msgid "No share links found"
+msgstr "Aucun lien de partage trouvé"
+
+#: templates/dashboard.html:199
+msgid "Share File"
+msgstr "Partager"
+
+#: templates/dashboard.html:204 templates/dashboard.html:239
+msgid "Share Days"
+msgstr "Partager les jours"
+
+#: templates/dashboard.html:206 templates/dashboard.html:241
+msgid "1 day"
+msgstr "1 jour"
+
+#: templates/dashboard.html:207 templates/dashboard.html:242
+msgid "3 days"
+msgstr "3 jours"
+
+#: templates/dashboard.html:208 templates/dashboard.html:243
+msgid "7 days"
+msgstr "7 jours"
+
+#: templates/dashboard.html:209 templates/dashboard.html:244
+msgid "15 days"
+msgstr "15 jours"
+
+#: templates/dashboard.html:210 templates/dashboard.html:245
+msgid "30 days"
+msgstr "30 jours"
+
+#: templates/dashboard.html:214
+msgid "Generate Share Link"
+msgstr "Générer le lien de partage"
+
+#: templates/dashboard.html:218
+msgid "Share Information"
+msgstr "Partager des informations"
+
+#: templates/dashboard.html:223
+msgid "Share Link"
+msgstr "Lien de partage"
+
+#: templates/dashboard.html:225
+msgid "Copy Share Link"
+msgstr "Copier le lien de partage"
+
+#: templates/dashboard.html:234
+msgid "Batch Share Files"
+msgstr "Fichiers de partage par lots"
+
+#: templates/dashboard.html:249
+msgid "Generate Batch Share Links"
+msgstr "Générer des liens de partage par lots"
+
+#: templates/dashboard.html:253
+msgid "Batch Share Results"
+msgstr "Résultats de partage par lots"
+
+#: templates/dashboard.html:257
+msgid "Copy All Share Links"
+msgstr "Copiez tous les liens de partage"
+
+#: templates/dashboard.html:283
+msgid "Upload completed!"
+msgstr "Téléchargement terminé !"
+
+#: templates/dashboard.html:285
+#, fuzzy
+msgid "Download link"
+msgstr "Lien de téléchargement"
+
+#: templates/dashboard.html:288
+#, fuzzy
+msgid "Are you sure you want to stop this share link?"
+msgstr "Êtes-vous sûr de vouloir arrêter ce lien de partage ?"
+
+#: templates/dashboard.html:289
+#, fuzzy
+msgid "Share link stopped"
+msgstr "Lien de partage arrêté"
+
+#: templates/dashboard.html:290
+msgid "Stop share failed"
+msgstr "Échec de l'arrêt du partage"
+
+#: templates/dashboard.html:292
+#, fuzzy
+msgid "Searching..."
+msgstr "Recherche..."
+
+#: templates/dashboard.html:293 templates/dashboard.html:666
+#, fuzzy
+msgid "Loading..."
+msgstr "Chargement..."
+
+#: templates/dashboard.html:294
+msgid "Found"
+msgstr "Trouvé"
+
+#: templates/dashboard.html:297
+#, fuzzy
+msgid "Upload failed"
+msgstr "Échec du téléchargement"
+
+#: templates/dashboard.html:298
+msgid "Upload failed: Unable to parse server response"
+msgstr "Échec du téléchargement : Impossible d'analyser la réponse du serveur"
+
+#: templates/dashboard.html:299
+msgid "Upload failed: File size exceeds server limit"
+msgstr "Échec du téléchargement : La taille du fichier dépasse la limite du serveur"
+
+#: templates/dashboard.html:300
+msgid "Upload failed: Network error"
+msgstr "Échec du téléchargement : Erreur réseau"
+
+#: templates/dashboard.html:301 templates/dashboard.html:302
+#, fuzzy
+msgid "Uploading"
+msgstr "Téléchargement"
+
+#: templates/dashboard.html:303
+msgid "Copy"
+msgstr "Copier"
+
+#: templates/dashboard.html:304
+#, fuzzy
+msgid "Stop Share"
+msgstr "Arrêter le partage"
+
+#: templates/dashboard.html:305
+#, fuzzy
+msgid "No share links to copy"
+msgstr "Aucun lien de partage à copier"
+
+#: templates/dashboard.html:306
+#, fuzzy
+msgid "Batch share links"
+msgstr "Liens de partage par lots"
+
+#: templates/dashboard.html:307
+msgid "Please select files to download"
+msgstr "Veuillez sélectionner les fichiers à télécharger"
+
+#: templates/dashboard.html:308
+msgid "Please select shares to stop"
+msgstr "Veuillez sélectionner les partages à arrêter"
+
+#: templates/dashboard.html:309
+#, fuzzy
+msgid "Are you sure you want to stop selected"
+msgstr "Êtes-vous sûr de vouloir arrêter les"
+
+#: templates/dashboard.html:310
+#, fuzzy
+msgid "share links"
+msgstr "liens de partage"
+
+#: templates/dashboard.html:311
+msgid "Successfully stopped"
+msgstr "Arrêté avec succès"
+
+#: templates/dashboard.html:312
+#, fuzzy
+msgid "failed"
+msgstr "échec"
+
+#: templates/dashboard.html:313
+#, fuzzy
+msgid "times"
+msgstr "fois"
+
+#: templates/login.html:3 templates/login.html:24
+msgid "Login"
+msgstr "Se connecter"
+
+#: templates/login.html:7
+msgid "File Server Management"
+msgstr "Gestion des serveurs de fichiers"
+
+#: templates/login.html:8
+msgid "Please enter the administrator password to login"
+msgstr "Veuillez saisir le mot de passe de l'administrateur pour vous connecter"
+
+#: templates/login.html:20
+msgid "Administrator Password"
+msgstr "Mot de passe administrateur"
+
+#~ msgid "Click to copy share info"
+#~ msgstr ""
+
+#~ msgid "Not Shared"
+#~ msgstr ""
+
+#~ msgid "No files"
+#~ msgstr ""
+
+#~ msgid "Previous"
+#~ msgstr ""
+
+#~ msgid "pages"
+#~ msgstr ""
+
+#~ msgid "Next"
+#~ msgstr ""
+
+#~ msgid "Expiry Time"
+#~ msgstr ""
+
+#~ msgid "Days Remaining"
+#~ msgstr ""
+
+#~ msgid "No share links"
+#~ msgstr ""
+

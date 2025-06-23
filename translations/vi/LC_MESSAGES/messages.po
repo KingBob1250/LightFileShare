@@ -1,0 +1,458 @@
+# Tiếng Việt translations for file_server.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the file_server
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: file_server 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-23 12:15+0800\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language: vi\n"
+"Language-Team: vi <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: app.py:128
+msgid "Wrong password"
+msgstr "Mật khẩu sai"
+
+#: templates/base.html:6 templates/base.html:442 templates/dashboard.html:5
+#: templates/login.html:3
+msgid "File Server"
+msgstr "Máy chủ tập tin"
+
+#: templates/base.html:467
+msgid "Are you sure you want to delete the file"
+msgstr "Bạn có chắc bạn muốn xóa tệp không"
+
+#: templates/base.html:467
+msgid "?"
+msgstr "?"
+
+#: templates/base.html:474 templates/dashboard.html:286
+msgid "Link copied to clipboard!"
+msgstr "Liên kết sao chép với clipboard!"
+
+#: templates/base.html:476 templates/dashboard.html:287
+msgid "Copy failed"
+msgstr "Sao chép không thành công"
+
+#: templates/dashboard.html:5
+msgid "Dashboard"
+msgstr "Bảng điều khiển"
+
+#: templates/dashboard.html:9
+msgid "File Server Dashboard"
+msgstr "Bảng điều khiển máy chủ tập tin"
+
+#: templates/dashboard.html:10
+msgid "Welcome back!"
+msgstr "Chào mừng trở lại!"
+
+#: templates/dashboard.html:10
+msgid "Logout"
+msgstr "Đăng xuất"
+
+#: templates/dashboard.html:12 templates/dashboard.html:281
+msgid "Current timezone"
+msgstr "Múi giờ hiện tại"
+
+#: templates/dashboard.html:13 templates/dashboard.html:282
+msgid "default"
+msgstr "mặc định"
+
+#: templates/dashboard.html:13
+msgid "Detecting timezone..."
+msgstr "Phát hiện múi giờ ..."
+
+#: templates/dashboard.html:30
+msgid "Upload Files"
+msgstr "Tải lên tệp"
+
+#: templates/dashboard.html:32
+msgid "Drag files here or click to select files"
+msgstr "Kéo các tệp ở đây hoặc nhấp để chọn tệp"
+
+#: templates/dashboard.html:34
+msgid "Select Files"
+msgstr "Chọn tệp"
+
+#: templates/dashboard.html:41
+msgid "Uploading..."
+msgstr "Tải lên ..."
+
+#: templates/dashboard.html:46
+msgid "File Management"
+msgstr "Quản lý tập tin"
+
+#: templates/dashboard.html:47 templates/dashboard.html:161
+msgid "Share Management"
+msgstr "Quản lý chia sẻ"
+
+#: templates/dashboard.html:52
+msgid "File List"
+msgstr "Danh sách tập tin"
+
+#: templates/dashboard.html:54
+msgid "Search files..."
+msgstr "Tệp tìm kiếm ..."
+
+#: templates/dashboard.html:61
+msgid "Selected 0 files"
+msgstr "Đã chọn 0 tệp"
+
+#: templates/dashboard.html:64
+msgid "Batch Share"
+msgstr "Chia sẻ hàng loạt"
+
+#: templates/dashboard.html:65
+msgid "Batch Download"
+msgstr "Tải xuống hàng loạt"
+
+#: templates/dashboard.html:66
+msgid "Batch Delete"
+msgstr "Xóa hàng loạt"
+
+#: templates/dashboard.html:67
+msgid "Clear Selection"
+msgstr "Lựa chọn rõ ràng"
+
+#: templates/dashboard.html:77 templates/dashboard.html:173
+msgid "Select All"
+msgstr "Chọn tất cả"
+
+#: templates/dashboard.html:80 templates/dashboard.html:175
+#: templates/dashboard.html:220 templates/dashboard.html:284
+msgid "Filename"
+msgstr "Tên tệp"
+
+#: templates/dashboard.html:83
+msgid "Size"
+msgstr "Kích cỡ"
+
+#: templates/dashboard.html:86
+msgid "Upload Time"
+msgstr "Tải lên thời gian"
+
+#: templates/dashboard.html:89
+msgid "Share Status"
+msgstr "Chia sẻ trạng thái"
+
+#: templates/dashboard.html:91 templates/dashboard.html:181
+msgid "Actions"
+msgstr "Hành động"
+
+#: templates/dashboard.html:110 templates/dashboard.html:578
+msgid "Click to copy share information"
+msgstr "Bấm để sao chép thông tin chia sẻ"
+
+#: templates/dashboard.html:111 templates/dashboard.html:315
+msgid "Sharing"
+msgstr "Chia sẻ"
+
+#: templates/dashboard.html:111 templates/dashboard.html:314
+msgid "days"
+msgstr "ngày"
+
+#: templates/dashboard.html:116
+msgid "Not shared"
+msgstr "Không được chia sẻ"
+
+#: templates/dashboard.html:122 templates/dashboard.html:291
+#: templates/dashboard.html:588
+msgid "Preview"
+msgstr "Xem trước"
+
+#: templates/dashboard.html:124 templates/dashboard.html:602
+msgid "Download"
+msgstr "Tải xuống"
+
+#: templates/dashboard.html:125 templates/dashboard.html:603
+msgid "Share"
+msgstr "Chia sẻ"
+
+#: templates/dashboard.html:126 templates/dashboard.html:604
+msgid "Delete"
+msgstr "Xóa bỏ"
+
+#: templates/dashboard.html:135
+msgid "No files found"
+msgstr "Không tìm thấy tập tin"
+
+#: templates/dashboard.html:142 templates/dashboard.html:638
+msgid "Previous Page"
+msgstr "Trang trước"
+
+#: templates/dashboard.html:146
+msgid "Page"
+msgstr "Trang"
+
+#: templates/dashboard.html:146
+msgid "of"
+msgstr "của"
+
+#: templates/dashboard.html:147 templates/dashboard.html:295
+msgid "Total"
+msgstr "Tổng cộng"
+
+#: templates/dashboard.html:147 templates/dashboard.html:296
+msgid "files"
+msgstr "Tệp"
+
+#: templates/dashboard.html:151 templates/dashboard.html:647
+msgid "Next Page"
+msgstr "Trang tiếp theo"
+
+#: templates/dashboard.html:163
+msgid "Refresh"
+msgstr "Làm cho khỏe lại"
+
+#: templates/dashboard.html:164
+msgid "Stop All Shares"
+msgstr "Dừng tất cả các cổ phiếu"
+
+#: templates/dashboard.html:176
+msgid "Link"
+msgstr "Liên kết"
+
+#: templates/dashboard.html:177
+msgid "Created Time"
+msgstr "Đã tạo thời gian"
+
+#: templates/dashboard.html:178
+msgid "Expire Time"
+msgstr "Hết thời gian"
+
+#: templates/dashboard.html:179
+msgid "Remaining Days"
+msgstr "Những ngày còn lại"
+
+#: templates/dashboard.html:180
+msgid "Access Count"
+msgstr "Số lượng truy cập"
+
+#: templates/dashboard.html:190
+msgid "No share links found"
+msgstr "Không tìm thấy liên kết chia sẻ"
+
+#: templates/dashboard.html:199
+msgid "Share File"
+msgstr "Chia sẻ tệp"
+
+#: templates/dashboard.html:204 templates/dashboard.html:239
+msgid "Share Days"
+msgstr "Ngày chia sẻ"
+
+#: templates/dashboard.html:206 templates/dashboard.html:241
+msgid "1 day"
+msgstr "1 ngày"
+
+#: templates/dashboard.html:207 templates/dashboard.html:242
+msgid "3 days"
+msgstr "3 ngày"
+
+#: templates/dashboard.html:208 templates/dashboard.html:243
+msgid "7 days"
+msgstr "7 ngày"
+
+#: templates/dashboard.html:209 templates/dashboard.html:244
+msgid "15 days"
+msgstr "15 ngày"
+
+#: templates/dashboard.html:210 templates/dashboard.html:245
+msgid "30 days"
+msgstr "30 ngày"
+
+#: templates/dashboard.html:214
+msgid "Generate Share Link"
+msgstr "Tạo liên kết chia sẻ"
+
+#: templates/dashboard.html:218
+msgid "Share Information"
+msgstr "Chia sẻ thông tin"
+
+#: templates/dashboard.html:223
+msgid "Share Link"
+msgstr "Liên kết chia sẻ"
+
+#: templates/dashboard.html:225
+msgid "Copy Share Link"
+msgstr "Sao chép liên kết chia sẻ"
+
+#: templates/dashboard.html:234
+msgid "Batch Share Files"
+msgstr "Tệp chia sẻ hàng loạt"
+
+#: templates/dashboard.html:249
+msgid "Generate Batch Share Links"
+msgstr "Tạo liên kết chia sẻ hàng loạt"
+
+#: templates/dashboard.html:253
+msgid "Batch Share Results"
+msgstr "Kết quả chia sẻ hàng loạt"
+
+#: templates/dashboard.html:257
+msgid "Copy All Share Links"
+msgstr "Sao chép tất cả các liên kết chia sẻ"
+
+#: templates/dashboard.html:283
+msgid "Upload completed!"
+msgstr "Tải lên hoàn tất!"
+
+#: templates/dashboard.html:285
+#, fuzzy
+msgid "Download link"
+msgstr "Tải xuống"
+
+#: templates/dashboard.html:288
+#, fuzzy
+msgid "Are you sure you want to stop this share link?"
+msgstr "Bạn có chắc bạn muốn xóa tệp không"
+
+#: templates/dashboard.html:289
+#, fuzzy
+msgid "Share link stopped"
+msgstr "Không tìm thấy liên kết chia sẻ"
+
+#: templates/dashboard.html:290
+#, fuzzy
+msgid "Stop share failed"
+msgstr "Sao chép không thành công"
+
+#: templates/dashboard.html:292
+#, fuzzy
+msgid "Searching..."
+msgstr "Tệp tìm kiếm ..."
+
+#: templates/dashboard.html:293 templates/dashboard.html:666
+#, fuzzy
+msgid "Loading..."
+msgstr "Tải lên ..."
+
+#: templates/dashboard.html:294
+msgid "Found"
+msgstr "Tìm thấy"
+
+#: templates/dashboard.html:297
+#, fuzzy
+msgid "Upload failed"
+msgstr "Tải lên tệp"
+
+#: templates/dashboard.html:298
+msgid "Upload failed: Unable to parse server response"
+msgstr "Tải lên thất bại: Không thể phân tích phản hồi của máy chủ"
+
+#: templates/dashboard.html:299
+msgid "Upload failed: File size exceeds server limit"
+msgstr "Tải lên thất bại: Kích thước tệp vượt quá giới hạn máy chủ"
+
+#: templates/dashboard.html:300
+msgid "Upload failed: Network error"
+msgstr "Tải lên thất bại: Lỗi mạng"
+
+#: templates/dashboard.html:301 templates/dashboard.html:302
+#, fuzzy
+msgid "Uploading"
+msgstr "Tải lên ..."
+
+#: templates/dashboard.html:303
+msgid "Copy"
+msgstr "Sao chép"
+
+#: templates/dashboard.html:304
+#, fuzzy
+msgid "Stop Share"
+msgstr "Dừng tất cả các cổ phiếu"
+
+#: templates/dashboard.html:305
+#, fuzzy
+msgid "No share links to copy"
+msgstr "Không tìm thấy liên kết chia sẻ"
+
+#: templates/dashboard.html:306
+#, fuzzy
+msgid "Batch share links"
+msgstr "Tệp chia sẻ hàng loạt"
+
+#: templates/dashboard.html:307
+msgid "Please select files to download"
+msgstr "Vui lòng chọn tệp để tải xuống"
+
+#: templates/dashboard.html:308
+msgid "Please select shares to stop"
+msgstr "Vui lòng chọn chia sẻ để dừng"
+
+#: templates/dashboard.html:309
+#, fuzzy
+msgid "Are you sure you want to stop selected"
+msgstr "Bạn có chắc bạn muốn xóa tệp không"
+
+#: templates/dashboard.html:310
+#, fuzzy
+msgid "share links"
+msgstr "Liên kết chia sẻ"
+
+#: templates/dashboard.html:311
+msgid "Successfully stopped"
+msgstr "Dừng thành công"
+
+#: templates/dashboard.html:312
+#, fuzzy
+msgid "failed"
+msgstr "Tệp"
+
+#: templates/dashboard.html:313
+#, fuzzy
+msgid "times"
+msgstr "Tệp"
+
+#: templates/login.html:3 templates/login.html:24
+msgid "Login"
+msgstr "Đăng nhập"
+
+#: templates/login.html:7
+msgid "File Server Management"
+msgstr "Quản lý máy chủ tập tin"
+
+#: templates/login.html:8
+msgid "Please enter the administrator password to login"
+msgstr "Vui lòng nhập mật khẩu quản trị viên để đăng nhập"
+
+#: templates/login.html:20
+msgid "Administrator Password"
+msgstr "Mật khẩu quản trị viên"
+
+#~ msgid "Click to copy share info"
+#~ msgstr ""
+
+#~ msgid "Not Shared"
+#~ msgstr ""
+
+#~ msgid "No files"
+#~ msgstr ""
+
+#~ msgid "Previous"
+#~ msgstr ""
+
+#~ msgid "pages"
+#~ msgstr ""
+
+#~ msgid "Next"
+#~ msgstr ""
+
+#~ msgid "Expiry Time"
+#~ msgstr ""
+
+#~ msgid "Days Remaining"
+#~ msgstr ""
+
+#~ msgid "No share links"
+#~ msgstr ""
+

@@ -1,0 +1,510 @@
+# Chinese translations for file_server.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the file_server
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: file_server 1.0\\nReport-Msgid-Bugs-To: \\nPOT-"
+"Creation-Date: 2024-01-01 00:00+0000\\nPO-Revision-Date: 2024-01-01 "
+"00:00+0000\\nLast-Translator: \\nLanguage: zh\\nMIME-Version: 1.0"
+"\\nContent-Type: text/plain; charset=UTF-8\\nContent-Transfer-Encoding: "
+"8bit\\nGenerated-By: Babel 2.13.1\\n\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-06-23 12:15+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh\n"
+"Language-Team: zh <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: app.py:128
+msgid "Wrong password"
+msgstr "密码错误"
+
+#: templates/base.html:6 templates/base.html:442 templates/dashboard.html:5
+#: templates/login.html:3
+msgid "File Server"
+msgstr "文件服务器"
+
+#: templates/base.html:467
+msgid "Are you sure you want to delete the file"
+msgstr "您确定要删除文件"
+
+#: templates/base.html:467
+msgid "?"
+msgstr "吗？"
+
+#: templates/base.html:474 templates/dashboard.html:286
+msgid "Link copied to clipboard!"
+msgstr "链接已复制到剪贴板！"
+
+#: templates/base.html:476 templates/dashboard.html:287
+msgid "Copy failed"
+msgstr "复制失败"
+
+#: templates/dashboard.html:5
+msgid "Dashboard"
+msgstr "管理面板"
+
+#: templates/dashboard.html:9
+msgid "File Server Dashboard"
+msgstr "文件服务器管理面板"
+
+#: templates/dashboard.html:10
+msgid "Welcome back!"
+msgstr "欢迎回来！"
+
+#: templates/dashboard.html:10
+msgid "Logout"
+msgstr "退出登录"
+
+#: templates/dashboard.html:12 templates/dashboard.html:281
+msgid "Current timezone"
+msgstr "当前时区"
+
+#: templates/dashboard.html:13 templates/dashboard.html:282
+msgid "default"
+msgstr "默认"
+
+#: templates/dashboard.html:13
+msgid "Detecting timezone..."
+msgstr "检测时区中..."
+
+#: templates/dashboard.html:30
+msgid "Upload Files"
+msgstr "上传文件"
+
+#: templates/dashboard.html:32
+msgid "Drag files here or click to select files"
+msgstr "拖拽文件到此处或点击选择文件"
+
+#: templates/dashboard.html:34
+msgid "Select Files"
+msgstr "选择文件"
+
+#: templates/dashboard.html:41
+msgid "Uploading..."
+msgstr "上传中..."
+
+#: templates/dashboard.html:46
+msgid "File Management"
+msgstr "文件管理"
+
+#: templates/dashboard.html:47 templates/dashboard.html:161
+msgid "Share Management"
+msgstr "分享管理"
+
+#: templates/dashboard.html:52
+msgid "File List"
+msgstr "文件列表"
+
+#: templates/dashboard.html:54
+msgid "Search files..."
+msgstr "搜索文件..."
+
+#: templates/dashboard.html:61
+msgid "Selected 0 files"
+msgstr "已选择 0 个文件"
+
+#: templates/dashboard.html:64
+msgid "Batch Share"
+msgstr "批量分享"
+
+#: templates/dashboard.html:65
+msgid "Batch Download"
+msgstr "批量下载"
+
+#: templates/dashboard.html:66
+msgid "Batch Delete"
+msgstr "批量删除"
+
+#: templates/dashboard.html:67
+msgid "Clear Selection"
+msgstr "取消选择"
+
+#: templates/dashboard.html:77 templates/dashboard.html:173
+msgid "Select All"
+msgstr "全选"
+
+#: templates/dashboard.html:80 templates/dashboard.html:175
+#: templates/dashboard.html:220 templates/dashboard.html:284
+msgid "Filename"
+msgstr "文件名"
+
+#: templates/dashboard.html:83
+msgid "Size"
+msgstr "大小"
+
+#: templates/dashboard.html:86
+msgid "Upload Time"
+msgstr "上传时间"
+
+#: templates/dashboard.html:89
+msgid "Share Status"
+msgstr "分享状态"
+
+#: templates/dashboard.html:91 templates/dashboard.html:181
+msgid "Actions"
+msgstr "操作"
+
+#: templates/dashboard.html:110 templates/dashboard.html:578
+msgid "Click to copy share information"
+msgstr "点击复制分享信息"
+
+#: templates/dashboard.html:111 templates/dashboard.html:315
+msgid "Sharing"
+msgstr "分享中"
+
+#: templates/dashboard.html:111 templates/dashboard.html:314
+msgid "days"
+msgstr "天"
+
+#: templates/dashboard.html:116
+msgid "Not shared"
+msgstr "未分享"
+
+#: templates/dashboard.html:122 templates/dashboard.html:291
+#: templates/dashboard.html:588
+msgid "Preview"
+msgstr "预览"
+
+#: templates/dashboard.html:124 templates/dashboard.html:602
+msgid "Download"
+msgstr "下载"
+
+#: templates/dashboard.html:125 templates/dashboard.html:603
+msgid "Share"
+msgstr "分享"
+
+#: templates/dashboard.html:126 templates/dashboard.html:604
+msgid "Delete"
+msgstr "删除"
+
+#: templates/dashboard.html:135
+msgid "No files found"
+msgstr "暂无文件"
+
+#: templates/dashboard.html:142 templates/dashboard.html:638
+msgid "Previous Page"
+msgstr "上一页"
+
+#: templates/dashboard.html:146
+msgid "Page"
+msgstr "第"
+
+#: templates/dashboard.html:146
+msgid "of"
+msgstr "页，共"
+
+#: templates/dashboard.html:147 templates/dashboard.html:295
+msgid "Total"
+msgstr "总计"
+
+#: templates/dashboard.html:147 templates/dashboard.html:296
+msgid "files"
+msgstr "个文件"
+
+#: templates/dashboard.html:151 templates/dashboard.html:647
+msgid "Next Page"
+msgstr "下一页"
+
+#: templates/dashboard.html:163
+msgid "Refresh"
+msgstr "刷新"
+
+#: templates/dashboard.html:164
+msgid "Stop All Shares"
+msgstr "停止所有分享"
+
+#: templates/dashboard.html:176
+msgid "Link"
+msgstr "链接"
+
+#: templates/dashboard.html:177
+msgid "Created Time"
+msgstr "创建时间"
+
+#: templates/dashboard.html:178
+msgid "Expire Time"
+msgstr "过期时间"
+
+#: templates/dashboard.html:179
+msgid "Remaining Days"
+msgstr "剩余天数"
+
+#: templates/dashboard.html:180
+msgid "Access Count"
+msgstr "访问次数"
+
+#: templates/dashboard.html:190
+msgid "No share links found"
+msgstr "暂无分享链接"
+
+#: templates/dashboard.html:199
+msgid "Share File"
+msgstr "分享文件"
+
+#: templates/dashboard.html:204 templates/dashboard.html:239
+msgid "Share Days"
+msgstr "分享天数"
+
+#: templates/dashboard.html:206 templates/dashboard.html:241
+msgid "1 day"
+msgstr "1天"
+
+#: templates/dashboard.html:207 templates/dashboard.html:242
+msgid "3 days"
+msgstr "3天"
+
+#: templates/dashboard.html:208 templates/dashboard.html:243
+msgid "7 days"
+msgstr "7天"
+
+#: templates/dashboard.html:209 templates/dashboard.html:244
+msgid "15 days"
+msgstr "15天"
+
+#: templates/dashboard.html:210 templates/dashboard.html:245
+msgid "30 days"
+msgstr "30天"
+
+#: templates/dashboard.html:214
+msgid "Generate Share Link"
+msgstr "生成分享链接"
+
+#: templates/dashboard.html:218
+msgid "Share Information"
+msgstr "分享信息"
+
+#: templates/dashboard.html:223
+msgid "Share Link"
+msgstr "分享链接"
+
+#: templates/dashboard.html:225
+msgid "Copy Share Link"
+msgstr "复制分享链接"
+
+#: templates/dashboard.html:234
+msgid "Batch Share Files"
+msgstr "批量分享文件"
+
+#: templates/dashboard.html:249
+msgid "Generate Batch Share Links"
+msgstr "生成批量分享链接"
+
+#: templates/dashboard.html:253
+msgid "Batch Share Results"
+msgstr "批量分享结果"
+
+#: templates/dashboard.html:257
+msgid "Copy All Share Links"
+msgstr "复制所有分享链接"
+
+#: templates/dashboard.html:283
+msgid "Upload completed!"
+msgstr "上传完成！"
+
+#: templates/dashboard.html:285
+msgid "Download link"
+msgstr "下载链接"
+
+#: templates/dashboard.html:288
+msgid "Are you sure you want to stop this share link?"
+msgstr "您确定要停止此分享链接吗？"
+
+#: templates/dashboard.html:289
+msgid "Share link stopped"
+msgstr "分享链接已停止"
+
+#: templates/dashboard.html:290
+msgid "Stop share failed"
+msgstr "停止分享失败"
+
+#: templates/dashboard.html:292
+msgid "Searching..."
+msgstr "搜索中..."
+
+#: templates/dashboard.html:293 templates/dashboard.html:666
+msgid "Loading..."
+msgstr "加载中..."
+
+#: templates/dashboard.html:294
+msgid "Found"
+msgstr "找到"
+
+#: templates/dashboard.html:297
+msgid "Upload failed"
+msgstr "上传失败"
+
+#: templates/dashboard.html:298
+msgid "Upload failed: Unable to parse server response"
+msgstr "上传失败：无法解析服务器响应"
+
+#: templates/dashboard.html:299
+msgid "Upload failed: File size exceeds server limit"
+msgstr "上传失败：文件大小超过服务器限制"
+
+#: templates/dashboard.html:300
+msgid "Upload failed: Network error"
+msgstr "上传失败：网络错误"
+
+#: templates/dashboard.html:301 templates/dashboard.html:302
+msgid "Uploading"
+msgstr "上传中"
+
+#: templates/dashboard.html:303
+msgid "Copy"
+msgstr "复制"
+
+#: templates/dashboard.html:304
+msgid "Stop Share"
+msgstr "停止分享"
+
+#: templates/dashboard.html:305
+msgid "No share links to copy"
+msgstr "没有可复制的分享链接"
+
+#: templates/dashboard.html:306
+msgid "Batch share links"
+msgstr "批量分享链接"
+
+#: templates/dashboard.html:307
+msgid "Please select files to download"
+msgstr "请选择要下载的文件"
+
+#: templates/dashboard.html:308
+msgid "Please select shares to stop"
+msgstr "请选择要停止的分享链接"
+
+#: templates/dashboard.html:309
+msgid "Are you sure you want to stop selected"
+msgstr "您确定要停止所选的"
+
+#: templates/dashboard.html:310
+msgid "share links"
+msgstr "个分享链接"
+
+#: templates/dashboard.html:311
+msgid "Successfully stopped"
+msgstr "成功停止"
+
+#: templates/dashboard.html:312
+msgid "failed"
+msgstr "失败"
+
+#: templates/dashboard.html:313
+msgid "times"
+msgstr "次"
+
+#: templates/login.html:3 templates/login.html:24
+msgid "Login"
+msgstr "登录"
+
+#: templates/login.html:7
+msgid "File Server Management"
+msgstr "文件服务器管理"
+
+#: templates/login.html:8
+msgid "Please enter the administrator password to login"
+msgstr "请输入管理员密码进行登录"
+
+#: templates/login.html:20
+msgid "Administrator Password"
+msgstr "管理员密码"
+
+#~ msgid "Uploading %(name)s: %(percent).1f%%"
+#~ msgstr "上传 %(name)s: %(percent).1f%%"
+
+#~ msgid "%(name)s Upload failed: %(error)s"
+#~ msgstr "%(name)s 上传失败：%(error)s"
+
+#~ msgid "Found %(total)s files"
+#~ msgstr "找到 %(total)s 个文件"
+
+#~ msgid "Total %(total)s files"
+#~ msgstr "共 %(total)s 个文件"
+
+#~ msgid "Are you sure you want to delete file \"%(filename)s\"?"
+#~ msgstr "您确定要删除文件 \"%(filename)s\" 吗？"
+
+#~ msgid "Copy failed:"
+#~ msgstr "复制失败："
+
+#~ msgid "Selected %(size)s files"
+#~ msgstr "已选择 %(size)s 个文件"
+
+#~ msgid "Please select files to delete"
+#~ msgstr "请选择要删除的文件"
+
+#~ msgid ""
+#~ "Are you sure you want to delete"
+#~ " selected %(size)s files? This operation"
+#~ " cannot be undone!"
+#~ msgstr "您确定要删除所选的 %(size)s 个文件吗？此操作无法撤销！"
+
+#~ msgid "Batch delete failed: %(error)s"
+#~ msgstr "批量删除失败：%(error)s"
+
+#~ msgid "Batch delete failed"
+#~ msgstr "批量删除失败"
+
+#~ msgid "Please select files to share"
+#~ msgstr "请选择要分享的文件"
+
+#~ msgid "Sharing %(size)s files"
+#~ msgstr "分享 %(size)s 个文件"
+
+#~ msgid "Batch share failed: %(error)s"
+#~ msgstr "批量分享失败：%(error)s"
+
+#~ msgid "Batch share failed"
+#~ msgstr "批量分享失败"
+
+#~ msgid "Successfully shared %(count)s files"
+#~ msgstr "成功分享 %(count)s 个文件"
+
+#~ msgid "Failed files:"
+#~ msgstr "失败的文件："
+
+#~ msgid "No share links to copy"
+#~ msgstr "没有可复制的分享链接"
+
+#~ msgid "Batch share links:"
+#~ msgstr "批量分享链接："
+
+#~ msgid ""
+#~ "Filename: %(filename)s\n"
+#~ "Download link: %(url)s\n"
+#~ "\n"
+#~ msgstr ""
+#~ "文件名：%(filename)s\n"
+#~ "下载链接：%(url)s\n"
+#~ "\n"
+
+#~ msgid "Please select files to download"
+#~ msgstr "请选择要下载的文件"
+
+#~ msgid "Copy"
+#~ msgstr "复制"
+
+#~ msgid "Stop Share"
+#~ msgstr "停止分享"
+
+#~ msgid "Please select shares to stop"
+#~ msgstr "请选择要停止的分享链接"
+
+#~ msgid "Are you sure you want to stop selected %(count)s share links?"
+#~ msgstr "您确定要停止所选的 %(count)s 个分享链接吗？"
+
+#~ msgid "Successfully stopped %(stopped)s share links, failed %(failed)s times"
+#~ msgstr "成功停止 %(stopped)s 个分享链接，失败 %(failed)s 次"
+
+#~ msgid "Successfully stopped %(stopped)s share links"
+#~ msgstr "成功停止 %(stopped)s 个分享链接"
+

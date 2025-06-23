@@ -1,0 +1,458 @@
+# Türkçe translations for file_server.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the file_server
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: file_server 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-23 12:15+0800\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language: tr\n"
+"Language-Team: tr <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: app.py:128
+msgid "Wrong password"
+msgstr "Yanlış Şifre"
+
+#: templates/base.html:6 templates/base.html:442 templates/dashboard.html:5
+#: templates/login.html:3
+msgid "File Server"
+msgstr "Dosya Sunucusu"
+
+#: templates/base.html:467
+msgid "Are you sure you want to delete the file"
+msgstr "Dosyayı silmek istediğinden emin misin"
+
+#: templates/base.html:467
+msgid "?"
+msgstr "?"
+
+#: templates/base.html:474 templates/dashboard.html:286
+msgid "Link copied to clipboard!"
+msgstr "Link Panoya kopyalandı!"
+
+#: templates/base.html:476 templates/dashboard.html:287
+msgid "Copy failed"
+msgstr "Kopya başarısız oldu"
+
+#: templates/dashboard.html:5
+msgid "Dashboard"
+msgstr "Gösterge paneli"
+
+#: templates/dashboard.html:9
+msgid "File Server Dashboard"
+msgstr "Dosya Sunucusu Gösterge Tablosu"
+
+#: templates/dashboard.html:10
+msgid "Welcome back!"
+msgstr "Tekrar hoşgeldiniz!"
+
+#: templates/dashboard.html:10
+msgid "Logout"
+msgstr "Oturum açma"
+
+#: templates/dashboard.html:12 templates/dashboard.html:281
+msgid "Current timezone"
+msgstr "Mevcut saat dilimi"
+
+#: templates/dashboard.html:13 templates/dashboard.html:282
+msgid "default"
+msgstr "varsayılan"
+
+#: templates/dashboard.html:13
+msgid "Detecting timezone..."
+msgstr "Saat dilimini algılama ..."
+
+#: templates/dashboard.html:30
+msgid "Upload Files"
+msgstr "Dosyaları Yükle"
+
+#: templates/dashboard.html:32
+msgid "Drag files here or click to select files"
+msgstr "Dosyaları buraya sürükleyin veya dosyaları seçmek için tıklayın"
+
+#: templates/dashboard.html:34
+msgid "Select Files"
+msgstr "Dosyaları Seçin"
+
+#: templates/dashboard.html:41
+msgid "Uploading..."
+msgstr "Yükleme ..."
+
+#: templates/dashboard.html:46
+msgid "File Management"
+msgstr "Dosya Yönetimi"
+
+#: templates/dashboard.html:47 templates/dashboard.html:161
+msgid "Share Management"
+msgstr "Hisse Yönetimi"
+
+#: templates/dashboard.html:52
+msgid "File List"
+msgstr "Dosya Listesi"
+
+#: templates/dashboard.html:54
+msgid "Search files..."
+msgstr "Arama dosyaları ..."
+
+#: templates/dashboard.html:61
+msgid "Selected 0 files"
+msgstr "Seçilen 0 Dosya"
+
+#: templates/dashboard.html:64
+msgid "Batch Share"
+msgstr "Parti payı"
+
+#: templates/dashboard.html:65
+msgid "Batch Download"
+msgstr "Toplu indir"
+
+#: templates/dashboard.html:66
+msgid "Batch Delete"
+msgstr "Toplu sil"
+
+#: templates/dashboard.html:67
+msgid "Clear Selection"
+msgstr "Açık seçim"
+
+#: templates/dashboard.html:77 templates/dashboard.html:173
+msgid "Select All"
+msgstr "Hepsini seç"
+
+#: templates/dashboard.html:80 templates/dashboard.html:175
+#: templates/dashboard.html:220 templates/dashboard.html:284
+msgid "Filename"
+msgstr "Dosya adı"
+
+#: templates/dashboard.html:83
+msgid "Size"
+msgstr "Boyut"
+
+#: templates/dashboard.html:86
+msgid "Upload Time"
+msgstr "Yükleme Süresi"
+
+#: templates/dashboard.html:89
+msgid "Share Status"
+msgstr "Paylaşım Durumu"
+
+#: templates/dashboard.html:91 templates/dashboard.html:181
+msgid "Actions"
+msgstr "Eylem"
+
+#: templates/dashboard.html:110 templates/dashboard.html:578
+msgid "Click to copy share information"
+msgstr "Paylaşım bilgilerini kopyalamak için tıklayın"
+
+#: templates/dashboard.html:111 templates/dashboard.html:315
+msgid "Sharing"
+msgstr "Paylaşım"
+
+#: templates/dashboard.html:111 templates/dashboard.html:314
+msgid "days"
+msgstr "günler"
+
+#: templates/dashboard.html:116
+msgid "Not shared"
+msgstr "Paylaşılmadı"
+
+#: templates/dashboard.html:122 templates/dashboard.html:291
+#: templates/dashboard.html:588
+msgid "Preview"
+msgstr "Önizleme"
+
+#: templates/dashboard.html:124 templates/dashboard.html:602
+msgid "Download"
+msgstr "İndirmek"
+
+#: templates/dashboard.html:125 templates/dashboard.html:603
+msgid "Share"
+msgstr "Paylaşmak"
+
+#: templates/dashboard.html:126 templates/dashboard.html:604
+msgid "Delete"
+msgstr "Silmek"
+
+#: templates/dashboard.html:135
+msgid "No files found"
+msgstr "Dosya bulunamadı"
+
+#: templates/dashboard.html:142 templates/dashboard.html:638
+msgid "Previous Page"
+msgstr "Önceki sayfa"
+
+#: templates/dashboard.html:146
+msgid "Page"
+msgstr "Sayfa"
+
+#: templates/dashboard.html:146
+msgid "of"
+msgstr "ile ilgili"
+
+#: templates/dashboard.html:147 templates/dashboard.html:295
+msgid "Total"
+msgstr "Toplam"
+
+#: templates/dashboard.html:147 templates/dashboard.html:296
+msgid "files"
+msgstr "dosyalar"
+
+#: templates/dashboard.html:151 templates/dashboard.html:647
+msgid "Next Page"
+msgstr "Sonraki Sayfa"
+
+#: templates/dashboard.html:163
+msgid "Refresh"
+msgstr "Yenilemek"
+
+#: templates/dashboard.html:164
+msgid "Stop All Shares"
+msgstr "Tüm hisseleri durdurun"
+
+#: templates/dashboard.html:176
+msgid "Link"
+msgstr "Bağlantı"
+
+#: templates/dashboard.html:177
+msgid "Created Time"
+msgstr "Yaratılan Zaman"
+
+#: templates/dashboard.html:178
+msgid "Expire Time"
+msgstr "Süresi Süresi Süresi"
+
+#: templates/dashboard.html:179
+msgid "Remaining Days"
+msgstr "Kalan günler"
+
+#: templates/dashboard.html:180
+msgid "Access Count"
+msgstr "Erişim sayısı"
+
+#: templates/dashboard.html:190
+msgid "No share links found"
+msgstr "Paylaşım Bağlantısı Bulundu"
+
+#: templates/dashboard.html:199
+msgid "Share File"
+msgstr "Paylaşım Dosyası"
+
+#: templates/dashboard.html:204 templates/dashboard.html:239
+msgid "Share Days"
+msgstr "Paylaşım Günleri"
+
+#: templates/dashboard.html:206 templates/dashboard.html:241
+msgid "1 day"
+msgstr "1 gün"
+
+#: templates/dashboard.html:207 templates/dashboard.html:242
+msgid "3 days"
+msgstr "3 gün"
+
+#: templates/dashboard.html:208 templates/dashboard.html:243
+msgid "7 days"
+msgstr "7 gün"
+
+#: templates/dashboard.html:209 templates/dashboard.html:244
+msgid "15 days"
+msgstr "15 gün"
+
+#: templates/dashboard.html:210 templates/dashboard.html:245
+msgid "30 days"
+msgstr "30 gün"
+
+#: templates/dashboard.html:214
+msgid "Generate Share Link"
+msgstr "Paylaşım Bağlantısı Oluşturun"
+
+#: templates/dashboard.html:218
+msgid "Share Information"
+msgstr "Bilgileri paylaşın"
+
+#: templates/dashboard.html:223
+msgid "Share Link"
+msgstr "Paylaş bağlantısı"
+
+#: templates/dashboard.html:225
+msgid "Copy Share Link"
+msgstr "Kopyala paylaşımı bağlantısı"
+
+#: templates/dashboard.html:234
+msgid "Batch Share Files"
+msgstr "Toplu paylaşım dosyaları"
+
+#: templates/dashboard.html:249
+msgid "Generate Batch Share Links"
+msgstr "Toplu paylaşım bağlantıları oluşturun"
+
+#: templates/dashboard.html:253
+msgid "Batch Share Results"
+msgstr "Toplu Paylaşım Sonuçları"
+
+#: templates/dashboard.html:257
+msgid "Copy All Share Links"
+msgstr "Tüm paylaşım bağlantılarını kopyalayın"
+
+#: templates/dashboard.html:283
+msgid "Upload completed!"
+msgstr "Yükleme tamamlandı!"
+
+#: templates/dashboard.html:285
+#, fuzzy
+msgid "Download link"
+msgstr "İndirmek"
+
+#: templates/dashboard.html:288
+#, fuzzy
+msgid "Are you sure you want to stop this share link?"
+msgstr "Dosyayı silmek istediğinden emin misin"
+
+#: templates/dashboard.html:289
+#, fuzzy
+msgid "Share link stopped"
+msgstr "Paylaşım Bağlantısı Bulundu"
+
+#: templates/dashboard.html:290
+#, fuzzy
+msgid "Stop share failed"
+msgstr "Kopya başarısız oldu"
+
+#: templates/dashboard.html:292
+#, fuzzy
+msgid "Searching..."
+msgstr "Arama dosyaları ..."
+
+#: templates/dashboard.html:293 templates/dashboard.html:666
+#, fuzzy
+msgid "Loading..."
+msgstr "Yükleme ..."
+
+#: templates/dashboard.html:294
+msgid "Found"
+msgstr "Bulundu"
+
+#: templates/dashboard.html:297
+#, fuzzy
+msgid "Upload failed"
+msgstr "Dosyaları Yükle"
+
+#: templates/dashboard.html:298
+msgid "Upload failed: Unable to parse server response"
+msgstr "Yükleme başarısız: Sunucu yanıtı ayrıştırılamadı"
+
+#: templates/dashboard.html:299
+msgid "Upload failed: File size exceeds server limit"
+msgstr "Yükleme başarısız: Dosya boyutu sunucu limitini aşıyor"
+
+#: templates/dashboard.html:300
+msgid "Upload failed: Network error"
+msgstr "Yükleme başarısız: Ağ hatası"
+
+#: templates/dashboard.html:301 templates/dashboard.html:302
+#, fuzzy
+msgid "Uploading"
+msgstr "Yükleme ..."
+
+#: templates/dashboard.html:303
+msgid "Copy"
+msgstr "Kopyala"
+
+#: templates/dashboard.html:304
+#, fuzzy
+msgid "Stop Share"
+msgstr "Tüm hisseleri durdurun"
+
+#: templates/dashboard.html:305
+#, fuzzy
+msgid "No share links to copy"
+msgstr "Paylaşım Bağlantısı Bulundu"
+
+#: templates/dashboard.html:306
+#, fuzzy
+msgid "Batch share links"
+msgstr "Toplu paylaşım dosyaları"
+
+#: templates/dashboard.html:307
+msgid "Please select files to download"
+msgstr "Lütfen indirilecek dosyaları seçin"
+
+#: templates/dashboard.html:308
+msgid "Please select shares to stop"
+msgstr "Lütfen durdurulacak paylaşımları seçin"
+
+#: templates/dashboard.html:309
+#, fuzzy
+msgid "Are you sure you want to stop selected"
+msgstr "Dosyayı silmek istediğinden emin misin"
+
+#: templates/dashboard.html:310
+#, fuzzy
+msgid "share links"
+msgstr "Paylaş bağlantısı"
+
+#: templates/dashboard.html:311
+msgid "Successfully stopped"
+msgstr "Başarıyla durduruldu"
+
+#: templates/dashboard.html:312
+#, fuzzy
+msgid "failed"
+msgstr "dosyalar"
+
+#: templates/dashboard.html:313
+#, fuzzy
+msgid "times"
+msgstr "dosyalar"
+
+#: templates/login.html:3 templates/login.html:24
+msgid "Login"
+msgstr "Giriş yapmak"
+
+#: templates/login.html:7
+msgid "File Server Management"
+msgstr "Dosya Sunucusu Yönetimi"
+
+#: templates/login.html:8
+msgid "Please enter the administrator password to login"
+msgstr "Lütfen giriş yapmak için yönetici şifresini girin"
+
+#: templates/login.html:20
+msgid "Administrator Password"
+msgstr "Yönetici şifresi"
+
+#~ msgid "Click to copy share info"
+#~ msgstr ""
+
+#~ msgid "Not Shared"
+#~ msgstr ""
+
+#~ msgid "No files"
+#~ msgstr ""
+
+#~ msgid "Previous"
+#~ msgstr ""
+
+#~ msgid "pages"
+#~ msgstr ""
+
+#~ msgid "Next"
+#~ msgstr ""
+
+#~ msgid "Expiry Time"
+#~ msgstr ""
+
+#~ msgid "Days Remaining"
+#~ msgstr ""
+
+#~ msgid "No share links"
+#~ msgstr ""
+

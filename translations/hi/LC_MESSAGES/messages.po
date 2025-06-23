@@ -1,0 +1,458 @@
+# हिन्दी translations for file_server.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the file_server
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: file_server 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-23 12:15+0800\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language: hi\n"
+"Language-Team: hi <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: app.py:128
+msgid "Wrong password"
+msgstr "गलत पासवर्ड"
+
+#: templates/base.html:6 templates/base.html:442 templates/dashboard.html:5
+#: templates/login.html:3
+msgid "File Server"
+msgstr "फ़ाइल सर्वर"
+
+#: templates/base.html:467
+msgid "Are you sure you want to delete the file"
+msgstr "क्या आप सुनिश्चित हैं कि आप फ़ाइल को हटाना चाहते हैं"
+
+#: templates/base.html:467
+msgid "?"
+msgstr "?"
+
+#: templates/base.html:474 templates/dashboard.html:286
+msgid "Link copied to clipboard!"
+msgstr "लिंक क्लिपबोर्ड के लिए कॉपी किया गया!"
+
+#: templates/base.html:476 templates/dashboard.html:287
+msgid "Copy failed"
+msgstr "कॉपी विफल"
+
+#: templates/dashboard.html:5
+msgid "Dashboard"
+msgstr "चकरानेवाला"
+
+#: templates/dashboard.html:9
+msgid "File Server Dashboard"
+msgstr "फ़ाइल सर्वर डैशबोर्ड"
+
+#: templates/dashboard.html:10
+msgid "Welcome back!"
+msgstr "वापसी पर स्वागत है!"
+
+#: templates/dashboard.html:10
+msgid "Logout"
+msgstr "लॉग आउट"
+
+#: templates/dashboard.html:12 templates/dashboard.html:281
+msgid "Current timezone"
+msgstr "वर्तमान समय क्षेत्र"
+
+#: templates/dashboard.html:13 templates/dashboard.html:282
+msgid "default"
+msgstr "डिफ़ॉल्ट"
+
+#: templates/dashboard.html:13
+msgid "Detecting timezone..."
+msgstr "TIMEZONE का पता लगाना ..."
+
+#: templates/dashboard.html:30
+msgid "Upload Files"
+msgstr "फाइलें अपलोड करें"
+
+#: templates/dashboard.html:32
+msgid "Drag files here or click to select files"
+msgstr "फ़ाइलों को यहां खींचें या फ़ाइलों का चयन करने के लिए क्लिक करें"
+
+#: templates/dashboard.html:34
+msgid "Select Files"
+msgstr "फ़ाइलों का चयन करें"
+
+#: templates/dashboard.html:41
+msgid "Uploading..."
+msgstr "अपलोड करना ..."
+
+#: templates/dashboard.html:46
+msgid "File Management"
+msgstr "फ़ाइल प्रबंधन"
+
+#: templates/dashboard.html:47 templates/dashboard.html:161
+msgid "Share Management"
+msgstr "शेयर प्रबंधन"
+
+#: templates/dashboard.html:52
+msgid "File List"
+msgstr "संचिका सूची"
+
+#: templates/dashboard.html:54
+msgid "Search files..."
+msgstr "फाइलें खोजें ..."
+
+#: templates/dashboard.html:61
+msgid "Selected 0 files"
+msgstr "चयनित 0 फाइलें"
+
+#: templates/dashboard.html:64
+msgid "Batch Share"
+msgstr "बैच शेयर"
+
+#: templates/dashboard.html:65
+msgid "Batch Download"
+msgstr "बैच डाउनलोड"
+
+#: templates/dashboard.html:66
+msgid "Batch Delete"
+msgstr "बैच हटाएं"
+
+#: templates/dashboard.html:67
+msgid "Clear Selection"
+msgstr "स्पष्ट चयन"
+
+#: templates/dashboard.html:77 templates/dashboard.html:173
+msgid "Select All"
+msgstr "सबका चयन करें"
+
+#: templates/dashboard.html:80 templates/dashboard.html:175
+#: templates/dashboard.html:220 templates/dashboard.html:284
+msgid "Filename"
+msgstr "फाइल का नाम"
+
+#: templates/dashboard.html:83
+msgid "Size"
+msgstr "आकार"
+
+#: templates/dashboard.html:86
+msgid "Upload Time"
+msgstr "अपलोड समय"
+
+#: templates/dashboard.html:89
+msgid "Share Status"
+msgstr "शेयर स्थिति"
+
+#: templates/dashboard.html:91 templates/dashboard.html:181
+msgid "Actions"
+msgstr "कार्रवाई"
+
+#: templates/dashboard.html:110 templates/dashboard.html:578
+msgid "Click to copy share information"
+msgstr "शेयर जानकारी कॉपी करने के लिए क्लिक करें"
+
+#: templates/dashboard.html:111 templates/dashboard.html:315
+msgid "Sharing"
+msgstr "शेयरिंग"
+
+#: templates/dashboard.html:111 templates/dashboard.html:314
+msgid "days"
+msgstr "दिन"
+
+#: templates/dashboard.html:116
+msgid "Not shared"
+msgstr "साझा नहीं किया"
+
+#: templates/dashboard.html:122 templates/dashboard.html:291
+#: templates/dashboard.html:588
+msgid "Preview"
+msgstr "पूर्व दर्शन"
+
+#: templates/dashboard.html:124 templates/dashboard.html:602
+msgid "Download"
+msgstr "डाउनलोड करना"
+
+#: templates/dashboard.html:125 templates/dashboard.html:603
+msgid "Share"
+msgstr "शेयर करना"
+
+#: templates/dashboard.html:126 templates/dashboard.html:604
+msgid "Delete"
+msgstr "मिटाना"
+
+#: templates/dashboard.html:135
+msgid "No files found"
+msgstr "कोई फाईल नहीं मिली"
+
+#: templates/dashboard.html:142 templates/dashboard.html:638
+msgid "Previous Page"
+msgstr "पिछला पृष्ठ"
+
+#: templates/dashboard.html:146
+msgid "Page"
+msgstr "पेज"
+
+#: templates/dashboard.html:146
+msgid "of"
+msgstr "का"
+
+#: templates/dashboard.html:147 templates/dashboard.html:295
+msgid "Total"
+msgstr "कुल"
+
+#: templates/dashboard.html:147 templates/dashboard.html:296
+msgid "files"
+msgstr "फ़ाइलें"
+
+#: templates/dashboard.html:151 templates/dashboard.html:647
+msgid "Next Page"
+msgstr "अगला पृष्ठ"
+
+#: templates/dashboard.html:163
+msgid "Refresh"
+msgstr "ताज़ा करना"
+
+#: templates/dashboard.html:164
+msgid "Stop All Shares"
+msgstr "सभी शेयरों को रोकें"
+
+#: templates/dashboard.html:176
+msgid "Link"
+msgstr "जोड़ना"
+
+#: templates/dashboard.html:177
+msgid "Created Time"
+msgstr "बना हुआ समय"
+
+#: templates/dashboard.html:178
+msgid "Expire Time"
+msgstr "समय समाप्त करना"
+
+#: templates/dashboard.html:179
+msgid "Remaining Days"
+msgstr "शेष दिनों"
+
+#: templates/dashboard.html:180
+msgid "Access Count"
+msgstr "अभिगम गणना"
+
+#: templates/dashboard.html:190
+msgid "No share links found"
+msgstr "कोई शेयर लिंक नहीं मिला"
+
+#: templates/dashboard.html:199
+msgid "Share File"
+msgstr "फ़ाइल साझा करें"
+
+#: templates/dashboard.html:204 templates/dashboard.html:239
+msgid "Share Days"
+msgstr "शेयर दिन"
+
+#: templates/dashboard.html:206 templates/dashboard.html:241
+msgid "1 day"
+msgstr "1 दिन"
+
+#: templates/dashboard.html:207 templates/dashboard.html:242
+msgid "3 days"
+msgstr "3 दिन"
+
+#: templates/dashboard.html:208 templates/dashboard.html:243
+msgid "7 days"
+msgstr "7 दिन"
+
+#: templates/dashboard.html:209 templates/dashboard.html:244
+msgid "15 days"
+msgstr "15 दिन"
+
+#: templates/dashboard.html:210 templates/dashboard.html:245
+msgid "30 days"
+msgstr "30 दिन"
+
+#: templates/dashboard.html:214
+msgid "Generate Share Link"
+msgstr "शेयर लिंक उत्पन्न करें"
+
+#: templates/dashboard.html:218
+msgid "Share Information"
+msgstr "माहिती साझा करो"
+
+#: templates/dashboard.html:223
+msgid "Share Link"
+msgstr "लिंक शेयर करें"
+
+#: templates/dashboard.html:225
+msgid "Copy Share Link"
+msgstr "कॉपी शेयर लिंक"
+
+#: templates/dashboard.html:234
+msgid "Batch Share Files"
+msgstr "बैच शेयर फाइलें"
+
+#: templates/dashboard.html:249
+msgid "Generate Batch Share Links"
+msgstr "बैच शेयर लिंक उत्पन्न करें"
+
+#: templates/dashboard.html:253
+msgid "Batch Share Results"
+msgstr "बैच शेयर परिणाम"
+
+#: templates/dashboard.html:257
+msgid "Copy All Share Links"
+msgstr "सभी शेयर लिंक कॉपी करें"
+
+#: templates/dashboard.html:283
+msgid "Upload completed!"
+msgstr "अपलोड पूरा हुआ!"
+
+#: templates/dashboard.html:285
+#, fuzzy
+msgid "Download link"
+msgstr "डाउनलोड करना"
+
+#: templates/dashboard.html:288
+#, fuzzy
+msgid "Are you sure you want to stop this share link?"
+msgstr "क्या आप सुनिश्चित हैं कि आप फ़ाइल को हटाना चाहते हैं"
+
+#: templates/dashboard.html:289
+#, fuzzy
+msgid "Share link stopped"
+msgstr "कोई शेयर लिंक नहीं मिला"
+
+#: templates/dashboard.html:290
+#, fuzzy
+msgid "Stop share failed"
+msgstr "कॉपी विफल"
+
+#: templates/dashboard.html:292
+#, fuzzy
+msgid "Searching..."
+msgstr "फाइलें खोजें ..."
+
+#: templates/dashboard.html:293 templates/dashboard.html:666
+#, fuzzy
+msgid "Loading..."
+msgstr "अपलोड करना ..."
+
+#: templates/dashboard.html:294
+msgid "Found"
+msgstr "मिला"
+
+#: templates/dashboard.html:297
+#, fuzzy
+msgid "Upload failed"
+msgstr "फाइलें अपलोड करें"
+
+#: templates/dashboard.html:298
+msgid "Upload failed: Unable to parse server response"
+msgstr "अपलोड विफल: सर्वर प्रतिक्रिया को पार्स नहीं कर सकते"
+
+#: templates/dashboard.html:299
+msgid "Upload failed: File size exceeds server limit"
+msgstr "अपलोड विफल: फ़ाइल का आकार सर्वर सीमा से अधिक है"
+
+#: templates/dashboard.html:300
+msgid "Upload failed: Network error"
+msgstr "अपलोड विफल: नेटवर्क त्रुटि"
+
+#: templates/dashboard.html:301 templates/dashboard.html:302
+#, fuzzy
+msgid "Uploading"
+msgstr "अपलोड करना ..."
+
+#: templates/dashboard.html:303
+msgid "Copy"
+msgstr "कॉपी"
+
+#: templates/dashboard.html:304
+#, fuzzy
+msgid "Stop Share"
+msgstr "सभी शेयरों को रोकें"
+
+#: templates/dashboard.html:305
+#, fuzzy
+msgid "No share links to copy"
+msgstr "कोई शेयर लिंक नहीं मिला"
+
+#: templates/dashboard.html:306
+#, fuzzy
+msgid "Batch share links"
+msgstr "बैच शेयर फाइलें"
+
+#: templates/dashboard.html:307
+msgid "Please select files to download"
+msgstr "कृपया डाउनलोड करने के लिए फ़ाइलें चुनें"
+
+#: templates/dashboard.html:308
+msgid "Please select shares to stop"
+msgstr "कृपया रोकने के लिए शेयर चुनें"
+
+#: templates/dashboard.html:309
+#, fuzzy
+msgid "Are you sure you want to stop selected"
+msgstr "क्या आप सुनिश्चित हैं कि आप फ़ाइल को हटाना चाहते हैं"
+
+#: templates/dashboard.html:310
+#, fuzzy
+msgid "share links"
+msgstr "लिंक शेयर करें"
+
+#: templates/dashboard.html:311
+msgid "Successfully stopped"
+msgstr "सफलतापूर्वक रोका गया"
+
+#: templates/dashboard.html:312
+#, fuzzy
+msgid "failed"
+msgstr "फ़ाइलें"
+
+#: templates/dashboard.html:313
+#, fuzzy
+msgid "times"
+msgstr "फ़ाइलें"
+
+#: templates/login.html:3 templates/login.html:24
+msgid "Login"
+msgstr "लॉग इन करें"
+
+#: templates/login.html:7
+msgid "File Server Management"
+msgstr "फ़ाइल सर्वर प्रबंधन"
+
+#: templates/login.html:8
+msgid "Please enter the administrator password to login"
+msgstr "कृपया लॉगिन करने के लिए व्यवस्थापक पासवर्ड दर्ज करें"
+
+#: templates/login.html:20
+msgid "Administrator Password"
+msgstr "पासवर्ड व्यवस्थापक"
+
+#~ msgid "Click to copy share info"
+#~ msgstr ""
+
+#~ msgid "Not Shared"
+#~ msgstr ""
+
+#~ msgid "No files"
+#~ msgstr ""
+
+#~ msgid "Previous"
+#~ msgstr ""
+
+#~ msgid "pages"
+#~ msgstr ""
+
+#~ msgid "Next"
+#~ msgstr ""
+
+#~ msgid "Expiry Time"
+#~ msgstr ""
+
+#~ msgid "Days Remaining"
+#~ msgstr ""
+
+#~ msgid "No share links"
+#~ msgstr ""
+

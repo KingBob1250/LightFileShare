@@ -1,0 +1,458 @@
+# 日本語 translations for file_server.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the file_server
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: file_server 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-23 12:15+0800\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: app.py:128
+msgid "Wrong password"
+msgstr "間違ったパスワード"
+
+#: templates/base.html:6 templates/base.html:442 templates/dashboard.html:5
+#: templates/login.html:3
+msgid "File Server"
+msgstr "ファイルサーバー"
+
+#: templates/base.html:467
+msgid "Are you sure you want to delete the file"
+msgstr "ファイルを削除する必要がありますか？"
+
+#: templates/base.html:467
+msgid "?"
+msgstr "？"
+
+#: templates/base.html:474 templates/dashboard.html:286
+msgid "Link copied to clipboard!"
+msgstr "クリップボードにコピーされたリンク！"
+
+#: templates/base.html:476 templates/dashboard.html:287
+msgid "Copy failed"
+msgstr "コピーが失敗しました"
+
+#: templates/dashboard.html:5
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+#: templates/dashboard.html:9
+msgid "File Server Dashboard"
+msgstr "ファイルサーバーダッシュボード"
+
+#: templates/dashboard.html:10
+msgid "Welcome back!"
+msgstr "おかえり！"
+
+#: templates/dashboard.html:10
+msgid "Logout"
+msgstr "ログアウト"
+
+#: templates/dashboard.html:12 templates/dashboard.html:281
+msgid "Current timezone"
+msgstr "現在のタイムゾーン"
+
+#: templates/dashboard.html:13 templates/dashboard.html:282
+msgid "default"
+msgstr "デフォルト"
+
+#: templates/dashboard.html:13
+msgid "Detecting timezone..."
+msgstr "タイムゾーンの検出..."
+
+#: templates/dashboard.html:30
+msgid "Upload Files"
+msgstr "ファイルをアップロードします"
+
+#: templates/dashboard.html:32
+msgid "Drag files here or click to select files"
+msgstr "ここでファイルをドラッグするか、クリックしてファイルを選択します"
+
+#: templates/dashboard.html:34
+msgid "Select Files"
+msgstr "ファイルを選択します"
+
+#: templates/dashboard.html:41
+msgid "Uploading..."
+msgstr "アップロード..."
+
+#: templates/dashboard.html:46
+msgid "File Management"
+msgstr "ファイル管理"
+
+#: templates/dashboard.html:47 templates/dashboard.html:161
+msgid "Share Management"
+msgstr "共有管理"
+
+#: templates/dashboard.html:52
+msgid "File List"
+msgstr "ファイルリスト"
+
+#: templates/dashboard.html:54
+msgid "Search files..."
+msgstr "ファイルを検索..."
+
+#: templates/dashboard.html:61
+msgid "Selected 0 files"
+msgstr "選択された0ファイル"
+
+#: templates/dashboard.html:64
+msgid "Batch Share"
+msgstr "バッチ共有"
+
+#: templates/dashboard.html:65
+msgid "Batch Download"
+msgstr "バッチダウンロード"
+
+#: templates/dashboard.html:66
+msgid "Batch Delete"
+msgstr "バッチ削除"
+
+#: templates/dashboard.html:67
+msgid "Clear Selection"
+msgstr "選択をクリア"
+
+#: templates/dashboard.html:77 templates/dashboard.html:173
+msgid "Select All"
+msgstr "すべてを選択します"
+
+#: templates/dashboard.html:80 templates/dashboard.html:175
+#: templates/dashboard.html:220 templates/dashboard.html:284
+msgid "Filename"
+msgstr "ファイル名"
+
+#: templates/dashboard.html:83
+msgid "Size"
+msgstr "サイズ"
+
+#: templates/dashboard.html:86
+msgid "Upload Time"
+msgstr "アップロード時間"
+
+#: templates/dashboard.html:89
+msgid "Share Status"
+msgstr "共有ステータス"
+
+#: templates/dashboard.html:91 templates/dashboard.html:181
+msgid "Actions"
+msgstr "アクション"
+
+#: templates/dashboard.html:110 templates/dashboard.html:578
+msgid "Click to copy share information"
+msgstr "クリックして共有情報をコピーします"
+
+#: templates/dashboard.html:111 templates/dashboard.html:315
+msgid "Sharing"
+msgstr "共有"
+
+#: templates/dashboard.html:111 templates/dashboard.html:314
+msgid "days"
+msgstr "日"
+
+#: templates/dashboard.html:116
+msgid "Not shared"
+msgstr "共有されていません"
+
+#: templates/dashboard.html:122 templates/dashboard.html:291
+#: templates/dashboard.html:588
+msgid "Preview"
+msgstr "プレビュー"
+
+#: templates/dashboard.html:124 templates/dashboard.html:602
+msgid "Download"
+msgstr "ダウンロード"
+
+#: templates/dashboard.html:125 templates/dashboard.html:603
+msgid "Share"
+msgstr "共有"
+
+#: templates/dashboard.html:126 templates/dashboard.html:604
+msgid "Delete"
+msgstr "消去"
+
+#: templates/dashboard.html:135
+msgid "No files found"
+msgstr "ファイルは見つかりません"
+
+#: templates/dashboard.html:142 templates/dashboard.html:638
+msgid "Previous Page"
+msgstr "前のページ"
+
+#: templates/dashboard.html:146
+msgid "Page"
+msgstr "ページ"
+
+#: templates/dashboard.html:146
+msgid "of"
+msgstr "の"
+
+#: templates/dashboard.html:147 templates/dashboard.html:295
+msgid "Total"
+msgstr "合計"
+
+#: templates/dashboard.html:147 templates/dashboard.html:296
+msgid "files"
+msgstr "ファイル"
+
+#: templates/dashboard.html:151 templates/dashboard.html:647
+msgid "Next Page"
+msgstr "次のページ"
+
+#: templates/dashboard.html:163
+msgid "Refresh"
+msgstr "更新"
+
+#: templates/dashboard.html:164
+msgid "Stop All Shares"
+msgstr "すべての共有を停止"
+
+#: templates/dashboard.html:176
+msgid "Link"
+msgstr "リンク"
+
+#: templates/dashboard.html:177
+msgid "Created Time"
+msgstr "作成時間"
+
+#: templates/dashboard.html:178
+msgid "Expire Time"
+msgstr "有効期限"
+
+#: templates/dashboard.html:179
+msgid "Remaining Days"
+msgstr "残り日数"
+
+#: templates/dashboard.html:180
+msgid "Access Count"
+msgstr "アクセス回数"
+
+#: templates/dashboard.html:190
+msgid "No share links found"
+msgstr "共有リンクは見つかりません"
+
+#: templates/dashboard.html:199
+msgid "Share File"
+msgstr "ファイルを共有"
+
+#: templates/dashboard.html:204 templates/dashboard.html:239
+msgid "Share Days"
+msgstr "共有日数"
+
+#: templates/dashboard.html:206 templates/dashboard.html:241
+msgid "1 day"
+msgstr "1日"
+
+#: templates/dashboard.html:207 templates/dashboard.html:242
+msgid "3 days"
+msgstr "3日"
+
+#: templates/dashboard.html:208 templates/dashboard.html:243
+msgid "7 days"
+msgstr "7日"
+
+#: templates/dashboard.html:209 templates/dashboard.html:244
+msgid "15 days"
+msgstr "15日"
+
+#: templates/dashboard.html:210 templates/dashboard.html:245
+msgid "30 days"
+msgstr "30日"
+
+#: templates/dashboard.html:214
+msgid "Generate Share Link"
+msgstr "共有リンクを生成"
+
+#: templates/dashboard.html:218
+msgid "Share Information"
+msgstr "共有情報"
+
+#: templates/dashboard.html:223
+msgid "Share Link"
+msgstr "リンクを共有します"
+
+#: templates/dashboard.html:225
+msgid "Copy Share Link"
+msgstr "共有リンクをコピーします"
+
+#: templates/dashboard.html:234
+msgid "Batch Share Files"
+msgstr "バッチ共有ファイル"
+
+#: templates/dashboard.html:249
+msgid "Generate Batch Share Links"
+msgstr "バッチ共有リンクを生成します"
+
+#: templates/dashboard.html:253
+msgid "Batch Share Results"
+msgstr "バッチ共有結果"
+
+#: templates/dashboard.html:257
+msgid "Copy All Share Links"
+msgstr "すべての共有リンクをコピーします"
+
+#: templates/dashboard.html:283
+msgid "Upload completed!"
+msgstr "アップロード完了！"
+
+#: templates/dashboard.html:285
+#, fuzzy
+msgid "Download link"
+msgstr "ダウンロード"
+
+#: templates/dashboard.html:288
+#, fuzzy
+msgid "Are you sure you want to stop this share link?"
+msgstr "ファイルを削除する必要がありますか？"
+
+#: templates/dashboard.html:289
+#, fuzzy
+msgid "Share link stopped"
+msgstr "共有リンクは見つかりません"
+
+#: templates/dashboard.html:290
+#, fuzzy
+msgid "Stop share failed"
+msgstr "コピーが失敗しました"
+
+#: templates/dashboard.html:292
+#, fuzzy
+msgid "Searching..."
+msgstr "ファイルを検索..."
+
+#: templates/dashboard.html:293 templates/dashboard.html:666
+#, fuzzy
+msgid "Loading..."
+msgstr "アップロード..."
+
+#: templates/dashboard.html:294
+msgid "Found"
+msgstr "見つかりました"
+
+#: templates/dashboard.html:297
+#, fuzzy
+msgid "Upload failed"
+msgstr "ファイルをアップロードします"
+
+#: templates/dashboard.html:298
+msgid "Upload failed: Unable to parse server response"
+msgstr "アップロード失敗：サーバー応答を解析できません"
+
+#: templates/dashboard.html:299
+msgid "Upload failed: File size exceeds server limit"
+msgstr "アップロード失敗：ファイルサイズがサーバー制限を超えています"
+
+#: templates/dashboard.html:300
+msgid "Upload failed: Network error"
+msgstr "アップロード失敗：ネットワークエラー"
+
+#: templates/dashboard.html:301 templates/dashboard.html:302
+#, fuzzy
+msgid "Uploading"
+msgstr "アップロード..."
+
+#: templates/dashboard.html:303
+msgid "Copy"
+msgstr "コピー"
+
+#: templates/dashboard.html:304
+#, fuzzy
+msgid "Stop Share"
+msgstr "すべての株式を停止します"
+
+#: templates/dashboard.html:305
+#, fuzzy
+msgid "No share links to copy"
+msgstr "共有リンクは見つかりません"
+
+#: templates/dashboard.html:306
+#, fuzzy
+msgid "Batch share links"
+msgstr "バッチ共有ファイル"
+
+#: templates/dashboard.html:307
+msgid "Please select files to download"
+msgstr "ダウンロードするファイルを選択してください"
+
+#: templates/dashboard.html:308
+msgid "Please select shares to stop"
+msgstr "停止する共有を選択してください"
+
+#: templates/dashboard.html:309
+#, fuzzy
+msgid "Are you sure you want to stop selected"
+msgstr "ファイルを削除する必要がありますか？"
+
+#: templates/dashboard.html:310
+#, fuzzy
+msgid "share links"
+msgstr "リンクを共有します"
+
+#: templates/dashboard.html:311
+msgid "Successfully stopped"
+msgstr "正常に停止されました"
+
+#: templates/dashboard.html:312
+#, fuzzy
+msgid "failed"
+msgstr "ファイル"
+
+#: templates/dashboard.html:313
+#, fuzzy
+msgid "times"
+msgstr "ファイル"
+
+#: templates/login.html:3 templates/login.html:24
+msgid "Login"
+msgstr "ログイン"
+
+#: templates/login.html:7
+msgid "File Server Management"
+msgstr "ファイルサーバー管理"
+
+#: templates/login.html:8
+msgid "Please enter the administrator password to login"
+msgstr "管理者パスワードを入力してログインしてください"
+
+#: templates/login.html:20
+msgid "Administrator Password"
+msgstr "管理者パスワード"
+
+#~ msgid "Click to copy share info"
+#~ msgstr ""
+
+#~ msgid "Not Shared"
+#~ msgstr ""
+
+#~ msgid "No files"
+#~ msgstr ""
+
+#~ msgid "Previous"
+#~ msgstr ""
+
+#~ msgid "pages"
+#~ msgstr ""
+
+#~ msgid "Next"
+#~ msgstr ""
+
+#~ msgid "Expiry Time"
+#~ msgstr ""
+
+#~ msgid "Days Remaining"
+#~ msgstr ""
+
+#~ msgid "No share links"
+#~ msgstr ""
+

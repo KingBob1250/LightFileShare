@@ -1,0 +1,528 @@
+# Spanish translations for file_server.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the file_server
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: file_server 1.0\\nReport-Msgid-Bugs-To: \\nPOT-"
+"Creation-Date: 2024-01-01 00:00+0000\\nPO-Revision-Date: 2024-01-01 "
+"00:00+0000\\nLast-Translator: \\nLanguage: es\\nMIME-Version: 1.0"
+"\\nContent-Type: text/plain; charset=UTF-8\\nContent-Transfer-Encoding: "
+"8bit\\nGenerated-By: Babel 2.13.1\\n\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-06-23 12:15+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: app.py:128
+msgid "Wrong password"
+msgstr "Contraseña incorrecta"
+
+#: templates/base.html:6 templates/base.html:442 templates/dashboard.html:5
+#: templates/login.html:3
+msgid "File Server"
+msgstr "Servidor de Archivos"
+
+#: templates/base.html:467
+msgid "Are you sure you want to delete the file"
+msgstr "¿Está seguro de que desea eliminar el archivo"
+
+#: templates/base.html:467
+msgid "?"
+msgstr "?"
+
+#: templates/base.html:474 templates/dashboard.html:286
+msgid "Link copied to clipboard!"
+msgstr "¡Enlace copiado al portapapeles!"
+
+#: templates/base.html:476 templates/dashboard.html:287
+msgid "Copy failed"
+msgstr "Copia fallida"
+
+#: templates/dashboard.html:5
+msgid "Dashboard"
+msgstr "Panel de Control"
+
+#: templates/dashboard.html:9
+msgid "File Server Dashboard"
+msgstr "Panel de Control del Servidor de Archivos"
+
+#: templates/dashboard.html:10
+msgid "Welcome back!"
+msgstr "¡Bienvenido de vuelta!"
+
+#: templates/dashboard.html:10
+msgid "Logout"
+msgstr "Cerrar Sesión"
+
+#: templates/dashboard.html:12 templates/dashboard.html:281
+msgid "Current timezone"
+msgstr "Zona horaria actual"
+
+#: templates/dashboard.html:13 templates/dashboard.html:282
+msgid "default"
+msgstr "predeterminado"
+
+#: templates/dashboard.html:13
+msgid "Detecting timezone..."
+msgstr "Detectando zona horaria..."
+
+#: templates/dashboard.html:30
+msgid "Upload Files"
+msgstr "Subir Archivos"
+
+#: templates/dashboard.html:32
+msgid "Drag files here or click to select files"
+msgstr "Arrastre archivos aquí o haga clic para seleccionar archivos"
+
+#: templates/dashboard.html:34
+msgid "Select Files"
+msgstr "Seleccionar Archivos"
+
+#: templates/dashboard.html:41
+msgid "Uploading..."
+msgstr "Subiendo..."
+
+#: templates/dashboard.html:46
+msgid "File Management"
+msgstr "Gestión de Archivos"
+
+#: templates/dashboard.html:47 templates/dashboard.html:161
+msgid "Share Management"
+msgstr "Gestión de Compartir"
+
+#: templates/dashboard.html:52
+msgid "File List"
+msgstr "Lista de Archivos"
+
+#: templates/dashboard.html:54
+msgid "Search files..."
+msgstr "Buscar archivos..."
+
+#: templates/dashboard.html:61
+msgid "Selected 0 files"
+msgstr "0 archivos seleccionados"
+
+#: templates/dashboard.html:64
+msgid "Batch Share"
+msgstr "Compartir en Lote"
+
+#: templates/dashboard.html:65
+msgid "Batch Download"
+msgstr "Descarga en Lote"
+
+#: templates/dashboard.html:66
+msgid "Batch Delete"
+msgstr "Eliminar en Lote"
+
+#: templates/dashboard.html:67
+msgid "Clear Selection"
+msgstr "Limpiar Selección"
+
+#: templates/dashboard.html:77 templates/dashboard.html:173
+msgid "Select All"
+msgstr "Seleccionar Todo"
+
+#: templates/dashboard.html:80 templates/dashboard.html:175
+#: templates/dashboard.html:220 templates/dashboard.html:284
+msgid "Filename"
+msgstr "Nombre del Archivo"
+
+#: templates/dashboard.html:83
+msgid "Size"
+msgstr "Tamaño"
+
+#: templates/dashboard.html:86
+msgid "Upload Time"
+msgstr "Tiempo de Subida"
+
+#: templates/dashboard.html:89
+msgid "Share Status"
+msgstr "Estado de Compartir"
+
+#: templates/dashboard.html:91 templates/dashboard.html:181
+msgid "Actions"
+msgstr "Acciones"
+
+#: templates/dashboard.html:110 templates/dashboard.html:578
+msgid "Click to copy share information"
+msgstr "Haga clic para copiar información de compartir"
+
+#: templates/dashboard.html:111 templates/dashboard.html:315
+msgid "Sharing"
+msgstr "Compartiendo"
+
+#: templates/dashboard.html:111 templates/dashboard.html:314
+msgid "days"
+msgstr "días"
+
+#: templates/dashboard.html:116
+msgid "Not shared"
+msgstr "No compartido"
+
+#: templates/dashboard.html:122 templates/dashboard.html:291
+#: templates/dashboard.html:588
+msgid "Preview"
+msgstr "Vista Previa"
+
+#: templates/dashboard.html:124 templates/dashboard.html:602
+msgid "Download"
+msgstr "Descargar"
+
+#: templates/dashboard.html:125 templates/dashboard.html:603
+msgid "Share"
+msgstr "Compartir"
+
+#: templates/dashboard.html:126 templates/dashboard.html:604
+msgid "Delete"
+msgstr "Eliminar"
+
+#: templates/dashboard.html:135
+msgid "No files found"
+msgstr "No se encontraron archivos"
+
+#: templates/dashboard.html:142 templates/dashboard.html:638
+msgid "Previous Page"
+msgstr "Página Anterior"
+
+#: templates/dashboard.html:146
+msgid "Page"
+msgstr "Página"
+
+#: templates/dashboard.html:146
+msgid "of"
+msgstr "de"
+
+#: templates/dashboard.html:147 templates/dashboard.html:295
+msgid "Total"
+msgstr "Total"
+
+#: templates/dashboard.html:147 templates/dashboard.html:296
+msgid "files"
+msgstr "archivos"
+
+#: templates/dashboard.html:151 templates/dashboard.html:647
+msgid "Next Page"
+msgstr "Página Siguiente"
+
+#: templates/dashboard.html:163
+msgid "Refresh"
+msgstr "Actualizar"
+
+#: templates/dashboard.html:164
+msgid "Stop All Shares"
+msgstr "Detener Todas las Comparticiones"
+
+#: templates/dashboard.html:176
+msgid "Link"
+msgstr "Enlace"
+
+#: templates/dashboard.html:177
+msgid "Created Time"
+msgstr "Tiempo de Creación"
+
+#: templates/dashboard.html:178
+msgid "Expire Time"
+msgstr "Tiempo de Expiración"
+
+#: templates/dashboard.html:179
+msgid "Remaining Days"
+msgstr "Días Restantes"
+
+#: templates/dashboard.html:180
+msgid "Access Count"
+msgstr "Contador de Accesos"
+
+#: templates/dashboard.html:190
+msgid "No share links found"
+msgstr "No se encontraron enlaces de compartir"
+
+#: templates/dashboard.html:199
+msgid "Share File"
+msgstr "Compartir Archivo"
+
+#: templates/dashboard.html:204 templates/dashboard.html:239
+msgid "Share Days"
+msgstr "Días de Compartir"
+
+#: templates/dashboard.html:206 templates/dashboard.html:241
+msgid "1 day"
+msgstr "1 día"
+
+#: templates/dashboard.html:207 templates/dashboard.html:242
+msgid "3 days"
+msgstr "3 días"
+
+#: templates/dashboard.html:208 templates/dashboard.html:243
+msgid "7 days"
+msgstr "7 días"
+
+#: templates/dashboard.html:209 templates/dashboard.html:244
+msgid "15 days"
+msgstr "15 días"
+
+#: templates/dashboard.html:210 templates/dashboard.html:245
+msgid "30 days"
+msgstr "30 días"
+
+#: templates/dashboard.html:214
+msgid "Generate Share Link"
+msgstr "Generar Enlace de Compartir"
+
+#: templates/dashboard.html:218
+msgid "Share Information"
+msgstr "Información de Compartir"
+
+#: templates/dashboard.html:223
+msgid "Share Link"
+msgstr "Enlace de Compartir"
+
+#: templates/dashboard.html:225
+msgid "Copy Share Link"
+msgstr "Copiar Enlace de Compartir"
+
+#: templates/dashboard.html:234
+msgid "Batch Share Files"
+msgstr "Compartir Archivos en Lote"
+
+#: templates/dashboard.html:249
+msgid "Generate Batch Share Links"
+msgstr "Generar Enlaces de Compartir en Lote"
+
+#: templates/dashboard.html:253
+msgid "Batch Share Results"
+msgstr "Resultados de Compartir en Lote"
+
+#: templates/dashboard.html:257
+msgid "Copy All Share Links"
+msgstr "Copiar Todos los Enlaces de Compartir"
+
+#: templates/dashboard.html:283
+msgid "Upload completed!"
+msgstr "¡Carga completada!"
+
+#: templates/dashboard.html:285
+#, fuzzy
+msgid "Download link"
+msgstr "Descargar"
+
+#: templates/dashboard.html:288
+msgid "Are you sure you want to stop this share link?"
+msgstr "¿Está seguro de que desea detener este enlace de compartir?"
+
+#: templates/dashboard.html:289
+msgid "Share link stopped"
+msgstr "Enlace de compartir detenido"
+
+#: templates/dashboard.html:290
+msgid "Stop share failed"
+msgstr "Detener compartir falló"
+
+#: templates/dashboard.html:292
+msgid "Searching..."
+msgstr "Buscando..."
+
+#: templates/dashboard.html:293 templates/dashboard.html:666
+msgid "Loading..."
+msgstr "Cargando..."
+
+#: templates/dashboard.html:294
+msgid "Found"
+msgstr "Encontrado"
+
+#: templates/dashboard.html:297
+#, fuzzy
+msgid "Upload failed"
+msgstr "Subir Archivos"
+
+#: templates/dashboard.html:298
+msgid "Upload failed: Unable to parse server response"
+msgstr "Error de carga: No se pudo analizar la respuesta del servidor"
+
+#: templates/dashboard.html:299
+msgid "Upload failed: File size exceeds server limit"
+msgstr "Error de carga: El tamaño del archivo excede el límite del servidor"
+
+#: templates/dashboard.html:300
+msgid "Upload failed: Network error"
+msgstr "Error de carga: Error de red"
+
+#: templates/dashboard.html:301 templates/dashboard.html:302
+#, fuzzy
+msgid "Uploading"
+msgstr "Subiendo..."
+
+#: templates/dashboard.html:303
+msgid "Copy"
+msgstr "Copiar"
+
+#: templates/dashboard.html:304
+#, fuzzy
+msgid "Stop Share"
+msgstr "Detener Todas las Comparticiones"
+
+#: templates/dashboard.html:305
+#, fuzzy
+msgid "No share links to copy"
+msgstr "No se encontraron enlaces de compartir"
+
+#: templates/dashboard.html:306
+#, fuzzy
+msgid "Batch share links"
+msgstr "Compartir Archivos en Lote"
+
+#: templates/dashboard.html:307
+msgid "Please select files to download"
+msgstr "Por favor seleccione archivos para descargar"
+
+#: templates/dashboard.html:308
+msgid "Please select shares to stop"
+msgstr "Por favor seleccione comparticiones para detener"
+
+#: templates/dashboard.html:309
+#, fuzzy
+msgid "Are you sure you want to stop selected"
+msgstr "¿Está seguro de que desea eliminar el archivo"
+
+#: templates/dashboard.html:310
+#, fuzzy
+msgid "share links"
+msgstr "Enlace de Compartir"
+
+#: templates/dashboard.html:311
+msgid "Successfully stopped"
+msgstr "Detenido exitosamente"
+
+#: templates/dashboard.html:312
+#, fuzzy
+msgid "failed"
+msgstr "archivos"
+
+#: templates/dashboard.html:313
+#, fuzzy
+msgid "times"
+msgstr "archivos"
+
+#: templates/login.html:3 templates/login.html:24
+msgid "Login"
+msgstr "Iniciar Sesión"
+
+#: templates/login.html:7
+msgid "File Server Management"
+msgstr "Gestión del Servidor de Archivos"
+
+#: templates/login.html:8
+msgid "Please enter the administrator password to login"
+msgstr "Por favor ingrese la contraseña del administrador para iniciar sesión"
+
+#: templates/login.html:20
+msgid "Administrator Password"
+msgstr "Contraseña del Administrador"
+
+#~ msgid "Uploading %(name)s: %(percent).1f%%"
+#~ msgstr "Subiendo %(name)s: %(percent).1f%%"
+
+#~ msgid "%(name)s Upload failed: %(error)s"
+#~ msgstr "Subida de %(name)s falló: %(error)s"
+
+#~ msgid "Found %(total)s files"
+#~ msgstr "Se encontraron %(total)s archivos"
+
+#~ msgid "Total %(total)s files"
+#~ msgstr "Total %(total)s archivos"
+
+#~ msgid "Are you sure you want to delete file \"%(filename)s\"?"
+#~ msgstr "¿Está seguro de que desea eliminar el archivo \"%(filename)s\"?"
+
+#~ msgid "Copy failed:"
+#~ msgstr "Copia fallida:"
+
+#~ msgid "Selected %(size)s files"
+#~ msgstr "%(size)s archivos seleccionados"
+
+#~ msgid "Please select files to delete"
+#~ msgstr "Por favor seleccione archivos para eliminar"
+
+#~ msgid ""
+#~ "Are you sure you want to delete"
+#~ " selected %(size)s files? This operation"
+#~ " cannot be undone!"
+#~ msgstr ""
+#~ "¿Está seguro de que desea eliminar "
+#~ "los %(size)s archivos seleccionados? ¡Esta "
+#~ "operación no se puede deshacer!"
+
+#~ msgid "Batch delete failed: %(error)s"
+#~ msgstr "Eliminación en lote falló: %(error)s"
+
+#~ msgid "Batch delete failed"
+#~ msgstr "Eliminación en lote falló"
+
+#~ msgid "Please select files to share"
+#~ msgstr "Por favor seleccione archivos para compartir"
+
+#~ msgid "Sharing %(size)s files"
+#~ msgstr "Compartiendo %(size)s archivos"
+
+#~ msgid "Batch share failed: %(error)s"
+#~ msgstr "Compartir en lote falló: %(error)s"
+
+#~ msgid "Batch share failed"
+#~ msgstr "Compartir en lote falló"
+
+#~ msgid "Successfully shared %(count)s files"
+#~ msgstr "Se compartieron exitosamente %(count)s archivos"
+
+#~ msgid "Failed files:"
+#~ msgstr "Archivos fallidos:"
+
+#~ msgid "No share links to copy"
+#~ msgstr "No hay enlaces de compartir para copiar"
+
+#~ msgid "Batch share links:"
+#~ msgstr "Enlaces de compartir en lote:"
+
+#~ msgid ""
+#~ "Filename: %(filename)s\n"
+#~ "Download link: %(url)s\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Nombre del archivo: %(filename)s\n"
+#~ "Enlace de descarga: %(url)s\n"
+#~ "\n"
+
+#~ msgid "Please select files to download"
+#~ msgstr "Por favor seleccione archivos para descargar"
+
+#~ msgid "Copy"
+#~ msgstr "Copiar"
+
+#~ msgid "Stop Share"
+#~ msgstr "Detener Compartir"
+
+#~ msgid "Please select shares to stop"
+#~ msgstr "Por favor seleccione comparticiones para detener"
+
+#~ msgid "Are you sure you want to stop selected %(count)s share links?"
+#~ msgstr ""
+#~ "¿Está seguro de que desea detener "
+#~ "los %(count)s enlaces de compartir "
+#~ "seleccionados?"
+
+#~ msgid "Successfully stopped %(stopped)s share links, failed %(failed)s times"
+#~ msgstr ""
+#~ "Se detuvieron exitosamente %(stopped)s enlaces"
+#~ " de compartir, falló %(failed)s veces"
+
+#~ msgid "Successfully stopped %(stopped)s share links"
+#~ msgstr "Se detuvieron exitosamente %(stopped)s enlaces de compartir"
+

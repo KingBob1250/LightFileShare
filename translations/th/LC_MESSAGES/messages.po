@@ -1,0 +1,458 @@
+# ไทย translations for file_server.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the file_server
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: file_server 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-23 12:15+0800\n"
+"PO-Revision-Date: 2024-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language: th\n"
+"Language-Team: th <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: app.py:128
+msgid "Wrong password"
+msgstr "รหัสผ่านผิด"
+
+#: templates/base.html:6 templates/base.html:442 templates/dashboard.html:5
+#: templates/login.html:3
+msgid "File Server"
+msgstr "เซิร์ฟเวอร์ไฟล์"
+
+#: templates/base.html:467
+msgid "Are you sure you want to delete the file"
+msgstr "แน่ใจหรือว่าต้องการลบไฟล์"
+
+#: templates/base.html:467
+msgid "?"
+msgstr "-"
+
+#: templates/base.html:474 templates/dashboard.html:286
+msgid "Link copied to clipboard!"
+msgstr "ลิงค์คัดลอกไปยังคลิปบอร์ด!"
+
+#: templates/base.html:476 templates/dashboard.html:287
+msgid "Copy failed"
+msgstr "คัดลอกล้มเหลว"
+
+#: templates/dashboard.html:5
+msgid "Dashboard"
+msgstr "แผงหน้าปัด"
+
+#: templates/dashboard.html:9
+msgid "File Server Dashboard"
+msgstr "แดชบอร์ดเซิร์ฟเวอร์ไฟล์"
+
+#: templates/dashboard.html:10
+msgid "Welcome back!"
+msgstr "ยินดีต้อนรับกลับมา!"
+
+#: templates/dashboard.html:10
+msgid "Logout"
+msgstr "ออกจากระบบ"
+
+#: templates/dashboard.html:12 templates/dashboard.html:281
+msgid "Current timezone"
+msgstr "เขตเวลาปัจจุบัน"
+
+#: templates/dashboard.html:13 templates/dashboard.html:282
+msgid "default"
+msgstr "ค่าเริ่มต้น"
+
+#: templates/dashboard.html:13
+msgid "Detecting timezone..."
+msgstr "ตรวจจับเขตเวลา ..."
+
+#: templates/dashboard.html:30
+msgid "Upload Files"
+msgstr "อัปโหลดไฟล์"
+
+#: templates/dashboard.html:32
+msgid "Drag files here or click to select files"
+msgstr "ลากไฟล์ที่นี่หรือคลิกเพื่อเลือกไฟล์"
+
+#: templates/dashboard.html:34
+msgid "Select Files"
+msgstr "เลือกไฟล์"
+
+#: templates/dashboard.html:41
+msgid "Uploading..."
+msgstr "อัปโหลด ..."
+
+#: templates/dashboard.html:46
+msgid "File Management"
+msgstr "การจัดการไฟล์"
+
+#: templates/dashboard.html:47 templates/dashboard.html:161
+msgid "Share Management"
+msgstr "การจัดการแบ่งปัน"
+
+#: templates/dashboard.html:52
+msgid "File List"
+msgstr "รายการไฟล์"
+
+#: templates/dashboard.html:54
+msgid "Search files..."
+msgstr "ค้นหาไฟล์ ..."
+
+#: templates/dashboard.html:61
+msgid "Selected 0 files"
+msgstr "เลือก 0 ไฟล์"
+
+#: templates/dashboard.html:64
+msgid "Batch Share"
+msgstr "ส่วนแบ่งแบทช์"
+
+#: templates/dashboard.html:65
+msgid "Batch Download"
+msgstr "ดาวน์โหลดแบทช์"
+
+#: templates/dashboard.html:66
+msgid "Batch Delete"
+msgstr "การลบแบทช์"
+
+#: templates/dashboard.html:67
+msgid "Clear Selection"
+msgstr "การเลือกที่ชัดเจน"
+
+#: templates/dashboard.html:77 templates/dashboard.html:173
+msgid "Select All"
+msgstr "เลือกทั้งหมด"
+
+#: templates/dashboard.html:80 templates/dashboard.html:175
+#: templates/dashboard.html:220 templates/dashboard.html:284
+msgid "Filename"
+msgstr "ชื่อไฟล์"
+
+#: templates/dashboard.html:83
+msgid "Size"
+msgstr "ขนาด"
+
+#: templates/dashboard.html:86
+msgid "Upload Time"
+msgstr "อัพโหลดเวลา"
+
+#: templates/dashboard.html:89
+msgid "Share Status"
+msgstr "แบ่งปันสถานะ"
+
+#: templates/dashboard.html:91 templates/dashboard.html:181
+msgid "Actions"
+msgstr "การกระทำ"
+
+#: templates/dashboard.html:110 templates/dashboard.html:578
+msgid "Click to copy share information"
+msgstr "คลิกเพื่อคัดลอกข้อมูลแบ่งปัน"
+
+#: templates/dashboard.html:111 templates/dashboard.html:315
+msgid "Sharing"
+msgstr "การแบ่งปัน"
+
+#: templates/dashboard.html:111 templates/dashboard.html:314
+msgid "days"
+msgstr "วัน"
+
+#: templates/dashboard.html:116
+msgid "Not shared"
+msgstr "ไม่ได้แชร์"
+
+#: templates/dashboard.html:122 templates/dashboard.html:291
+#: templates/dashboard.html:588
+msgid "Preview"
+msgstr "ดูตัวอย่าง"
+
+#: templates/dashboard.html:124 templates/dashboard.html:602
+msgid "Download"
+msgstr "การดาวน์โหลด"
+
+#: templates/dashboard.html:125 templates/dashboard.html:603
+msgid "Share"
+msgstr "แบ่งปัน"
+
+#: templates/dashboard.html:126 templates/dashboard.html:604
+msgid "Delete"
+msgstr "ลบ"
+
+#: templates/dashboard.html:135
+msgid "No files found"
+msgstr "ไม่พบไฟล์"
+
+#: templates/dashboard.html:142 templates/dashboard.html:638
+msgid "Previous Page"
+msgstr "หน้าก่อนหน้า"
+
+#: templates/dashboard.html:146
+msgid "Page"
+msgstr "หน้าหนังสือ"
+
+#: templates/dashboard.html:146
+msgid "of"
+msgstr "ของ"
+
+#: templates/dashboard.html:147 templates/dashboard.html:295
+msgid "Total"
+msgstr "ทั้งหมด"
+
+#: templates/dashboard.html:147 templates/dashboard.html:296
+msgid "files"
+msgstr "ไฟล์"
+
+#: templates/dashboard.html:151 templates/dashboard.html:647
+msgid "Next Page"
+msgstr "หน้าถัดไป"
+
+#: templates/dashboard.html:163
+msgid "Refresh"
+msgstr "รีเฟรช"
+
+#: templates/dashboard.html:164
+msgid "Stop All Shares"
+msgstr "หยุดหุ้นทั้งหมด"
+
+#: templates/dashboard.html:176
+msgid "Link"
+msgstr "การเชื่อมโยง"
+
+#: templates/dashboard.html:177
+msgid "Created Time"
+msgstr "สร้างเวลา"
+
+#: templates/dashboard.html:178
+msgid "Expire Time"
+msgstr "เวลาหมดอายุ"
+
+#: templates/dashboard.html:179
+msgid "Remaining Days"
+msgstr "วันที่เหลืออยู่"
+
+#: templates/dashboard.html:180
+msgid "Access Count"
+msgstr "จำนวนการเข้าถึง"
+
+#: templates/dashboard.html:190
+msgid "No share links found"
+msgstr "ไม่พบลิงก์หุ้น"
+
+#: templates/dashboard.html:199
+msgid "Share File"
+msgstr "แชร์ไฟล์"
+
+#: templates/dashboard.html:204 templates/dashboard.html:239
+msgid "Share Days"
+msgstr "แบ่งปันวัน"
+
+#: templates/dashboard.html:206 templates/dashboard.html:241
+msgid "1 day"
+msgstr "1 วัน"
+
+#: templates/dashboard.html:207 templates/dashboard.html:242
+msgid "3 days"
+msgstr "3 วัน"
+
+#: templates/dashboard.html:208 templates/dashboard.html:243
+msgid "7 days"
+msgstr "7 วัน"
+
+#: templates/dashboard.html:209 templates/dashboard.html:244
+msgid "15 days"
+msgstr "15 วัน"
+
+#: templates/dashboard.html:210 templates/dashboard.html:245
+msgid "30 days"
+msgstr "30 วัน"
+
+#: templates/dashboard.html:214
+msgid "Generate Share Link"
+msgstr "สร้างลิงค์หุ้น"
+
+#: templates/dashboard.html:218
+msgid "Share Information"
+msgstr "แบ่งปันข้อมูล"
+
+#: templates/dashboard.html:223
+msgid "Share Link"
+msgstr "แชร์ลิงก์"
+
+#: templates/dashboard.html:225
+msgid "Copy Share Link"
+msgstr "ลิงค์คัดลอกแชร์"
+
+#: templates/dashboard.html:234
+msgid "Batch Share Files"
+msgstr "ไฟล์แชร์แบทช์"
+
+#: templates/dashboard.html:249
+msgid "Generate Batch Share Links"
+msgstr "สร้างลิงค์การแชร์แบทช์"
+
+#: templates/dashboard.html:253
+msgid "Batch Share Results"
+msgstr "ผลการแบ่งปันเป็นชุด"
+
+#: templates/dashboard.html:257
+msgid "Copy All Share Links"
+msgstr "คัดลอกลิงก์หุ้นทั้งหมด"
+
+#: templates/dashboard.html:283
+msgid "Upload completed!"
+msgstr "อัปโหลดเสร็จสิ้น!"
+
+#: templates/dashboard.html:285
+#, fuzzy
+msgid "Download link"
+msgstr "การดาวน์โหลด"
+
+#: templates/dashboard.html:288
+#, fuzzy
+msgid "Are you sure you want to stop this share link?"
+msgstr "แน่ใจหรือว่าต้องการลบไฟล์"
+
+#: templates/dashboard.html:289
+#, fuzzy
+msgid "Share link stopped"
+msgstr "ไม่พบลิงก์หุ้น"
+
+#: templates/dashboard.html:290
+#, fuzzy
+msgid "Stop share failed"
+msgstr "คัดลอกล้มเหลว"
+
+#: templates/dashboard.html:292
+#, fuzzy
+msgid "Searching..."
+msgstr "ค้นหาไฟล์ ..."
+
+#: templates/dashboard.html:293 templates/dashboard.html:666
+#, fuzzy
+msgid "Loading..."
+msgstr "อัปโหลด ..."
+
+#: templates/dashboard.html:294
+msgid "Found"
+msgstr "พบ"
+
+#: templates/dashboard.html:297
+#, fuzzy
+msgid "Upload failed"
+msgstr "อัปโหลดไฟล์"
+
+#: templates/dashboard.html:298
+msgid "Upload failed: Unable to parse server response"
+msgstr "อัปโหลดล้มเหลว: ไม่สามารถแยกวิเคราะห์การตอบสนองของเซิร์ฟเวอร์ได้"
+
+#: templates/dashboard.html:299
+msgid "Upload failed: File size exceeds server limit"
+msgstr "อัปโหลดล้มเหลว: ขนาดไฟล์เกินขีดจำกัดของเซิร์ฟเวอร์"
+
+#: templates/dashboard.html:300
+msgid "Upload failed: Network error"
+msgstr "อัปโหลดล้มเหลว: ข้อผิดพลาดเครือข่าย"
+
+#: templates/dashboard.html:301 templates/dashboard.html:302
+#, fuzzy
+msgid "Uploading"
+msgstr "อัปโหลด ..."
+
+#: templates/dashboard.html:303
+msgid "Copy"
+msgstr "คัดลอก"
+
+#: templates/dashboard.html:304
+#, fuzzy
+msgid "Stop Share"
+msgstr "หยุดหุ้นทั้งหมด"
+
+#: templates/dashboard.html:305
+#, fuzzy
+msgid "No share links to copy"
+msgstr "ไม่พบลิงก์หุ้น"
+
+#: templates/dashboard.html:306
+#, fuzzy
+msgid "Batch share links"
+msgstr "ไฟล์แชร์แบทช์"
+
+#: templates/dashboard.html:307
+msgid "Please select files to download"
+msgstr "กรุณาเลือกไฟล์เพื่อดาวน์โหลด"
+
+#: templates/dashboard.html:308
+msgid "Please select shares to stop"
+msgstr "กรุณาเลือกการแชร์เพื่อหยุด"
+
+#: templates/dashboard.html:309
+#, fuzzy
+msgid "Are you sure you want to stop selected"
+msgstr "แน่ใจหรือว่าต้องการลบไฟล์"
+
+#: templates/dashboard.html:310
+#, fuzzy
+msgid "share links"
+msgstr "แชร์ลิงก์"
+
+#: templates/dashboard.html:311
+msgid "Successfully stopped"
+msgstr "หยุดสำเร็จ"
+
+#: templates/dashboard.html:312
+#, fuzzy
+msgid "failed"
+msgstr "ไฟล์"
+
+#: templates/dashboard.html:313
+#, fuzzy
+msgid "times"
+msgstr "ไฟล์"
+
+#: templates/login.html:3 templates/login.html:24
+msgid "Login"
+msgstr "เข้าสู่ระบบ"
+
+#: templates/login.html:7
+msgid "File Server Management"
+msgstr "การจัดการเซิร์ฟเวอร์ไฟล์"
+
+#: templates/login.html:8
+msgid "Please enter the administrator password to login"
+msgstr "โปรดป้อนรหัสผ่านผู้ดูแลระบบเพื่อเข้าสู่ระบบ"
+
+#: templates/login.html:20
+msgid "Administrator Password"
+msgstr "รหัสผ่านผู้ดูแลระบบ"
+
+#~ msgid "Click to copy share info"
+#~ msgstr ""
+
+#~ msgid "Not Shared"
+#~ msgstr ""
+
+#~ msgid "No files"
+#~ msgstr ""
+
+#~ msgid "Previous"
+#~ msgstr ""
+
+#~ msgid "pages"
+#~ msgstr ""
+
+#~ msgid "Next"
+#~ msgstr ""
+
+#~ msgid "Expiry Time"
+#~ msgstr ""
+
+#~ msgid "Days Remaining"
+#~ msgstr ""
+
+#~ msgid "No share links"
+#~ msgstr ""
+
