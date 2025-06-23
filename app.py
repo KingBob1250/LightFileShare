@@ -249,7 +249,8 @@ def api_files():
 @login_required
 def api_shares():
     """API: 获取分享链接列表"""
-    shares = ShareLink.query.filter(ShareLink.expire_time > datetime.now(timezone.utc)).all()
+    current_utc = datetime.now(timezone.utc)
+    shares = ShareLink.query.filter(ShareLink.expire_time > current_utc).all()
     return jsonify([{
         'id': s.id,
         'token': s.token,
@@ -303,10 +304,11 @@ def search_files():
     # 应用排序
     if sort_by == 'share_status':
         # 按分享状态排序：计算每个文件有效的分享链接数
+        current_utc = datetime.now(timezone.utc)
         active_shares_subquery = db.session.query(
             ShareLink.file_id,
             db.func.count(ShareLink.id).label('active_shares_count')
-        ).filter(ShareLink.expire_time > datetime.now(timezone.utc)).group_by(ShareLink.file_id).subquery()
+        ).filter(ShareLink.expire_time > current_utc).group_by(ShareLink.file_id).subquery()
 
         files_query = files_query.outerjoin(
             active_shares_subquery, File.id == active_shares_subquery.c.file_id

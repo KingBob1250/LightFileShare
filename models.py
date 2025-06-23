@@ -5,6 +5,15 @@ import pytz
 
 db = SQLAlchemy()
 
+def ensure_timezone_aware(dt):
+    """确保datetime对象是timezone-aware的"""
+    if dt is None:
+        return dt
+    if dt.tzinfo is None:
+        # 假设naive datetime是UTC时间
+        return dt.replace(tzinfo=timezone.utc)
+    return dt
+
 class File(db.Model):
     """文件信息表"""
     id = db.Column(db.Integer, primary_key=True)
@@ -53,14 +62,16 @@ class ShareLink(db.Model):
     @property
     def is_expired(self):
         """检查链接是否过期"""
-        return datetime.now(timezone.utc) > self.expire_time
+        expire_time_utc = ensure_timezone_aware(self.expire_time)
+        return datetime.now(timezone.utc) > expire_time_utc
     
     @property
     def days_remaining(self):
         """返回剩余天数"""
         if self.is_expired:
             return 0
-        delta = self.expire_time - datetime.now(timezone.utc)
+        expire_time_utc = ensure_timezone_aware(self.expire_time)
+        delta = expire_time_utc - datetime.now(timezone.utc)
         return delta.days
     
     def get_local_created_time(self, timezone_str='Asia/Shanghai'):
@@ -85,19 +96,21 @@ class ShareLink(db.Model):
     def create_share_link(cls, file_id, days):
         """创建新的分享链接，如果已有有效分享则更新有效期"""
         # 检查是否已有有效的分享链接
+        # 确保比较时两个datetime都是timezone-aware的
+        current_utc = datetime.now(timezone.utc)
         existing_share = cls.query.filter_by(file_id=file_id).filter(
-            cls.expire_time > datetime.now(timezone.utc)
+            cls.expire_time > current_utc
         ).first()
         
         if existing_share:
             # 如果已有有效分享，更新有效期
-            existing_share.expire_time = datetime.now(timezone.utc) + timedelta(days=days)
+            existing_share.expire_time = current_utc + timedelta(days=days)
             db.session.commit()
             return existing_share
         else:
             # 创建新的分享链接
             token = str(uuid.uuid4()).replace('-', '')
-            expire_time = datetime.now(timezone.utc) + timedelta(days=days)
+            expire_time = current_utc + timedelta(days=days)
             
             share_link = cls(
                 token=token,

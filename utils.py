@@ -80,7 +80,8 @@ def cleanup_expired_shares():
     from models import ShareLink
     from datetime import datetime, timezone
     
-    expired_shares = ShareLink.query.filter(ShareLink.expire_time < datetime.now(timezone.utc)).all()
+    current_utc = datetime.now(timezone.utc)
+    expired_shares = ShareLink.query.filter(ShareLink.expire_time < current_utc).all()
     for share in expired_shares:
         db.session.delete(share)
     db.session.commit()
