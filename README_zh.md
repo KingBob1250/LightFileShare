@@ -21,6 +21,9 @@
 - 📊 **批量操作**：支持批量删除、分享、下载
 - 🌍 **多语言支持**：支持21种语言
 
+![image](https://github.com/user-attachments/assets/44ce1be6-f20f-44d6-adb9-0541d329a42a)
+![image](https://github.com/user-attachments/assets/369908a3-f229-4ec4-bccc-bd745972981e)
+
 ## 🚀 快速开始
 
 ### 方法一：使用Docker（推荐）
