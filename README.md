@@ -21,6 +21,9 @@ A lightweight Python file server with file upload, sharing, and download capabil
 - 📊 **Batch Operations**: Support for batch delete, share, download
 - 🌍 **Multi-language Support**: Support for 21 languages
 
+![image](https://github.com/user-attachments/assets/b930dd68-2975-43f8-ab6a-f59556a0036d)
+![image](https://github.com/user-attachments/assets/187d5c9f-c2f4-4f32-97e1-cffc06b4b0b7)
+
 ## 🚀 Quick Start
 
 ### Method 1: Using Docker (Recommended)
