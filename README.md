@@ -27,7 +27,7 @@ A lightweight Python file server with file upload, sharing, and download capabil
 
 ```bash
 # 1. Clone the project
-git clone <repository-url>
+git clone https://github.com/KingBob1250/LightFileShare.git
 cd LightFileShare
 
 # 2. Configure environment variables
